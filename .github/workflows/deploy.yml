@@ -37,6 +37,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
+    
+      - name: Debug tree
+        run: ls -R .
+
 
   deploy:
     environment:
