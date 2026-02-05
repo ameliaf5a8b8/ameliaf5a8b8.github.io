@@ -6,4 +6,4 @@ tags: ["bandits", "expected-value"]
 categories: ["reinforcement-learning", "sutton-barto"]
 math: true
 ---
-![My Profile](/blog/pfp.jpg)
+![My Profile](/pfp.jpg)
