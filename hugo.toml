@@ -18,13 +18,6 @@ enableGitInfo = true
 
   math = true
 
-  
-  profileTitle = "Amelia"
-  profileSubtitle = "Reinforcement Learning · Mathematics · Projects"
-  profileImage = "pfp.jpg"
-  profileImageWidth = 120
-  profileImageHeight = 120
-
   mainSections = ["posts"]
 
 
@@ -40,6 +33,11 @@ enableGitInfo = true
     enabled = true
   [params.profileMode]
     enabled = true
+    title = "Amelia"
+    subtitle = "Machine Learning · Mathematics · Repeat"
+    imageUrl = "pfp.jpg"
+    imageWidth = 120
+    imageHeight = 120
 
 
 
