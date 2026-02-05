@@ -1,4 +1,4 @@
-baseURL = "https://ameliaf5a8b8.github.io/Blog"
+baseURL = "https://ameliaf5a8b8.github.io/blog"
 languageCode = "en-gb"
 title = "Amelia"
 theme = "PaperMod"
@@ -24,6 +24,9 @@ enableGitInfo = true
   profileImage = "pfp.jpg"
   profileImageWidth = 120
   profileImageHeight = 120
+
+  mainSections = ["posts"]
+
 
   [[params.socialIcons]]
     name = "github"
