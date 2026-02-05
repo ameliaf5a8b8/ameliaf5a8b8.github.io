@@ -1,4 +1,4 @@
-baseURL = "https://ameliaf5a8b8.github.io/"
+baseURL = "https://ameliaf5a8b8.github.io/Blog"
 languageCode = "en-gb"
 title = "Amelia"
 theme = "PaperMod"
@@ -10,7 +10,7 @@ enableGitInfo = true
   pagerSize = 10
 
 [params]
-  author = "Your Name"
+  author = "Amelia"
   ShowReadingTime = true
   ShowWordCount = true
   ShowLastMod = true
@@ -19,7 +19,7 @@ enableGitInfo = true
   math = true
 
   
-  profileTitle = "Your Name"
+  profileTitle = "Amelia"
   profileSubtitle = "Reinforcement Learning · Mathematics · Projects"
   profileImage = "pfp.jpg"
   profileImageWidth = 120
