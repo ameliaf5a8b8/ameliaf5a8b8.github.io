@@ -1,0 +1,52 @@
+baseURL = "https://yourname.github.io/"
+languageCode = "en-gb"
+title = "Amelia"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+enableGitInfo = true
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  author = "Your Name"
+  ShowReadingTime = true
+  ShowWordCount = true
+  ShowLastMod = true
+  ShowPostNavLinks = true
+
+  math = true
+
+  
+  profileTitle = "Your Name"
+  profileSubtitle = "Reinforcement Learning · Mathematics · Projects"
+  profileImage = "pfp.jpg"
+  profileImageWidth = 120
+  profileImageHeight = 120
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/yourusername"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:you@email.com"
+
+  [params.breadcrumbs]
+    enabled = true
+  [params.profileMode]
+    enabled = true
+
+
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 1
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
