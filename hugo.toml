@@ -36,8 +36,8 @@ enableGitInfo = true
     title = "Amelia"
     subtitle = "Machine Learning · Mathematics · Repeat"
     imageUrl = "pfp.jpg"
-    imageWidth = 120
-    imageHeight = 120
+    imageWidth = 200
+    imageHeight = 200
 
 
 
