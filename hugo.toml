@@ -17,8 +17,11 @@ enableGitInfo = true
   ShowPostNavLinks = true
 
   math = true
-  katex = true
 
+  [params.katex]
+    enable = true
+    macros = { "\\doteq" = "\\mathrel{\\dot{=}}" }
+ 
   mainSections = ["posts"]
 
 
@@ -57,5 +60,12 @@ enableGitInfo = true
   [markup.goldmark]
     unsafe = true
 
-  [markup.goldmark.renderer]
-    hardWraps = false
+    [markup.goldmark.renderer]
+      hardWraps = false
+    
+    [markup.goldmark.extensions]
+      enable = true
+    
+      [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$']]
+          inline = [['$', '$']]

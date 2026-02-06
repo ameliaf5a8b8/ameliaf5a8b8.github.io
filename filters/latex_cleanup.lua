@@ -25,8 +25,15 @@ local function fix_braces(text)
   return text
 end
 
+local function escape_underscores(text)
+  text = text:gsub("([^\\])_", "%1\\_")
+  text = text:gsub("^_", "\\_")
+  return text
+end
+
 -- helper: append DisplayMath with inline separator
 local function add_display(blocks, line, is_last)
+  line = escape_underscores(line)
   table.insert(blocks, pandoc.Math("DisplayMath", line))
   if not is_last then
     table.insert(blocks, pandoc.Space())
@@ -87,13 +94,16 @@ local function process_math(math)
     inner = inner:gsub("^%s+", ""):gsub("%s+$", "")
     inner = strip_refs(inner)
     inner = fix_braces(inner)
+    inner = escape_underscores(inner)
     return pandoc.Math("DisplayMath", inner)
   end
 
-  -- ordinary math
+  -- ordinary inline math
   local cleaned = strip_refs(text)
   cleaned = cleaned:gsub("&", "")
-  math.text = fix_braces(cleaned)
+  cleaned = fix_braces(cleaned)
+  cleaned = escape_underscores(cleaned)
+  math.text = cleaned
   return math
 end
 

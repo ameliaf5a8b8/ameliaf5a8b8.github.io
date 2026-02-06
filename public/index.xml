@@ -6,22 +6,8 @@
     <description>Recent content on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
-    <lastBuildDate>Thu, 05 Feb 2026 21:50:50 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 06 Feb 2026 21:13:03 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>DP</title>
-      <link>http://localhost:1313/posts/main/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/main/</guid>
-      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-&lt;h4 id=&#34;problem&#34;&gt;Problem.&lt;/h4&gt;
-&lt;p&gt;Let $\lbrace R_n \rbrace_{n \ge 1}$ be a sequence of rewards and let $\alpha \in (0,1)$ be a constant step size.&lt;/p&gt;
-&lt;p&gt;Consider the recursive update, for $n \ge 1$,  &lt;br&gt;
-$$Q_{n+1} = Q_n + \alpha \bigl(R_n - Q_n\bigr), \qquad Q_1 = 5,  $$&lt;/p&gt;
-&lt;p&gt;where $Q_n \in \mathbb{R}$ for all $n$.&lt;/p&gt;
-&lt;p&gt;Define the auxiliary sequence $\lbrace \bar{o_n} \rbrace _{n \ge 0}$ by&lt;/p&gt;
-&lt;p&gt;$$\bar{o}&lt;em&gt;n \doteq \bar{o}&lt;/em&gt;{n-1} + \alpha \bigl(1 - \bar{o}_{n-1}\bigr), $$&lt;/p&gt;</description>
-    </item>
     <item>
       <title>MD</title>
       <link>http://localhost:1313/posts/sutton-barto/policy-evaluation/</link>
@@ -46,20 +32,24 @@ Q_\lbrace n+1 \rbrace = Q_n + \alpha \bigl(R_n - Q_n\bigr),
       <link>http://localhost:1313/posts/sutton-barto/bandits/</link>
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/sutton-barto/bandits/</guid>
-      <description></description>
+      <description>&lt;p&gt;$\lbrace \bar{o}_{n-1} \rbrace _{n \ge 0}$
+$$\bar{o}_{n-1} $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>TEST</title>
-      <link>http://localhost:1313/posts/output/</link>
+      <link>http://localhost:1313/posts/test/</link>
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/output/</guid>
+      <guid>http://localhost:1313/posts/test/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;h4 id=&#34;problem&#34;&gt;Problem.&lt;/h4&gt;
 &lt;p&gt;Let $\lbrace R_n\rbrace_{n \ge 1}$ be a sequence of rewards and let $\alpha \in (0,1)$ be a constant step size. Consider the recursive update, for $n \ge 1$, $$Q_{n+1} = Q_n + \alpha \bigl(R_n - Q_n\bigr),
 \qquad Q_1 = 5, $$ where $Q_n \in \mathbb{R}$ for all $n$.&lt;/p&gt;
-&lt;p&gt;Define the auxiliary sequence $\lbrace \bar{o}&lt;em&gt;n \rbrace&lt;/em&gt;{n \ge 0}$ by $$\bar{o}&lt;em&gt;n \doteq \bar{o}&lt;/em&gt;{n-1} + \alpha \bigl(1 - \bar{o}_{n-1}\bigr),
-\quad \text{for } n &amp;gt; 0,
-\qquad \bar{o}_0 \doteq 0,$$ and let $$\beta_n \doteq \alpha \bar{o}_n.$$&lt;/p&gt;</description>
+&lt;p&gt;Define the auxiliary sequence $\lbrace \bar{o}_n \rbrace &lt;em&gt;{n \ge 0}$ by
+$$
+\bar{o}&lt;em&gt;n \doteq \bar{o}&lt;/em&gt;{n-1} + \alpha \left(1 - \bar{o}&lt;/em&gt;{n-1}\right), \quad \text{for } n &amp;gt; 0, \qquad \bar{o}_0 \doteq 0,
+$$
+and let
+$$\beta_n \doteq \alpha \bar{o}_n.$$&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>

@@ -1,9 +1,9 @@
 ---
-title: "TEST"
-date: 2026-01-15
-lastmod: 2026-02-05
+title: "main"
+date: 2026-02-06
+lastmod: 2026-02-06
 tags: []
-categories: ["reinforcement-learning", "sutton-barto"]
+categories: []
 math: true
 ---
 # Introduction
@@ -22,6 +22,4 @@ Considering the modified update $$Q\_{n+1} = Q\_n + \beta\_n (R\_n - Q\_n).$$ sh
 #### Solution.
 
 Substituting $\alpha$ as $\beta\_n$ $$Q\_{n+1} = Q\_n + \beta\_n \bigl(R\_n - Q\_n\bigr) $$ $$=\beta\_nR\_n + \left[1 - \beta\_n \right] Q\_n$$
-
-
 

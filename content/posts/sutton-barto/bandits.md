@@ -6,3 +6,7 @@ tags: ["bandits", "expected-value"]
 categories: ["reinforcement-learning", "sutton-barto"]
 math: true
 ---
+
+$\lbrace \bar{o}_{n-1} \rbrace _{n \ge 0}$
+$$\bar{o}\_{n-1} $$
+
