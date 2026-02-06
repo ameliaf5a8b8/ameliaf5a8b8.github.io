@@ -17,6 +17,7 @@ enableGitInfo = true
   ShowPostNavLinks = true
 
   math = true
+  katex = true
 
   mainSections = ["posts"]
 
@@ -51,3 +52,10 @@ enableGitInfo = true
     name = "About"
     url = "/about/"
     weight = 2
+
+[markup]
+  [markup.goldmark]
+    unsafe = true
+
+  [markup.goldmark.renderer]
+    hardWraps = false

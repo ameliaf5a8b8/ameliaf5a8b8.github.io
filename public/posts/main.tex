@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\usepackage[colorlinks=false, allcolors=blue]{hyperref} % For clickable links 
+\usepackage{amssymb}
+\title{RL book working}
+\author{Amelia}
+\date{February 2026}
+
+\numberwithin{equation}{section}
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+
+\paragraph{Problem.}
+Let $\{R_n\}_{n \ge 1}$ be a sequence of rewards and let $\alpha \in (0,1)$ be a constant step size.
+Consider the recursive update, for $n \ge 1$,
+\begin{equation}
+Q_{n+1} = Q_n + \alpha \bigl(R_n - Q_n\bigr),
+\qquad Q_1 = 5, \label{eq:original}
+\end{equation}
+where $Q_n \in \mathbb{R}$ for all $n$.
+
+\vspace{2em}
+
+Define the auxiliary sequence $\{\bar{o}_n\}_{n \ge 0}$ by
+\begin{equation}
+\bar{o}_n \doteq \bar{o}_{n-1} + \alpha \bigl(1 - \bar{o}_{n-1}\bigr),
+\quad \text{for } n > 0,
+\qquad \bar{o}_0 \doteq 0,
+\end{equation}
+and let
+\begin{equation}
+\beta_n \doteq \alpha \bar{o}_n.
+\end{equation}
+
+\noindent Considering the modified update  
+\begin{equation}
+Q_{n+1} = Q_n + \beta_n (R_n - Q_n).
+\end{equation}
+show that the sequence $\{Q_n\}$ can be written as an exponentially
+recency-weighted average of the rewards $\{R_k\}$.
+In addition, show that normalizing by $\bar{o}_n$ removes the bias introduced
+by the initialization $Q_1 = 5$.
+
+\paragraph{Solution.} Substituting \(\alpha\) as \(\beta_n\)
+\begin{align}
+Q_{n+1} &= Q_n + \beta_n \bigl(R_n - Q_n\bigr) \tag{from \eqref{eq:original}}\\
+&=\beta_nR_n + \left[1 - \beta_n \right] Q_n\\
+&=\left[ \sum_{i=1}^n\beta_iR_i \prod_{j=i+1}^n 1-\beta_j\right] + Q_1 \prod_{i=0}^n 1- \beta_n
+\end{align}
+
+\end{document}
+
+

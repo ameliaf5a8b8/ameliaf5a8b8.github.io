@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Amelia</title>
-    <link>http://localhost:1313/blog/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
-    <lastBuildDate>Thu, 05 Feb 2026 21:34:28 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Feb 2026 18:42:04 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bandits</title>
-      <link>http://localhost:1313/blog/tags/bandits/</link>
+      <link>http://localhost:1313/tags/bandits/</link>
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/tags/bandits/</guid>
+      <guid>http://localhost:1313/tags/bandits/</guid>
       <description></description>
     </item>
     <item>
       <title>Expected-Value</title>
-      <link>http://localhost:1313/blog/tags/expected-value/</link>
+      <link>http://localhost:1313/tags/expected-value/</link>
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/tags/expected-value/</guid>
+      <guid>http://localhost:1313/tags/expected-value/</guid>
       <description></description>
     </item>
   </channel>
