@@ -62,6 +62,7 @@ enableGitInfo = true
 
     [markup.goldmark.renderer]
       hardWraps = false
+      unsafe = true
     
     [markup.goldmark.extensions]
       enable = true
