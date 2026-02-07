@@ -5,9 +5,9 @@ lastmod: 2026-02-08
 tags: []
 categories: []
 math: true
-summary:
+summary: 
 ---
- # Introduction
+# Introduction
 
 <figure id="fig:example" data-latex-placement="h">
 <img src="GRU diagram.png" style="width:60.0%" />
@@ -24,13 +24,13 @@ Overall, GRU is a popular alternative to LSTM for modeling sequential data, due 
 
 # How do GRUs work?
 
-Like other recurrent neural network architectures, GRU processes sequential data one element at a time, updating its hidden state $h\_t \in \mathbb{R}^{N\_h}$ based on the current input $x\_t \in \mathbb R^{N\_x}$ and the previous hidden state, where $N\_x$ is the dimensionality of the input and $N\_h$ is the dimensionality of the hidden state. At each time step, the GRU computes a "candidate activation vector" $h^\prime\_t \in \mathbb R^N$ that combines information from the input and the previous hidden state. This candidate vector is then used to update the hidden state for the next time step.
+Like other recurrent neural network architectures, GRU processes sequential data one element at a time, updating its hidden state $h\_t \in \mathbb{R}^N$ based on the current input $x\_t \in \mathbb R^N$ and the previous hidden state, where $N$ is the number of features in the input $x\_t$. At each time step, the GRU computes a "candidate activation vector" $z\_t \in \mathbb R^N$ that combines information from the input and the previous hidden state. This candidate vector is then used to update the hidden state for the next time step.
 
 The candidate activation vector is computed using two gates: the reset gate and the update gate. The reset gate determines how much of the previous hidden state to forget, while the update gate determines how much of the candidate activation vector to incorporate into the new hidden state.
 
 **Here's the math behind it:**
 
-The output of the reset and update gate are both computed with the current input $x\_t$ and the previous hidden state $h\_{t-1}$. $$r\_t = \sigma\left(W\_r \odot \left[h\_{t-1},x\_t \right]\right)$$ $$z\_t = \sigma\left(W\_z \odot \left[h\_{t-1},x\_t \right]\right)$$ Where $\sigma$ is the sigmoid function, and $W\_r \in \mathbb R^{N\_x + N\_h}$ and $W\_z \in \mathbb R^{N\_x + N\_h}$ are weight matrices that are learned during training.
+The output of the reset and update gate are both computed with the current input $x\_t$ and the previous hidden state $h\_{t-1}$. $$r\_t = \sigma\left(W\_r \odot \left[h\_{t-1},x\_t \right]\right)$$ Where $\sigma$ is the sigmoid function, and $W\_r \in \mathbb R^{2n}$ and $W\_z \in \mathbb R^{2n}$ are weight matrices to be learnt during training.
 
 The candidate activation vector $h^\prime\_t$ is computed using the current input $x\_t$ and a modified version of the previous hidden state that is \"reset\" by the reset gate:
 
