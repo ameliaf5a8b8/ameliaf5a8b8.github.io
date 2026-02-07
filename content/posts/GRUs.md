@@ -26,7 +26,7 @@ Overall, GRU is a popular alternative to LSTM for modeling sequential data, due 
 
 # How do GRUs work?
 
-Like other recurrent neural network architectures, GRU processes sequential data one element at a time, updating its hidden state $h_t \in \mathbb{R}^{N_h}$ based on the current input $x\_t \in \mathbb R^{N_x}$ and the previous hidden state, where $N_X$ is the dimensionality of the input and $N_h$ is the dimensionality of the hidden state. At each time step, the GRU computes a “candidate activation vector” $h^\prime_t \in \mathbb R^N$ that combines information from the input and the previous hidden state. This candidate vector is then used to update the hidden state for the next time step.
+Like other recurrent neural network architectures, GRU processes sequential data one element at a time, updating its hidden state $h_t \in \mathbb{R}^{N_h}$ based on the current input $x\_t \in \mathbb R^{N_x}$ and the previous hidden state, where $N_x$ is the dimensionality of the input and $N_h$ is the dimensionality of the hidden state. At each time step, the GRU computes a “candidate activation vector” $h^\prime_t \in \mathbb R^N$ that combines information from the input and the previous hidden state. This candidate vector is then used to update the hidden state for the next time step.
 
 The candidate activation vector is computed using two gates: the reset gate and the update gate. The reset gate determines how much of the previous hidden state to forget, while the update gate determines how much of the candidate activation vector to incorporate into the new hidden state.
 
