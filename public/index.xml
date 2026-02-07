@@ -6,15 +6,21 @@
     <description>Recent content on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 06 Feb 2026 22:16:33 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GRUs</title>
+      <link>http://localhost:1313/posts/grus/</link>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/grus/</guid>
+      <description>GRU stands for Gated Recurrent Unit, which is a type of recurrent neural network (RNN) that is based on Long Short-Term memory (LSTM). Like LSTM, GRU is designed to model sequential data by allowing information to be selectively remembered or forgotten over time. However, GRU has a simpler architecture than LSTM, with fewer parameters, which makes it easier to train at a cost of accuracy</description>
+    </item>
     <item>
       <title>ABOUT WIP</title>
       <link>http://localhost:1313/about/</link>
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>&lt;p&gt;$\lbrace \bar{o}_{n-1} \rbrace _{n \ge 0}$
-$$\bar{o}_{n-1} $$&lt;/p&gt;</description>
+      <description></description>
     </item>
     <item>
       <title>TEST</title>
@@ -34,8 +40,13 @@ $$\bar{o}_{n-1} $$&lt;/p&gt;</description>
       <link>http://localhost:1313/posts/sutton-barto/test/</link>
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/sutton-barto/test/</guid>
-      <description>&lt;p&gt;$\lbrace \bar{o}_{n-1} \rbrace _{n \ge 0}$
-$$\bar{o}_{n-1} $$&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;figure id=&#34;fig:example&#34; data-latex-placement=&#34;h&#34;&gt;
+  &lt;img src=&#34;http://localhost:1313/images/GRU diagram.png&#34;
+       style=&#34;width:60%; display:block; margin:auto;&#34; /&gt;
+  &lt;figcaption style=&#34;text-align:center;&#34;&gt;GRU block&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;GRU stands for Gated Recurrent Unit, which is a type of recurrent neural network (RNN) that is based on Long Short-Term memory (LSTM). Like LSTM, GRU is designed to model sequential data by allowing information to be selectively remembered or forgotten over time. However, GRU has a simpler architecture than LSTM, with fewer parameters, which makes it easier to train at a cost of accuracy.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

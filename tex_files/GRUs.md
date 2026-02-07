@@ -1,13 +1,12 @@
 ---
-title: "TEST FILE"
-date: 2026-01-15
-lastmod: 2026-02-05
-tags: ["TEST"]
-categories: ["TEST"]
+title: "GRUs"
+date: 2026-02-07
+lastmod: 2026-02-07
+tags: []
+categories: []
 math: true
 summary:
 ---
-
 
 # Introduction
 
@@ -36,7 +35,7 @@ The candidate activation vector is computed using two gates: the reset gate and 
 The output of the reset and update gate are both computed with the current input $x\_t$ and the previous hidden state $h\_{t-1}$. $$\begin{align*}
 r\_t = \sigma\left(W\_r \odot \left[h\_{t-1},x\_t \right]\right)\\
 z\_t = \sigma\left(W\_z \odot \left[h\_{t-1},x\_t \right]\right)
-\end{align*}$$ Where $\sigma$ is the sigmoid function, and $W\_r \in \mathbb R^{2n}$ and $W\_z \in \mathbb R^{2n}$ are weight matrices to be learnt during training.
+\end{align*}$$ Where $\sigma$ is the sigmoid function, and $W\_r \in \mathbb R^{2n}$ and $W\_z \in \mathbb R^{2n}$ are weight matrices that are learned during training.
 
 The candidate activation vector $h^\prime\_t$ is computed using the current input $x\_t$ and a modified version of the previous hidden state that is \"reset\" by the reset gate:
 
