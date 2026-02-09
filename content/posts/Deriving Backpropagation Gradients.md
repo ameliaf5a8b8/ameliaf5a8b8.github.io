@@ -5,7 +5,7 @@ lastmod: 2026-02-09
 tags: []
 categories: []
 math: true
-summary:
+summary: A simple guide walking through the basic algebra involved in Backpropogation
 ---
 
 
