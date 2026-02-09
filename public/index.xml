@@ -6,47 +6,34 @@
     <description>Recent content on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sat, 07 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deriving Backpropagation Gradients</title>
+      <link>http://localhost:1313/posts/deriving-backpropagation-gradients/</link>
+      <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/deriving-backpropagation-gradients/</guid>
+      <description>&lt;h1 id=&#34;deriving-the-gradients-for-a-single-value&#34;&gt;Deriving the gradients for a single value&lt;/h1&gt;
+&lt;p&gt;Let us derive the gradients that happen in backpropogation, one value at a time.&lt;/p&gt;
+&lt;p&gt;$$\text{let }\theta, W\in \mathbb R^n \text{ and } n \text{ be an arbitrary value}$$&lt;/p&gt;
+&lt;figure&gt;
+  &lt;picture&gt;
+    &lt;source srcset=&#34;http://localhost:1313/images/ANN_with_labels_dark_mode.png&#34;
+            media=&#34;(prefers-color-scheme: dark)&#34;&gt;
+    &lt;img src=&#34;http://localhost:1313/images/ANN_with_labels_light_mode.png&#34;
+         style=&#34;width:60%; display:block; margin:auto;&#34;
+         alt=&#34;A typical Neural Net&#34;&gt;
+  &lt;/picture&gt;
+  &lt;figcaption style=&#34;text-align:center;&#34;&gt;A typical Neural Net&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;$$W_{h_1} \leftarrow W_{h_1} - \alpha \left( \frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \right)$$ $$b_{h_1} \leftarrow b_{h_1} - \alpha \left( \frac{\partial o_1}{\partial b_{h_1}} + \dots + \frac{\partial o_n}{\partial b_{h_1}} \right)$$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>GRUs</title>
       <link>http://localhost:1313/posts/grus/</link>
       <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/grus/</guid>
       <description>GRU stands for Gated Recurrent Unit, which is a type of recurrent neural network (RNN) that is based on Long Short-Term memory (LSTM). Like LSTM, GRU is designed to model sequential data by allowing information to be selectively remembered or forgotten over time. However, GRU has a simpler architecture than LSTM, with fewer parameters, which makes it easier to train at a cost of accuracy</description>
-    </item>
-    <item>
-      <title>ABOUT WIP</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>TEST</title>
-      <link>http://localhost:1313/posts/test/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/test/</guid>
-      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-&lt;h4 id=&#34;problem&#34;&gt;Problem.&lt;/h4&gt;
-&lt;p&gt;Let $\lbrace R_n \rbrace_{n \ge 1}$ be a sequence of rewards and let $\alpha \in (0,1)$ be a constant step size. Consider the recursive update, for $n \ge 1$, $$Q_{n+1} = Q_n + \alpha \bigl(R_n - Q_n\bigr),
-\qquad Q_1 = 5, $$ where $Q_n \in \mathbb{R}$ for all $n$.&lt;/p&gt;
-&lt;p&gt;Define the auxiliary sequence $\lbrace \bar{o}_n \rbrace_{n \ge 0}$ by $$\bar{o}_n \doteq \bar{o}_{n-1} + \alpha \bigl(1 - \bar{o}_{n-1}\bigr),
-\quad \text{for } n &amp;gt; 0,
-\qquad \bar{o}_0 \doteq 0,$$ and let $$\beta_n \doteq \alpha \bar{o}_n.$$&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>TEST FILE</title>
-      <link>http://localhost:1313/posts/sutton-barto/test/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/sutton-barto/test/</guid>
-      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-&lt;figure id=&#34;fig:example&#34; data-latex-placement=&#34;h&#34;&gt;
-  &lt;img src=&#34;http://localhost:1313/images/GRU diagram.png&#34;
-       style=&#34;width:60%; display:block; margin:auto;&#34; /&gt;
-  &lt;figcaption style=&#34;text-align:center;&#34;&gt;GRU block&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;GRU stands for Gated Recurrent Unit, which is a type of recurrent neural network (RNN) that is based on Long Short-Term memory (LSTM). Like LSTM, GRU is designed to model sequential data by allowing information to be selectively remembered or forgotten over time. However, GRU has a simpler architecture than LSTM, with fewer parameters, which makes it easier to train at a cost of accuracy.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
