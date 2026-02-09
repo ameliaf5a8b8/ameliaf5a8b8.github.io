@@ -27,8 +27,8 @@ local function fix_braces(text)
 end
 
 local function escape_underscores(text)
-  text = text:gsub("([^\\])_", "%1\\_")
-  text = text:gsub("^_", "\\_")
+  -- text = text:gsub("([^\\])_", "%1\\_")
+  -- text = text:gsub("^_", "\\_")
   return text
 end
 
