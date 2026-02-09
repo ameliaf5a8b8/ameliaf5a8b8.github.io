@@ -6,27 +6,20 @@
     <description>Recent content in Tags on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 06 Feb 2026 22:29:03 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Feb 2026 14:04:43 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bandits</title>
-      <link>http://localhost:1313/tags/bandits/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/bandits/</guid>
+      <title>Machine Learning</title>
+      <link>http://localhost:1313/tags/machine-learning/</link>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
-      <title>Expected-Value</title>
-      <link>http://localhost:1313/tags/expected-value/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/expected-value/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>TEST</title>
-      <link>http://localhost:1313/tags/test/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/test/</guid>
+      <title>RNNs</title>
+      <link>http://localhost:1313/tags/rnns/</link>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/rnns/</guid>
       <description></description>
     </item>
   </channel>
