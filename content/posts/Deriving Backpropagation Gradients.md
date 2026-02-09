@@ -29,11 +29,31 @@ $$\text{let }\theta, W\in \mathbb R^n \text{ and } n \text{ be an arbitrary valu
 
 
 
-
-
-$$W_{h_1} \leftarrow W_{h_1} - \alpha \left( \frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \right)$$ $$b_{h_1} \leftarrow b_{h_1} - \alpha \left( \frac{\partial o_1}{\partial b_{h_1}} + \dots + \frac{\partial o_n}{\partial b_{h_1}} \right)$$
-
+By the update rule:
+$$
+W_{h_1} \leftarrow W_{h_1} - \alpha \left( \frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \right) 
+$$
+$$
+= W_{h_1} - \alpha\frac{\partial o}{\partial W_{h_1}}
+$$
+$$
+b_{h_1} \leftarrow b_{h_1} - \alpha \left( \frac{\partial o_1}{\partial b_{h_1}} + \dots + \frac{\partial o_n}{\partial b_{h_1}} \right)
+$$
+$$
+= b_{h_1} - \alpha\frac{\partial o}{\partial b_{h_1}}
+$$
 # Deriving gradients in the vector case
+
+By the update rule:
+<figure data-latex-placement="h">
+  <picture style="display:block; margin:auto; width:60%;">
+    <!-- Dark mode image -->
+    <source srcset="/images/Deriving_Backpropagation_Gradients_imgs/dark_mode_def.png" media="(prefers-color-scheme: dark)">
+    <!-- Light mode fallback -->
+    <img src="/images/ANN_with_labels_light_mode_def.png" alt="A typical Neural Net" style="width:100%;" />
+  </picture>
+</figure>
+$$W_h \leftarrow W_{h} - \alpha \frac{\partial o}{\partial W_h} $$
 <figure data-latex-placement="h">
   <picture style="display:block; margin:auto; width:60%;">
     <!-- Dark mode image -->
@@ -41,7 +61,6 @@ $$W_{h_1} \leftarrow W_{h_1} - \alpha \left( \frac{\partial o_1}{\partial W_{h_1
     <!-- Light mode fallback -->
     <img src="/images/ANN_with_labels_light_mode.png" alt="A typical Neural Net" style="width:100%;" />
   </picture>
-  <figcaption style="text-align:center;">A typical Neural Net</figcaption>
 </figure>
 
 
