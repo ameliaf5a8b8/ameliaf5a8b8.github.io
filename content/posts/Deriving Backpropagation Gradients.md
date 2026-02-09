@@ -55,7 +55,7 @@ By the update rule:
 </figure>
 $$W_h \leftarrow W_{h} - \alpha \frac{\partial o}{\partial W_h} $$
 <figure data-latex-placement="h">
-  <picture style="display:block; margin:auto; width:60%;">
+  <picture style="display:block; margin:auto; width:45%;">
     <!-- Dark mode image -->
     <source srcset="/images/Deriving_Backpropagation_Gradients_imgs/dark_mode.png" media="(prefers-color-scheme: dark)">
     <!-- Light mode fallback -->
