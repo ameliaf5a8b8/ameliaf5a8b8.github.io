@@ -13,20 +13,7 @@
       <link>http://localhost:1313/posts/deriving-backpropagation-gradients/</link>
       <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/deriving-backpropagation-gradients/</guid>
-      <description>&lt;h1 id=&#34;deriving-the-gradients-for-a-single-value&#34;&gt;Deriving the gradients for a single value&lt;/h1&gt;
-&lt;p&gt;Let us derive the gradients that happen in backpropogation, one value at a time.&lt;/p&gt;
-&lt;p&gt;$$\text{let }\theta, W\in \mathbb R^n \text{ and } n \text{ be an arbitrary value}$$&lt;/p&gt;
-&lt;figure&gt;
-  &lt;picture&gt;
-    &lt;source srcset=&#34;http://localhost:1313/images/ANN_with_labels_dark_mode.png&#34;
-            media=&#34;(prefers-color-scheme: dark)&#34;&gt;
-    &lt;img src=&#34;http://localhost:1313/images/ANN_with_labels_light_mode.png&#34;
-         style=&#34;width:60%; display:block; margin:auto;&#34;
-         alt=&#34;A typical Neural Net&#34;&gt;
-  &lt;/picture&gt;
-  &lt;figcaption style=&#34;text-align:center;&#34;&gt;A typical Neural Net&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;$$W_{h_1} \leftarrow W_{h_1} - \alpha \left( \frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \right)$$ $$b_{h_1} \leftarrow b_{h_1} - \alpha \left( \frac{\partial o_1}{\partial b_{h_1}} + \dots + \frac{\partial o_n}{\partial b_{h_1}} \right)$$&lt;/p&gt;</description>
+      <description>A simple guide walking through the basic algebra involved in Backpropogation</description>
     </item>
     <item>
       <title>GRUs</title>
