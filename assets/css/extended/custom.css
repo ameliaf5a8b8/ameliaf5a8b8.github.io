@@ -1,5 +1,0 @@
-.light-mode-image { display: block; }
-.dark-mode-image { display: none; }
-
-body.dark .light-mode-image { display: none; }
-body.dark .dark-mode-image { display: block; }
