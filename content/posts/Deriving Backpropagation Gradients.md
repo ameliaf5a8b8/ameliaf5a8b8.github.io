@@ -42,6 +42,8 @@ $$
 $$
 = b_{h_1} - \alpha\frac{\partial o}{\partial b_{h_1}}
 $$
+
+
 # Deriving gradients in the vector case
 
 By the update rule:
@@ -50,7 +52,7 @@ By the update rule:
     <!-- Dark mode image -->
     <source srcset="/images/Deriving_Backpropagation_Gradients_imgs/dark_mode_def.png" media="(prefers-color-scheme: dark)">
     <!-- Light mode fallback -->
-    <img src="/images/ANN_with_labels_light_mode_def.png" alt="A typical Neural Net" style="width:100%;" />
+    <img src="/images/Deriving_Backpropagation_Gradients_imgs/light_mode_def.png" alt="A typical Neural Net" style="width:100%;" />
   </picture>
 </figure>
 $$W_h \leftarrow W_{h} - \alpha \frac{\partial o}{\partial W_h} $$
@@ -59,7 +61,7 @@ $$W_h \leftarrow W_{h} - \alpha \frac{\partial o}{\partial W_h} $$
     <!-- Dark mode image -->
     <source srcset="/images/Deriving_Backpropagation_Gradients_imgs/dark_mode.png" media="(prefers-color-scheme: dark)">
     <!-- Light mode fallback -->
-    <img src="/images/ANN_with_labels_light_mode.png" alt="A typical Neural Net" style="width:100%;" />
+    <img src="/images/Deriving_Backpropagation_Gradients_imgs/light_mode.png" alt="A typical Neural Net" style="width:100%;" />
   </picture>
 </figure>
 
