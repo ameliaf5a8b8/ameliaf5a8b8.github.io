@@ -1,7 +1,7 @@
 ---
 title: "Deriving Backpropagation Gradients"
 date: 2026-02-09
-lastmod: 2026-02-09
+lastmod: 2026-02-13
 tags: []
 categories: []
 math: true
@@ -45,27 +45,47 @@ $$
 
 
 # Deriving gradients in the vector case
-
+$$
+\begin{gather*}
+    W_h \doteq 
+    \begin{pmatrix}
+        W_{h_1} \\
+        \vdots\\
+        W_{h_n}
+    \end{pmatrix}
+    \quad
+    b_h \doteq 
+    \begin{pmatrix}
+        b_{h_1} \\
+        \vdots\\
+        b_{h_n}
+    \end{pmatrix}
+    \quad
+    O_h \doteq 
+    \begin{pmatrix}
+        o_{h_1} \\
+        \vdots\\
+        o_{h_n}
+    \end{pmatrix}
+\end{gather*}
+$$
 By the update rule:
-<figure data-latex-placement="h">
-  <picture style="display:block; margin:auto; width:60%;">
-    <!-- Dark mode image -->
-    <source srcset="/images/Deriving_Backpropagation_Gradients_imgs/dark_mode_def.png" media="(prefers-color-scheme: dark)">
-    <!-- Light mode fallback -->
-    <img src="/images/Deriving_Backpropagation_Gradients_imgs/light_mode_def.png" alt="A typical Neural Net" style="width:100%;" />
-  </picture>
-</figure>
 $$W_h \leftarrow W_{h} - \alpha \frac{\partial o}{\partial W_h} $$
-<figure data-latex-placement="h">
-  <picture style="display:block; margin:auto; width:45%;">
-    <!-- Dark mode image -->
-    <source srcset="/images/Deriving_Backpropagation_Gradients_imgs/dark_mode.png" media="(prefers-color-scheme: dark)">
-    <!-- Light mode fallback -->
-    <img src="/images/Deriving_Backpropagation_Gradients_imgs/light_mode.png" alt="A typical Neural Net" style="width:100%;" />
-  </picture>
-</figure>
 
-
+$$
+\begin{align*}
+\frac{\partial o}{\partial W_h} &\doteq \begin{pmatrix}
+\frac{\partial o}{\partial W_{h_1}} \\
+\vdots \\
+\frac{\partial o}{\partial W_{h_n}}
+\end{pmatrix} \\
+&= \begin{pmatrix}
+\frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \\
+\vdots \\
+\frac{\partial o_1}{\partial W_{h_n}} + \dots + \frac{\partial o_n}{\partial W_{h_n}}
+\end{pmatrix}
+\end{align*}
+$$
 
 
 # Deriving gradients in earlier layers
