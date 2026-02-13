@@ -1,54 +1,60 @@
 ---
 title: "Deriving Backpropagation Gradients"
-date: 2026-02-09
+date: 2026-02-13
 lastmod: 2026-02-13
 tags: []
 categories: []
 math: true
-summary: A simple guide walking through the basic algebra involved in Backpropogation
+summary:
 ---
-
-
 # Deriving the gradients for a single value
 
 Let us derive the gradients that happen in backpropogation, one value at a time.
 
 $$\text{let }\theta, W\in \mathbb R^n \text{ and } n \text{ be an arbitrary value}$$
 
-<figure>
-  <picture>
-    <source srcset="/images/ANN_with_labels_dark_mode.png"
-            media="(prefers-color-scheme: dark)">
-    <img src="/images/ANN_with_labels_light_mode.png"
-         style="width:60%; display:block; margin:auto;"
-         alt="A typical Neural Net">
-  </picture>
-  <figcaption style="text-align:center;">A typical Neural Net</figcaption>
-</figure>
+<figure id="fig:1" data-latex-placement="!h">
 
+<figcaption>A typical Neural Net</figcaption>
+</figure>
 
 # Adding the loss derivative
 
 Let $\mathcal L$ denote the loss. The update rule uses the gradient of the loss with respect to the variable we are tuning:
 $$
-W_{h_1} 
-\leftarrow W_{h_1} - \alpha \frac{\partial \mathcal L}{\partial W_{h_1}} 
-$$
-
-To find $\frac{\partial \mathcal L}{\partial W_{h_1}}$, we can expand it with the chain rule
-
-$$
 \begin{align*}
-\frac{\partial \mathcal L}{\partial W_{h_1}}  &= \frac{\partial \mathcal L}{\partial o}\frac{\partial o}{\partial W_{h_1}} \\
-&=\left(\frac{\partial \mathcal L}{\partial o_1}\frac{\partial o_1}{\partial W_{h_1}}+ \dots +\frac{\partial \mathcal L}{\partial o_n}\frac{\partial o_n}{\partial W_{h_1}}\right)
+W_{h_1} 
+&\leftarrow W_{h_1} - \alpha \frac{\partial \mathcal L}{\partial W_{h_1}} 
 \end{align*}
 $$
 
-
+To find $\frac{\partial \mathcal L}{\partial W_{h_1}}$, we can expand it with the chain rule
+$$
+\begin{align*}
+\frac{\partial \mathcal L}{\partial W_{h_1}} &= \frac{\partial \mathcal L}{\partial o}\frac{\partial o}{\partial W_{h_1}}\\
+&=
+    \left(
+\frac{\partial \mathcal L}{\partial o_1}
+\frac{\partial o_1}{\partial W_{h_1}}
++ \dots +
+\frac{\partial \mathcal L}{\partial o_n}
+\frac{\partial o_n}{\partial W_{h_1}}
+\right) 
+\end{align*}
+$$
 Similarly for the bias:
 $$
 \begin{align*}
-b_{h_1}&\leftarrow b_{h_1}- \alpha\left(\frac{\partial \mathcal L}{\partial o_1}\frac{\partial o_1}{\partial b_{h_1}}+ \dots +\frac{\partial \mathcal L}{\partial o_n}\frac{\partial o_n}{\partial b_{h_1}}\right) \\
+b_{h_1}
+&\leftarrow b_{h_1}
+- \alpha
+\left(
+\frac{\partial \mathcal L}{\partial o_1}
+\frac{\partial o_1}{\partial b_{h_1}}
++ \dots +
+\frac{\partial \mathcal L}{\partial o_n}
+\frac{\partial o_n}{\partial b_{h_1}}
+\right) \\
 &= b_{h_1} - \alpha \frac{\partial \mathcal L}{\partial b_{h_1}}
 \end{align*}
 $$
@@ -89,12 +95,12 @@ $$
 \frac{\partial \mathcal L}{\partial W_{h_1}} \\
 \vdots \\
 \frac{\partial \mathcal L}{\partial W_{h_n}}
-\end{pmatrix} 
-% &= \begin{pmatrix}
-% \frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \\
-% \vdots \\
-% \frac{\partial o_1}{\partial W_{h_n}} + \dots + \frac{\partial o_n}{\partial W_{h_n}}
-% \end{pmatrix}
+\end{pmatrix} \\
+&= \begin{pmatrix}
+\frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \\
+\vdots \\
+\frac{\partial o_1}{\partial W_{h_n}} + \dots + \frac{\partial o_n}{\partial W_{h_n}}
+\end{pmatrix}
 \end{align*}
 $$
 # Deriving gradients in earlier layers

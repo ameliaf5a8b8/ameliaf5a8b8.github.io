@@ -2,11 +2,14 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
 \usepackage{amssymb}
-
+\usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc} 
 
+% % Comment out for light mode
+% \pagecolor[rgb]{0.1137, 0.1216, 0.1255}
+% \color{white} 
 
 \title{Deriving Backpropagation Gradients}
 \author{Amelia}
@@ -66,37 +69,85 @@ $$\text{let }\theta, W\in \mathbb R^n \text{ and } n \text{ be an arbitrary valu
     \label{fig:1}
 \end{figure}
 
+
+\section{Adding the loss derivative}
+
+Let $\mathcal L$ denote the loss. 
+The update rule uses the gradient of the loss with respect to the variable we are tuning:
+
+
 \begin{align}
-W_{h_1} &\leftarrow W_{h_1} - \alpha \left( \frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \right) \\
-b_{h_1} &\leftarrow b_{h_1} - \alpha \left( \frac{\partial o_1}{\partial b_{h_1}} + \dots + \frac{\partial o_n}{\partial b_{h_1}} \right)
+W_{h_1} 
+&\leftarrow W_{h_1} - \alpha \frac{\partial \mathcal L}{\partial W_{h_1}} 
+% W_{h_1} 
+% - \alpha \left( 
+% \frac{\partial \mathcal L}{\partial o_1}
+% \frac{\partial o_1}{\partial W_{h_1}}
+% + \dots +
+% \frac{\partial \mathcal L}{\partial o_n}
+% \frac{\partial o_n}{\partial W_{h_1}}
+% \right) \\
+% &= 
+\end{align}
+To find $\frac{\partial \mathcal L}{\partial W_{h_1}}$, we can expand it with the chain rule
+\begin{align}
+\frac{\partial \mathcal L}{\partial W_{h_1}} &= \frac{\partial \mathcal L}{\partial o}\frac{\partial o}{\partial W_{h_1}}\\
+&=
+    \left(
+\frac{\partial \mathcal L}{\partial o_1}
+\frac{\partial o_1}{\partial W_{h_1}}
++ \dots +
+\frac{\partial \mathcal L}{\partial o_n}
+\frac{\partial o_n}{\partial W_{h_1}}
+\right) 
+\end{align}
+Similarly for the bias:
+\begin{align}
+b_{h_1}
+&\leftarrow b_{h_1}
+- \alpha
+\left(
+\frac{\partial \mathcal L}{\partial o_1}
+\frac{\partial o_1}{\partial b_{h_1}}
++ \dots +
+\frac{\partial \mathcal L}{\partial o_n}
+\frac{\partial o_n}{\partial b_{h_1}}
+\right) \\
+&= b_{h_1} - \alpha \frac{\partial \mathcal L}{\partial b_{h_1}}
 \end{align}
 
 \section{Deriving gradients in the vector case}
-\begin{gather}
+\begin{gather}\text{let }
     W_h \doteq 
     \begin{pmatrix}
-        W_{h1} \\
-        W_{hn}
+        W_{h_1} \\
+        \vdots\\
+        W_{h_n}
     \end{pmatrix}
     \quad
     b_h \doteq 
     \begin{pmatrix}
-        b_{h1} \\
-        b_{hn}
+        b_{h_1} \\
+        \vdots\\
+        b_{h_n}
     \end{pmatrix}
     \quad
     O_h \doteq 
     \begin{pmatrix}
-        o_{h1} \\
-        o_{hn}
+        o_{h_1} \\
+        \vdots\\
+        o_{h_n}
     \end{pmatrix}
 \end{gather}
+By the update rule:
+$$W_h \leftarrow W_{h} - \alpha \frac{\partial \mathcal L}{\partial W_h} $$
+
 
 \begin{align}
-\frac{\partial o}{\partial W_h} &\doteq \begin{pmatrix}
-\frac{\partial o}{\partial W_{h_1}} \\
+\frac{\partial \mathcal L}{\partial W_h} &\doteq \begin{pmatrix}
+\frac{\partial \mathcal L}{\partial W_{h_1}} \\
 \vdots \\
-\frac{\partial o}{\partial W_{h_n}}
+\frac{\partial \mathcal L}{\partial W_{h_n}}
 \end{pmatrix} \\
 &= \begin{pmatrix}
 \frac{\partial o_1}{\partial W_{h_1}} + \dots + \frac{\partial o_n}{\partial W_{h_1}} \\
@@ -107,9 +158,9 @@ b_{h_1} &\leftarrow b_{h_1} - \alpha \left( \frac{\partial o_1}{\partial b_{h_1}
 
 \section{Deriving gradients in earlier layers}
 
-We are trying to find $\frac{\partial o}{\partial W_i}$. Through the chain rule, we can expand this into:
+We are trying to find $\frac{\partial \mathcal L}{\partial W_i}$. Through the chain rule, we can expand this into:
 
-$$\frac{\partial o}{\partial W_i} = \frac{\partial o}{\partial W_h}\frac{\partial W_h}{\partial W_i}$$
+$$\frac{\partial \mathcal{L}}{\partial W_i} =  \frac{\partial \mathcal L}{\partial o}\frac{\partial o}{\partial W_h}\frac{\partial W_h}{\partial W_i}$$
 
 
 \end{document}
