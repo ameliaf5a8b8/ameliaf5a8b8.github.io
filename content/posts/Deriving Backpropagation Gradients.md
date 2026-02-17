@@ -1,7 +1,7 @@
 ---
 title: "Deriving Backpropagation Gradients"
 date: 2026-02-09
-lastmod: 2026-02-13
+lastmod: 2026-02-17
 tags: []
 categories: []
 math: true
