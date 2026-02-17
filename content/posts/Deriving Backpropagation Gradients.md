@@ -13,7 +13,7 @@ summary: A simple guide walking through the basic algebra involved in Backpropog
 
 Let us derive the gradients that happen in backpropogation, one value at a time.
 
-$$\text{let }\theta, W\in \mathbb R^n \text{ and } n \text{ be an arbitrary value}$$
+$$\text{let }\theta, W\in \mathbb R^n \text{ where } n \text{ is an arbitrary value}$$
 
 <figure>
   <picture>
