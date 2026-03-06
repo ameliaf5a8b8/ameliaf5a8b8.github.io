@@ -2,8 +2,8 @@
 title: "Optimistic Initial Values in the tabular case"
 date: 2026-03-06
 lastmod: 2026-03-06
-tags: []
-categories: []
+tags: ["ML"]
+categories: ["RL"]
 math: true
 summary:
 ---
@@ -14,10 +14,17 @@ A key limitation of epsilon-greedy methods in managing the explore-exploit trade
 # Optimistic exploration
 
 Suppose that each arm in the k-armed bandit problem has an expected reward of $[0,1]$, with a variance of $1$. By initialising $Q(a)=5 \; \forall a$ , the agent would initially be "disappointed" with the rewards that it receives, prompting it to explore each action until the initial bias is decayed.
-
 <figure id="fig:1">
-  <img src="../optimistic_initial_values.svg" style="width:100.0%" alt="Optimistic Initial Values Plot" />
-  <figcaption><strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0.</figcaption>
+  <picture>
+    <source srcset="../optimistic_initial_values_dark.svg"
+            media="(prefers-color-scheme: dark)">
+    <img src="../optimistic_initial_values_light.svg" 
+         style="width:100%; display:block; margin:auto;" 
+         alt="Optimistic Initial Values Plot">
+  </picture>
+  <figcaption style="text-align:center;">
+    <strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0.
+  </figcaption>
 </figure>
 
 # Exercise
