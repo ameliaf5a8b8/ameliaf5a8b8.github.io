@@ -2,7 +2,7 @@
 title: "Optimistic Initial Values in the tabular case"
 date: 2026-03-06
 lastmod: 2026-03-06
-tags: ["ML"]
+tags: ["Machine Learning"]
 categories: ["RL"]
 math: true
 summary:
