@@ -1,30 +1,30 @@
 ---
 title: "Optimistic Initial Values in the tabular case"
-date: 2026-03-06
-lastmod: 2026-03-06
-tags: ["Machine Learning"]
-categories: ["RL"]
+date: 2026-03-07
+lastmod: 2026-03-07
+tags: []
+categories: []
 math: true
 summary:
 ---
- # Introduction
+# Introduction
 
-A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent tried first, as the agent estimates all other actions to be significantly worse than they are, due to the initial conditions.
+A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent first chose, as other actions are estimated to be significantly worse due to the initial conditions.
 
 # Optimistic exploration
 
 Suppose that each arm in the k-armed bandit problem has an expected reward of $[0,1]$, with a variance of $1$. By initialising $Q(a)=5 \; \forall a$ , the agent would initially be "disappointed" with the rewards that it receives, prompting it to explore each action until the initial bias is decayed.
+
 <figure id="fig:1">
   <picture>
     <source srcset="../optimistic_initial_values_dark.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../optimistic_initial_values_light.svg" 
-         style="width:100%; display:block; margin:auto;" 
-         alt="Optimistic Initial Values Plot">
+    <img src="../optimistic_initial_values_light.svg"
+         style="width:100%; display:block; margin:auto;"
+         alt="The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1. Q_0 represents the action-values at time step 0">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0.
-  </figcaption>
+    <strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1. Q_0 represents the action-values at time step 0  </figcaption>
 </figure>
 
 # Exercise
@@ -35,7 +35,7 @@ The results in Figure 1 should be quite reliable because they are averaged over 
 
 #### Non-stationary problem.
 
-Optimistic Initial Values do not perform as well on non-stationary problems. Suggest a reason why.
+Suggest a reason why Optimistic Initial Values are less effective than $\epsilon$-greedy methods in non-stationary contexts.
 
 #### Observation.
 
@@ -43,7 +43,7 @@ The $\varepsilon$-greedy method seems to converge to about 77% accuracy, while t
 
 # Conclusion
 
-Optimistic Initial Values (OIVs) are a good way to force initial exploration, particularly when dealing with stationary tasks. With the general non-stationary case, "exploration frenzy" occurs only once, and is unlikely to help as the environment changes. As such, OIVs are best suited for stationary or near-stationary tasks, where the environment changes at a slow enough pace that the faster initial convergence is worth the complications that comes with implementing the initial optimistic action-values.
+Optimistic Initial Values (OIVs) are a good way to force initial exploration, particularly when dealing with stationary tasks. In the general non-stationary case, the initial"exploration frenzy" occurs only once, and is unlikely to help as the environment changes. As such, OIVs are best suited for stationary or near-stationary tasks, where the environment changes at a slow enough pace that the faster initial convergence is worth the complications that comes with implementing the initial optimistic action-values.
 
 # Appendix
 
@@ -151,3 +151,4 @@ plt.show()
 
 
 [^1]: While OIV typically leaves a decaying trace of the initial estimate in the action-values, this bias can be completely eliminated using the unbiased constant-step-size trick, where the step-size $\alpha$ is scaled by a trace $\bar{o}_n$ to ensure $Q_0$ has zero weight for all $n > 0$.
+

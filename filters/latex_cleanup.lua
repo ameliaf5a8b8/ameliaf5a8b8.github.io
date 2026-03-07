@@ -1,233 +1,54 @@
--- -- latex_cleanup.lua
--- local function strip_refs(text)
---   if not text then return text end
---   text = text:gsub("\\label%s*%b{}", "")
---   text = text:gsub("\\eqref%s*%b{}", "")
---   text = text:gsub("\\tag%s*%b{}", "")
---   return text
--- end
+fig_count = 0
 
--- local function strip_environment(text, env)
---   env = env:gsub("([%%%+%-%*%?%[%]%^%$%(%)%.])", "%%%1")
---   return text:match("\\begin{" .. env .. "}([%s%S]-)\\end{" .. env .. "}")
--- end
+function get_image(fig)
+  for _,block in ipairs(fig.content) do
+    if block.t == "Plain" or block.t == "Para" then
+      for _,inline in ipairs(block.content) do
+        if inline.t == "Image" then
+          return inline
+        end
+      end
+    elseif block.t == "Image" then
+      return block
+    end
+  end
+  return nil
+end
 
--- local function strip_raw(elem)
---   if elem.format == "latex" then
---     elem.text = strip_refs(elem.text)
---     if elem.text == "" then return {} end
---     return elem
---   end
--- end
+function Figure(fig)
 
--- local function fix_braces(text)
---   text = text:gsub("\\{", "\\lbrace ")
---   text = text:gsub("\\}", " \\rbrace")
---   return text
--- end
+  local img = get_image(fig)
+  if not img then
+    return nil
+  end
 
--- local function escape_underscores(text)
---   -- text = text:gsub("([^\\])_", "%1\\_")
---   -- text = text:gsub("^_", "\\_")
---   return text
--- end
+  fig_count = fig_count + 1
 
--- -- helper: append DisplayMath with inline separator
--- local function add_display(blocks, line, is_last)
---   line = escape_underscores(line)
---   table.insert(blocks, pandoc.Math("DisplayMath", line))
---   if not is_last then
---     table.insert(blocks, pandoc.Space())
---   end
--- end
+  local src = img.src
+  local base = src:gsub("%.%w+$","")
+  base = base:gsub(" ","_")
 
--- local function process_math(math)
---   local text = math.text
+  local caption = pandoc.utils.stringify(fig.caption)
+  local id = fig.identifier or ("fig:" .. fig_count)
 
---   -- aligned → multiple display math inlines
---   if text:match("\\begin{aligned}") then
---     local inner = strip_environment(text, "aligned")
---     if inner then inner = inner:gsub("%$%$", "") end
---     if not inner then return math end
+  local light = "../" .. base .. "_light.svg"
+  local dark  = "../" .. base .. "_dark.svg"
 
---     local lines = {}
---     local pos = 1
+  local html = [[
+<figure id="]] .. id .. [[">
+  <picture>
+    <source srcset="]] .. dark .. [["
+            media="(prefers-color-scheme: dark)">
+    <img src="]] .. light .. [["
+         style="width:100%; display:block; margin:auto;"
+         alt="]] .. caption .. [[">
+  </picture>
+  <figcaption style="text-align:center;">
+    <strong>Figure ]] .. fig_count .. [[:</strong> ]] .. caption .. [[
+  </figcaption>
+</figure>
+]]
 
---     while true do
---       local start_pos, end_pos = inner:find("\\\\", pos)
---       if not start_pos then
---         break
---       end
+  return pandoc.RawBlock("html", html)
 
---       table.insert(lines, inner:sub(pos, start_pos - 1))
---       pos = end_pos + 1
---     end
-
---     -- remainder after last \\
---     local tail = inner:sub(pos)
---     if tail:match("%S") then
---       table.insert(lines, tail)
---     end
-
-
---     local blocks = {}
---     for i, line in ipairs(lines) do
---       line = line:gsub("^%s+", ""):gsub("%s+$", "")
---       line = strip_refs(line)
---       line = line:gsub("&", "")
---       line = fix_braces(line)
---       add_display(blocks, line, i == #lines)
---     end
---     return blocks
---   end
-
---    -- aligned* → multiple display math inlines
---   if text:match("\\begin{aligned%*}") then
---     local inner = strip_environment(text, "aligned%*")
---     if inner then inner = inner:gsub("%$%$", "") end
---     if not inner then return math end
-
---     local lines = {}
---     local pos = 1
-
---     while true do
---       local start_pos, end_pos = inner:find("\\\\", pos)
---       if not start_pos then
---         break
---       end
-
---       table.insert(lines, inner:sub(pos, start_pos - 1))
---       pos = end_pos + 1
---     end
-
---     -- remainder after last \\
---     local tail = inner:sub(pos)
---     if tail:match("%S") then
---       table.insert(lines, tail)
---     end
-
-
---     local blocks = {}
---     for i, line in ipairs(lines) do
---       line = line:gsub("^%s+", ""):gsub("%s+$", "")
---       line = strip_refs(line)
---       line = line:gsub("&", "")
---       line = fix_braces(line)
---       add_display(blocks, line, i == #lines)
---     end
---     return blocks
---   end
-
-
---   -- align → multiple display math inlines
---   if text:match("\\begin{align}") then
---     local inner = strip_environment(text, "align")
---     if inner then inner = inner:gsub("%$%$", "") end
---     if not inner then return math end
-
---     local lines = {}
---     local pos = 1
-
---     while true do
---       local start_pos, end_pos = inner:find("\\\\", pos)
---       if not start_pos then
---         break
---       end
-
---       table.insert(lines, inner:sub(pos, start_pos - 1))
---       pos = end_pos + 1
---     end
-
---     -- remainder after last \\
---     local tail = inner:sub(pos)
---     if tail:match("%S") then
---       table.insert(lines, tail)
---     end
-
-
---     local blocks = {}
---     for i, line in ipairs(lines) do
---       line = line:gsub("^%s+", ""):gsub("%s+$", "")
---       line = strip_refs(line)
---       line = line:gsub("&", "")
---       line = fix_braces(line)
---       add_display(blocks, line, i == #lines)
---     end
---     return blocks
---   end
-
-
---   -- align* → multiple display math inlines
---   if text:match("\\begin{align%*}") then
---     local inner = strip_environment(text, "align*")
---     if inner then inner = inner:gsub("%$%$", "") end
---     if not inner then return math end
-
---     local lines = {}
---     local pos = 1
-
---     while true do
---       local start_pos, end_pos = inner:find("\\\\", pos)
---       if not start_pos then
---         break
---       end
-
---       table.insert(lines, inner:sub(pos, start_pos - 1))
---       pos = end_pos + 1
---     end
-
---     -- remainder after last \\
---     local tail = inner:sub(pos)
---     if tail:match("%S") then
---       table.insert(lines, tail)
---     end
-
-
---     local blocks = {}
---     for i, line in ipairs(lines) do
---       line = line:gsub("^%s+", ""):gsub("%s+$", "")
---       line = strip_refs(line)
---       line = line:gsub("&", "")
---       line = fix_braces(line)
---       add_display(blocks, line, i == #lines)
---     end
---     return blocks
---   end
-
-
---   -- equation → single display math
---   if text:match("\\begin{equation}") then
---     local inner = strip_environment(text, "equation")
---     if not inner then return math end
---     inner = inner:gsub("^%s+", ""):gsub("%s+$", "")
---     inner = strip_refs(inner)
---     inner = fix_braces(inner)
---     inner = escape_underscores(inner)
---     return pandoc.Math("DisplayMath", inner)
---   end
-
---   -- equation* → single display math
---   if text:match("\\begin{equation%*}") then
---     local inner = strip_environment(text, "equation%*")
---     if not inner then return math end
---     inner = inner:gsub("^%s+", ""):gsub("%s+$", "")
---     inner = strip_refs(inner)
---     inner = fix_braces(inner)
---     inner = escape_underscores(inner)
---     return pandoc.Math("DisplayMath", inner)
---   end
-
---   -- ordinary inline math
---   local cleaned = strip_refs(text)
---   cleaned = cleaned:gsub("&", "")
---   cleaned = fix_braces(cleaned)
---   cleaned = escape_underscores(cleaned)
---   math.text = cleaned
---   return math
--- end
-
--- return {
---   { Math = process_math },
---   { RawInline = strip_raw },
---   { RawBlock  = strip_raw }
--- }
+end
