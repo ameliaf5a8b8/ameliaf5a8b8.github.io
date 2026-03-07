@@ -74,7 +74,7 @@ class Bandit:
 
 if __name__ == "__main__":
     runs = 5000
-    steps = 50
+    steps = 1000
     k = 10
     alpha = 0.1
     c = 1
