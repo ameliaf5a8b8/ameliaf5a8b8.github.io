@@ -7,12 +7,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
 <title>Optimistic Initial Values in the tabular case | Amelia</title>
-<meta name="keywords" content="ML">
+<meta name="keywords" content="">
 <meta name="description" content="Introduction
-A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent tried first, as the agent estimates all other actions to be significantly worse than they are, due to the initial conditions.">
+A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent first chose, as other actions are estimated to be significantly worse due to the initial conditions.">
 <meta name="author" content="Amelia">
 <link rel="canonical" href="http://localhost:1313/posts/sutton-barto/optimistic-initial-values/blog-files/optimistic-initial-values-in-the-tabular-case/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a29c24210eb31d9ce56f669c66a35c9c51b17376b7764e336a49af7dec914cf0.css" integrity="sha256-opwkIQ6zHZzlb2acZqNcnFGxc3a3dk4zakmvfeyRTPA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -149,35 +149,34 @@ A key limitation of epsilon-greedy methods in managing the explore-exploit trade
     <h1 class="post-title entry-hint-parent">
       Optimistic Initial Values in the tabular case
     </h1>
-    <div class="post-meta"><span title='2026-03-06 00:00:00 +0000 UTC'>March 6, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>723 words</span>&nbsp;·&nbsp;<span>Amelia</span>
+    <div class="post-meta"><span title='2026-03-07 00:00:00 +0000 UTC'>March 7, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>720 words</span>&nbsp;·&nbsp;<span>Amelia</span>
 
 </div>
   </header> 
   <div class="post-content"><h1 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h1>
-<p>A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent tried first, as the agent estimates all other actions to be significantly worse than they are, due to the initial conditions.</p>
+<p>A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent first chose, as other actions are estimated to be significantly worse due to the initial conditions.</p>
 <h1 id="optimistic-exploration">Optimistic exploration<a hidden class="anchor" aria-hidden="true" href="#optimistic-exploration">#</a></h1>
 <p>Suppose that each arm in the k-armed bandit problem has an expected reward of $[0,1]$, with a variance of $1$. By initialising $Q(a)=5 \; \forall a$ , the agent would initially be &ldquo;disappointed&rdquo; with the rewards that it receives, prompting it to explore each action until the initial bias is decayed.</p>
 <figure id="fig:1">
   <picture>
     <source srcset="../optimistic_initial_values_dark.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../optimistic_initial_values_light.svg" 
-         style="width:100%; display:block; margin:auto;" 
-         alt="Optimistic Initial Values Plot">
+    <img src="../optimistic_initial_values_light.svg"
+         style="width:100%; display:block; margin:auto;"
+         alt="The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1. Q_0 represents the action-values at time step 0">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0.
-  </figcaption>
+    <strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1. Q_0 represents the action-values at time step 0  </figcaption>
 </figure>
 <h1 id="exercise">Exercise<a hidden class="anchor" aria-hidden="true" href="#exercise">#</a></h1>
 <h4 id="initial-spike">Initial spike.<a hidden class="anchor" aria-hidden="true" href="#initial-spike">#</a></h4>
 <p>The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the curve in the optimistic method, particularly at the 11th time step where the accuracy jumps to $40\%$.</p>
 <h4 id="non-stationary-problem">Non-stationary problem.<a hidden class="anchor" aria-hidden="true" href="#non-stationary-problem">#</a></h4>
-<p>Optimistic Initial Values do not perform as well on non-stationary problems. Suggest a reason why.</p>
+<p>Suggest a reason why Optimistic Initial Values are less effective than $\epsilon$-greedy methods in non-stationary contexts.</p>
 <h4 id="observation">Observation.<a hidden class="anchor" aria-hidden="true" href="#observation">#</a></h4>
 <p>The $\varepsilon$-greedy method seems to converge to about 77% accuracy, while the optimistic method seems to converge to 87% accuracy. Explain the main cause of the large discrepancy.</p>
 <h1 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h1>
-<p>Optimistic Initial Values (OIVs) are a good way to force initial exploration, particularly when dealing with stationary tasks. With the general non-stationary case, &ldquo;exploration frenzy&rdquo; occurs only once, and is unlikely to help as the environment changes. As such, OIVs are best suited for stationary or near-stationary tasks, where the environment changes at a slow enough pace that the faster initial convergence is worth the complications that comes with implementing the initial optimistic action-values.</p>
+<p>Optimistic Initial Values (OIVs) are a good way to force initial exploration, particularly when dealing with stationary tasks. In the general non-stationary case, the initial&quot;exploration frenzy&quot; occurs only once, and is unlikely to help as the environment changes. As such, OIVs are best suited for stationary or near-stationary tasks, where the environment changes at a slow enough pace that the faster initial convergence is worth the complications that comes with implementing the initial optimistic action-values.</p>
 <h1 id="appendix">Appendix<a hidden class="anchor" aria-hidden="true" href="#appendix">#</a></h1>
 <h2 id="answers-to-exercise-questions">Answers to Exercise questions<a hidden class="anchor" aria-hidden="true" href="#answers-to-exercise-questions">#</a></h2>
 <h4 id="initial-spike-1">Initial spike.<a hidden class="anchor" aria-hidden="true" href="#initial-spike-1">#</a></h4>
@@ -281,13 +280,12 @@ A key limitation of epsilon-greedy methods in managing the explore-exploit trade
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/ml/">ML</a></li>
     </ul>
 <nav class="paginav">
-  <a class="next" href="http://localhost:1313/posts/deriving-backpropagation-gradients/">
+  <a class="next" href="http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/">
     <span class="title">Next »</span>
     <br>
-    <span>Deriving Backpropagation Gradients</span>
+    <span>Upper Confidence Bound</span>
   </a>
 </nav>
 

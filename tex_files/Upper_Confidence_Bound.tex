@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{float}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{attachfile}
+\usepackage{subcaption}
+
+\title{Upper-Confidence-Bound}
+\author{Amelia}
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The commonly used epsilon-greedy methods has a significant drawback --- it explores a random action with no consideration of its likelihood to be the optimal actions. It would be better to selectively explore actions according to their potential to be optimal, based on their current action value and its associated uncertainties.
+
+\section{UCB}
+UCB attempts to mitigate this issue through the addition of an uncertainty term, to form a \textit{maximising} action. The action selection becomes
+$$A_t \doteq \underset{a}{\text{argmax}} \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_t(a)}} \right]$$
+where $Q_t(a)$ denotes the action value at time step $t$, $N_t(a)$ denotes the number of times action $a$ has been selected prior to $t$, and $c >0$ controls the degree of exploration. If $N_t(a) = 0$, then $a$ is considered to be a maximising action.
+
+The idea of UCB is that the square root term represents the uncertainty in the action-value estimate. The quantity being argmaxed over becomes sort of upper bound on $Q(a)$ \footnote{Technically, the upper bound of an action-value estimate is always $\infty$. However, by adjusting $c$, we can ensure that the true mean $q_*$ is less than or equal to our upper bound with probability $P = 1- t^{-2c}$    }, with $c$ determining the confidence level. Each time $a$ is selected, the uncertainty reduces. On the other hand, each time an action other than $a$ is selected, $\ln t$ increases, increasing the uncertainty. With the logarithm, increases in uncertainty get smaller over time, while remaining unbounded, causing all actions to be selected in future time steps, regardless of the current time step. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{ucb_reward.pdf}
+\caption{The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.}
+    \label{fig:1}
+\end{figure}
+
+
+\section{Exercise}
+\paragraph{Initial spike.} The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the UCB curve, particularly at the 11th time step where the average reward jumps to $1.1$. Note that for your explanation to be complete, it must explain why the rewards increases on the 11th step and decreases on the subsequent steps
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Avg_reward_zoomed_in.pdf}
+\caption{The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.}
+    \label{fig:2}
+\end{figure}
+
+
+% \paragraph{Non-stationary problem.}  Suggest a reason why UCB is less effective than $\epsilon$-greedy methods in non-stationary contexts.
+\paragraph{Observation.} By examining the nature in which UCB performs action selection, hypothesise how $\varepsilon$-greedy method has a higher \% Optimal action than UCB but lower average reward. \footnote{UCB tends to perform better than $\varepsilon$-greedy methods, both in terms of average reward and \% Optimal action. Make your hypothesis based on the provided data.}
+\begin{figure}[H]
+    \centering
+    % Left Figure
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ucb_reward_c_2.pdf}
+    \end{subfigure}
+    \hfill % Adds spacing between the two images
+    % Right Figure
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ucb_optimal_action_c_2.pdf}
+    \end{subfigure}
+    
+    \caption{UCB versus $\varepsilon$-greedy on different axes, averaged over 50 000 runs. Both methods used a constant step size $\alpha = 0.1$}
+\end{figure}
+
+\section{Conclusion}
+UCB is an excellent way to handle the explore-exploit trade-off. However, it is much more difficult than $\varepsilon$-greedy methods to extend beyond bandits into the general non-stationary case. Another difficulty arises when dealing with large state spaces, particularly when dealing with function approximation. For these reasons, UCB is a powerful tool, but is typically not practical in more advanced settings.
+
+\section{Appendix}
+\subsection{Answers to Exercise questions}
+\paragraph{Initial spike.} At time step 10, the agent has tried each action exactly once. Hence, the uncertainty term on all actions are equal, which allows the agent to choose the action with the highest action value at time step 11. After time step 11, the uncertainty term on the high action value decrease, prompting the agent to choose actions with lower action values. This phenomenon repeats, prompting the agent to choose worse actions each time, until the $N_t(a)$ term becomes larger and the changes in uncertainty term become less extreme.  
+% \paragraph{Non-stationary problem.} I actually don't know!
+\paragraph{Observation. } Even though the $\varepsilon$-greedy method has a higher chance of choosing the optimal action. UCB's exploration is targeted toward actions that are near optimal, which provides high rewards. Averaged out, UCB's exploration is less costly to the agent than the random exploration in the $\varepsilon$-greedy method.
+
+Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy method
+\begin{figure}[H]
+    \centering
+    % Left Figure
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ucb_reward_c_2_long_term.pdf}
+    \end{subfigure}
+    \hfill % Adds spacing between the two images
+    % Right Figure
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ucb_optimal_action_c_2_long_term.pdf}
+    \end{subfigure}
+    
+    \caption{UCB performs better than $\varepsilon$-greedy on both axes in the long run. The data is averaged over 50 000 runs, with a constant step size $\alpha = 0.1$}
+\end{figure}
+
+\subsection{Simulation code}
+\textattachfile{test-bed.py}{\textcolor{blue}{Simulation.py}}
+\newline
+\textattachfile{plotter.py}{\textcolor{blue}{Plotter.py}}
+
+\end{document}
+

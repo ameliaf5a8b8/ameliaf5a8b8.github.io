@@ -73,8 +73,8 @@ class Bandit:
         return self.optimal_action
 
 if __name__ == "__main__":
-    runs = 5_000
-    steps = 1000
+    runs = 5000
+    steps = 50
     k = 10
     alpha = 0.1
     c = 1
