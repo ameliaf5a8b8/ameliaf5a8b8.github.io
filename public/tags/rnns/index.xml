@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>RNNs on Amelia</title>
-    <link>http://localhost:21310/tags/rnns/</link>
+    <link>http://localhost:1313/tags/rnns/</link>
     <description>Recent content in RNNs on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
     <lastBuildDate>Sun, 15 Feb 2026 13:50:51 +0800</lastBuildDate>
-    <atom:link href="http://localhost:21310/tags/rnns/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/rnns/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GRUs</title>
-      <link>http://localhost:21310/posts/grus/</link>
+      <link>http://localhost:1313/posts/grus/</link>
       <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:21310/posts/grus/</guid>
+      <guid>http://localhost:1313/posts/grus/</guid>
       <description>GRU stands for Gated Recurrent Unit, which is a type of recurrent neural network (RNN) that is based on Long Short-Term memory (LSTM). Like LSTM, GRU is designed to model sequential data by allowing information to be selectively remembered or forgotten over time. However, GRU has a simpler architecture than LSTM, with fewer parameters, which makes it easier to train at a cost of accuracy</description>
     </item>
   </channel>

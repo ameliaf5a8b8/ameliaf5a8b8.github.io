@@ -1,9 +1,25 @@
 import numpy as np
 from tqdm import tqdm
 import pickle
+from pathlib import Path
+import matplotlib.pyplot as plt
+from multiprocessing import Pool
+from concurrent.futures import ProcessPoolExecutor
 
 class Bandit:
     def __init__(self,Q_init, runs, steps, k, alpha):
+        """
+        :param Q_init: Initial action-values
+        :type Q_init: int
+        :param runs: Number of runs to average over
+        :type runs: int
+        :param steps: time steps to simulate before stopping
+        :type steps: int
+        :param k: Number of arms
+        :type k: int
+        :param alpha: Step size
+        :type alpha: int
+        """
         self.Q_init = Q_init
         self.q_true = np.random.normal(0, 1, (runs, k))
         self.Q = np.full((runs, k), self.Q_init, dtype=np.float32)
@@ -16,86 +32,216 @@ class Bandit:
         self.k = k
         self.alpha = alpha
 
-        self.rewards = np.zeros(self.steps)
+        self.avg_rewards = np.zeros(self.steps)
         
-    def run_ucb_bandit(self,c):
+    def train(self,c,epsilon) -> None:
+        """ Run the bandit simulation using a hybrid ε-greedy + UCB action selection strategy.
+
+        At each time step, the agent either explores with probability `epsilon`
+        by selecting a random arm, or exploits by selecting the arm with the
+        highest Upper Confidence Bound (UCB) score. Arms that have not yet been
+        selected are forced to be tried by assigning them infinite priority in
+        the argmax step.
+
+        The method records:
+            - the average reward obtained at each step (`self.rewards`)
+            - the fraction of optimal actions selected (`self.optimal_action`)
+
+        The simulation runs across `self.runs` independent bandit problems,
+        each with `self.k` arms, for `self.steps` time steps.
+        """
 
         n_action_selected = np.zeros((self.runs,self.k))
 
         for t in tqdm(range(self.steps)):
 
+            explore = np.random.rand(self.runs) < epsilon
+
+            
             picked = n_action_selected != 0
 
-            # The score of each action, assuming that we have already picked each action once
-            # Thre will be a div by zero warning
             action_scores = self.Q + c * np.sqrt(np.log(t+1)/n_action_selected)
 
             # If we have not picked an option, we want to pick it next
             Actions = np.argmax(np.where(picked, action_scores, np.inf), axis=-1)
 
-            n_action_selected[np.arange(self.runs), Actions] += 1
-
-
-            rewards = np.random.normal(self.q_true[np.arange(self.runs), Actions], 1)
-
-            self.rewards[t]  = rewards.mean()
-
-            self.Q[np.arange(self.runs), Actions] += self.alpha * (
-                rewards - self.Q[np.arange(self.runs), Actions]
-            )
-
-            self.optimal_action[t] = np.mean(Actions == self.optimal_arm)
-
-        return self.optimal_action
-
-
-    def run_epsilon_greedy_bandit(self,epsilon):
-
-        for t in tqdm(range(self.steps)):
-
-            explore = np.random.rand(self.runs) < epsilon
-
-            greedy_actions = np.argmax(self.Q, axis=1)
             random_actions = np.random.randint(self.k, size=self.runs)
+            actions = np.where(explore, random_actions, Actions)
 
-            actions = np.where(explore, random_actions, greedy_actions)
+
+            n_action_selected[np.arange(self.runs), actions] += 1
+
 
             rewards = np.random.normal(self.q_true[np.arange(self.runs), actions], 1)
 
+            self.avg_rewards[t]  = rewards.mean()
+
             self.Q[np.arange(self.runs), actions] += self.alpha * (
-                rewards -self.Q[np.arange(self.runs), actions]
+                rewards - self.Q[np.arange(self.runs), actions]
             )
+
+            self.optimal_action[t] = np.mean(actions == self.optimal_arm)
             
-            self.rewards[t]  = rewards.mean()
+    
+    def pickle_data(self, path):
+        path = Path(path)
+        with open(path, "wb") as f:
+            pickle.dump(self, f)
 
-            self.optimal_action[t] = np.mean(actions ==self.optimal_arm)
+    def reset(self):
+        """
+        Reset the bandit to its initial state by reinitializing all parameters
+        and statistics using the original constructor arguments.
+        """
+        self = Bandit(self.Q_init,self.runs,self.steps,self.k, self.alpha)
 
-        return self.optimal_action
 
-if __name__ == "__main__":
-    runs = 5000
-    steps = 50
+      
+def plot_and_save(data, xlabel="Steps", ylabel="y", filename=None, show=True):
+    """
+    data should be in format
+
+    (label: data)
+    """
+
+    def plot():
+        plt.figure(figsize=(12,6))
+
+        plt.xlabel(xlabel, fontsize=18)
+        plt.ylabel(ylabel, fontsize=18)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
+
+        for label, d in data.items():
+            print(label)
+            plt.plot(d, label= label)
+        plt.legend(fontsize=16)
+
+
+    plt.style.use('default') 
+    plot()
+    if filename:
+        plt.savefig(f"content/posts/sutton-barto/ucb/blog_imgs/light/{filename}.svg", bbox_inches="tight",transparent=True)
+        plt.savefig(f"content/posts/sutton-barto/ucb/pdf_imgs/light/{filename}.pdf", bbox_inches="tight",transparent=True)
+
+
+    plt.style.use("dark_background")
+    plot()
+    if filename:
+        plt.savefig(f"content/posts/sutton-barto/ucb/blog_imgs/dark/{filename}.svg", bbox_inches="tight" ,transparent=True)
+        plt.savefig(f"content/posts/sutton-barto/ucb/pdf_imgs/dark/{filename}.pdf", bbox_inches="tight",transparent=True)
+
+    if show: plt.show()
+
+
+
+def run_model(Q_init = 0, runs = 5000, steps = 500, k = 10, alpha = 0.1, c = 0, epsilon = 0.1):
+    print(f"Q_init {Q_init}", f"runs {runs}", f"steps {steps}", f"k {k}", f"alpha {alpha}" , f"c  {c}" , f"epsilon {epsilon}")
+
+    model = Bandit(Q_init, runs, steps, k, alpha)
+    model.train(c, epsilon)
+    return model
+
+
+# probably not worth it lol, just run sequentially
+if __name__ == "__main__": 
+
+    # NOTE: The order of parameters matters!!
+    conditions = {
+    "Q_init" : 0,
+    "runs" : 50_000,
+    "steps" : 10_000,
+    "k" : 10,
+    "alpha" : 0.1
+    }
+
+    eps_grdy_conds = {
+        "c" : 0,
+        "epsilon" : 0.1
+    }
+
+    ucb_conds = {
+        "c" : 2,
+        "epsilon" : 0
+    }
+
+    experiments = [tuple(x) for x in [(conditions | eps_grdy_conds).values(), (conditions | ucb_conds).values()]]
+
+
+    with Pool(2) as p:
+        eps_greedy, ucb = p.starmap(run_model,experiments)
+        
+
+        plot_and_save( 
+                {r"UCB ($c=2$)": ucb.avg_rewards,
+                r"$\epsilon$-greedy ($\epsilon=0.1$)": eps_greedy.avg_rewards},
+                ylabel="Average reward",
+                # filename="avg_reward_c2_long_term"  
+        )
+
+        plot_and_save({
+            r"UCB ($c=2$)": ucb.optimal_action*100,
+            r"$\epsilon$-greedy ($\epsilon=0.1$)": eps_greedy.optimal_action*100
+        },
+        ylabel="% Optimal Action",
+        filename="optimal_action_c2_long_term"  
+        )
+
+    raise NotImplementedError
+
+    runs = 50000
+    steps = 500
     k = 10
     alpha = 0.1
-    c = 1
-    epsilon = 0.1
 
-    Simulation_ucb = Bandit(0, runs, steps, k, alpha)
-    ucb = Simulation_ucb.run_ucb_bandit(c)
 
-    Simulation_eps = Bandit(0, runs, steps, k, alpha)
-    epsilon_greedy = Simulation_eps.run_epsilon_greedy_bandit(epsilon)
+    # with ProcessPoolExecutor() as e:
+    #     f1 = e.submit(run_model)
+    #     f2 = e.submit(run_ucb)
 
-    with open('content/posts/sutton-barto/ucb/data/ucb_optimal_action.pkl', 'wb') as f:
-        pickle.dump(ucb * 100, f)
+    #     eps_greedy = f1.result()
+    #     ucb = f2.result()
 
-    with open('content/posts/sutton-barto/ucb/data/eps_optimal_action.pkl', 'wb') as f:
-        pickle.dump(epsilon_greedy * 100, f)
+    plot_and_save( 
+            {r"UCB ($c=2$)": ucb.avg_rewards,
+            r"$\epsilon$-greedy ($\epsilon=0.1$)": eps_greedy.avg_rewards},
+            ylabel="Average reward",
+            filename="avg_reward_c2"  
+    )
 
-    with open('content/posts/sutton-barto/ucb/data/ucb_reward.pkl', 'wb') as f:
-        pickle.dump(Simulation_ucb.rewards, f)
+    plot_and_save({
+        r"UCB ($c=2$)": ucb.optimal_action*100,
+        r"$\epsilon$-greedy ($\epsilon=0.1$)": eps_greedy.optimal_action*100
+    },
+    ylabel="Average reward",
+    filename="optimal_action_c2"  
+    )
 
-    with open('content/posts/sutton-barto/ucb/data/eps_reward.pkl', 'wb') as f:
-        pickle.dump(Simulation_eps.rewards, f)
+
+
+
+
+
+    import sys; sys.exit()
+    runs = 5000
+    steps = 500
+    k = 10
+    alpha = 0.1
+
+    plot_and_save( 
+        {r"UCB ($c=1$)": ucb.avg_rewards[:50],
+        r"$\epsilon$-greedy ($\epsilon=0.1$)": eps_greedy.avg_rewards[:50]},
+        ylabel="Average reward",
+        filename="avg_reward_zoomed"  
+)
+
+    plot_and_save({
+        r"UCB ($c=1$)": ucb.avg_rewards[:500],
+        r"$\epsilon$-greedy ($\epsilon=0.1$)": eps_greedy.avg_rewards[:500]
+    },
+    ylabel="Average reward",
+    filename="avg_reward"  
+    )
+
 
 

@@ -20,14 +20,14 @@ The idea of UCB is that the square root term represents the uncertainty in the a
 
 <figure id="fig:1">
   <picture>
-    <source srcset="../ucb_reward_dark.svg"
+    <source srcset="../blog_imgs/dark/avg_reward.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../ucb_reward_light.svg"
+    <img src="../blog_imgs/dark/avg_reward.svgg"
          style="width:100%; display:block; margin:auto;"
          alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1.">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 1:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1.  </figcaption>
+    <strong>Figure 1:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.</figcaption>
 </figure>
 
 # Exercise
@@ -38,14 +38,14 @@ The results in Figure 1 should be quite reliable because they are averaged over 
 
 <figure id="fig:2">
   <picture>
-    <source srcset="../Avg_reward_zoomed_in_dark.svg"
+    <source srcset="../blog_imgs/dark/avg_reward_zoomed.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../Avg_reward_zoomed_in_light.svg"
+    <img src="./blog_imgs/light/avg_reward_zoomed.svg"
          style="width:100%; display:block; margin:auto;"
          alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1.">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 2:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1.  </figcaption>
+    <strong>Figure 2:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.  </figcaption>
 </figure>
 
 #### Observation.
@@ -55,9 +55,9 @@ By examining the nature in which UCB performs action selection, hypothesise how 
 <figure data-latex-placement="H">
 <figure id="">
   <picture>
-    <source srcset="../ucb_reward_c_2_dark.svg"
+    <source srcset="../blog_imgs/dark/avg_reward_c2.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../ucb_reward_c_2_light.svg"
+    <img src="../blog_imgs/light/avg_reward_c2.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
   </picture>
@@ -67,9 +67,9 @@ By examining the nature in which UCB performs action selection, hypothesise how 
 
 <figure id="">
   <picture>
-    <source srcset="../ucb_optimal_action_c_2_dark.svg"
+    <source srcset="../blog_imgs/dark/optimal_action_c2.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../ucb_optimal_action_c_2_light.svg"
+    <img src="../blog_imgs/light/optimal_action_c2.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
   </picture>
@@ -101,9 +101,9 @@ Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy meth
 <figure data-latex-placement="H">
 <figure id="">
   <picture>
-    <source srcset="../ucb_reward_c_2_long_term_dark.svg"
+    <source srcset="..\blog_imgs\dark\avg_reward_c2_long_term.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../ucb_reward_c_2_long_term_light.svg"
+    <img src="..\blog_imgs\light\avg_reward_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
   </picture>
@@ -113,9 +113,9 @@ Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy meth
 
 <figure id="">
   <picture>
-    <source srcset="../ucb_optimal_action_c_2_long_term_dark.svg"
+    <source srcset="..\blog_imgs\dark\optimal_action_c2_long_term.svg"
             media="(prefers-color-scheme: dark)">
-    <img src="../ucb_optimal_action_c_2_long_term_light.svg"
+    <img src="..\blog_imgs\light\optimal_action_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
   </picture>
@@ -133,9 +133,23 @@ Simulator
 import numpy as np
 from tqdm import tqdm
 import pickle
+from pathlib import Path
+import matplotlib.pyplot as plt
 
 class Bandit:
     def __init__(self,Q_init, runs, steps, k, alpha):
+        """
+        :param Q_init: Initial action-values
+        :type Q_init: int
+        :param runs: Number of runs to average over
+        :type runs: int
+        :param steps: time steps to simulate before stopping
+        :type steps: int
+        :param k: Number of arms
+        :type k: int
+        :param alpha: Step size
+        :type alpha: int
+        """
         self.Q_init = Q_init
         self.q_true = np.random.normal(0, 1, (runs, k))
         self.Q = np.full((runs, k), self.Q_init, dtype=np.float32)
@@ -148,125 +162,83 @@ class Bandit:
         self.k = k
         self.alpha = alpha
 
-        self.rewards = np.zeros(self.steps)
+        self.avg_rewards = np.zeros(self.steps)
         
-    def run_ucb_bandit(self,c):
+    def train(self,c,epsilon) -> None:
+        """ Run the bandit simulation using a hybrid ε-greedy + UCB action selection strategy.
+
+        At each time step, the agent either explores with probability `epsilon`
+        by selecting a random arm, or exploits by selecting the arm with the
+        highest Upper Confidence Bound (UCB) score. Arms that have not yet been
+        selected are forced to be tried by assigning them infinite priority in
+        the argmax step.
+
+        The method records:
+            - the average reward obtained at each step (`self.rewards`)
+            - the fraction of optimal actions selected (`self.optimal_action`)
+
+        The simulation runs across `self.runs` independent bandit problems,
+        each with `self.k` arms, for `self.steps` time steps.
+        """
 
         n_action_selected = np.zeros((self.runs,self.k))
 
         for t in tqdm(range(self.steps)):
 
+            explore = np.random.rand(self.runs) < epsilon
+
+            
             picked = n_action_selected != 0
 
-            # The score of each action, assuming that we have already picked each action once
-            # Thre will be a div by zero warning
             action_scores = self.Q + c * np.sqrt(np.log(t+1)/n_action_selected)
 
             # If we have not picked an option, we want to pick it next
             Actions = np.argmax(np.where(picked, action_scores, np.inf), axis=-1)
 
-            n_action_selected[np.arange(self.runs), Actions] += 1
-
-
-            rewards = np.random.normal(self.q_true[np.arange(self.runs), Actions], 1)
-
-            self.rewards[t]  = rewards.mean()
-
-            self.Q[np.arange(self.runs), Actions] += self.alpha * (
-                rewards - self.Q[np.arange(self.runs), Actions]
-            )
-
-            self.optimal_action[t] = np.mean(Actions == self.optimal_arm)
-
-        return self.optimal_action
-
-
-    def run_epsilon_greedy_bandit(self,epsilon):
-
-        for t in tqdm(range(self.steps)):
-
-            explore = np.random.rand(self.runs) < epsilon
-
-            greedy_actions = np.argmax(self.Q, axis=1)
             random_actions = np.random.randint(self.k, size=self.runs)
+            actions = np.where(explore, random_actions, Actions)
 
-            actions = np.where(explore, random_actions, greedy_actions)
+
+            n_action_selected[np.arange(self.runs), actions] += 1
+
 
             rewards = np.random.normal(self.q_true[np.arange(self.runs), actions], 1)
 
+            self.avg_rewards[t]  = rewards.mean()
+
             self.Q[np.arange(self.runs), actions] += self.alpha * (
-                rewards -self.Q[np.arange(self.runs), actions]
+                rewards - self.Q[np.arange(self.runs), actions]
             )
+
+            self.optimal_action[t] = np.mean(actions == self.optimal_arm)
             
-            self.rewards[t]  = rewards.mean()
+    
+    def pickle_data(self, path):
+        path = Path(path)
+        with open(path, "wb") as f:
+            pickle.dump(self, f)
 
-            self.optimal_action[t] = np.mean(actions ==self.optimal_arm)
+    def reset(self):
+        """
+        Reset the bandit to its initial state by reinitializing all parameters
+        and statistics using the original constructor arguments.
+        """
+        self = Bandit(self.Q_init,self.runs,self.steps,self.k, self.alpha)
 
-        return self.optimal_action
 
 if __name__ == "__main__":
     runs = 5000
-    steps = 1000
+    steps = 500
     k = 10
     alpha = 0.1
-    c = 1
-    epsilon = 0.1
 
-    Simulation_ucb = Bandit(0, runs, steps, k, alpha)
-    ucb = Simulation_ucb.run_ucb_bandit(c)
 
-    Simulation_eps = Bandit(0, runs, steps, k, alpha)
-    epsilon_greedy = Simulation_eps.run_epsilon_greedy_bandit(epsilon)
+    eps_greedy = Bandit(0, runs, steps, k, alpha)
+    eps_greedy.train(c=0, epsilon=0.1)
 
-    with open('content/posts/sutton-barto/ucb/data/ucb_optimal_action.pkl', 'wb') as f:
-        pickle.dump(ucb * 100, f)
-
-    with open('content/posts/sutton-barto/ucb/data/eps_optimal_action.pkl', 'wb') as f:
-        pickle.dump(epsilon_greedy * 100, f)
-
-    with open('content/posts/sutton-barto/ucb/data/ucb_reward.pkl', 'wb') as f:
-        pickle.dump(Simulation_ucb.rewards, f)
-
-    with open('content/posts/sutton-barto/ucb/data/eps_reward.pkl', 'wb') as f:
-        pickle.dump(Simulation_eps.rewards, f)
+    ucb = Bandit(0, runs, steps, k, alpha)
+    ucb.train(c=1, epsilon=0)
 ```
-
-Plotter
-```python
-import matplotlib.pyplot as plt
-import pickle
-
-filename = "FILENAME"
-
-with open('content/posts/sutton-barto/ucb/data/ucb_optimal_action.pkl', 'rb') as f:
-    ucb_optimal_action = pickle.load(f)
-
-with open('content/posts/sutton-barto/ucb/data/eps_optimal_action.pkl', 'rb') as f:
-    eps_optimal_action = pickle.load(f)
-
-with open('content/posts/sutton-barto/ucb/data/ucb_reward.pkl', 'rb') as f:
-    ucb_reward = pickle.load(f)
-
-with open('content/posts/sutton-barto/ucb/data/eps_reward.pkl', 'rb') as f:
-    eps_reward = pickle.load(f)
-
-
-plt.figure(figsize=(12,6))
-
-plt.xlabel(xlabel, fontsize=18)
-plt.ylabel(ylabel, fontsize=18)
-plt.xticks(fontsize=14)
-plt.yticks(fontsize=14)
-
-plt.plot(data1, label= data1_label)
-plt.plot(data2, label=data2_label)
-plt.legend(fontsize=16)
-
-plt.savefig(f"content/posts/sutton-barto/ucb/{filename}.svg", bbox_inches="tight")
-
-plt.show()  
-```
-
 
 
 [^1]: Technically, the upper bound of an action-value estimate is always $\infty$. However, by adjusting $c$, we can ensure that the true mean $q_*$ is less than or equal to our upper bound with probability $P = 1- t^{-2c}$
