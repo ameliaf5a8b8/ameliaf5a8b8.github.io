@@ -149,7 +149,7 @@ A key limitation of epsilon-greedy methods in managing the explore-exploit trade
     <h1 class="post-title entry-hint-parent">
       Optimistic Initial Values in the tabular case
     </h1>
-    <div class="post-meta"><span title='2026-03-07 00:00:00 +0000 UTC'>March 7, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>720 words</span>&nbsp;·&nbsp;<span>Amelia</span>
+    <div class="post-meta"><span title='2026-03-07 00:00:00 +0000 UTC'>March 7, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>731 words</span>&nbsp;·&nbsp;<span>Amelia</span>
 
 </div>
   </header> 
@@ -171,6 +171,18 @@ A key limitation of epsilon-greedy methods in managing the explore-exploit trade
 <h1 id="exercise">Exercise<a hidden class="anchor" aria-hidden="true" href="#exercise">#</a></h1>
 <h4 id="initial-spike">Initial spike.<a hidden class="anchor" aria-hidden="true" href="#initial-spike">#</a></h4>
 <p>The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the curve in the optimistic method, particularly at the 11th time step where the accuracy jumps to $40\%$.</p>
+<figure id="fig:2">
+  <picture>
+    <source srcset="../optimistic_initial_values_zoomed_dark.svg"
+            media="(prefers-color-scheme: dark)">
+    <img src="../optimistic_initial_values_zoomed_light.svg"
+         style="width:100%; display:block; margin:auto;"
+         alt="Zoomed-in view of the results shown in Figure 1">
+  </picture>
+  <figcaption style="text-align:center;">
+    <strong>Figure 2:</strong> Zoomed-in view of the results shown in <a href="#fig:1">Figure 1</a>
+  </figcaption>
+</figure>
 <h4 id="non-stationary-problem">Non-stationary problem.<a hidden class="anchor" aria-hidden="true" href="#non-stationary-problem">#</a></h4>
 <p>Suggest a reason why Optimistic Initial Values are less effective than $\epsilon$-greedy methods in non-stationary contexts.</p>
 <h4 id="observation">Observation.<a hidden class="anchor" aria-hidden="true" href="#observation">#</a></h4>
