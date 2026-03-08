@@ -77,7 +77,7 @@ By examining the nature in which UCB performs action selection, hypothesise how 
     <strong></strong>   </figcaption>
 </figure>
 
-<figcaption  style="text-align:center;">  <strong>Figure 3:</strong>UCB versus <span class="math inline"><em>ε</em></span>-greedy on different axes, averaged over 50 000 runs. Both methods used a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
+<figcaption  style="text-align:center;">  <strong>Figure 3:</strong> UCB versus <span class="math inline"><em>ε</em></span>-greedy on different axes, averaged over 50 000 runs. Both methods used a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
 </figure>
 
 # Conclusion
@@ -108,7 +108,7 @@ Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy meth
          alt="">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 4:</strong>   </figcaption>
+    <strong>Figure 4</strong>   </figcaption>
 </figure>
 
 <figure id="">
@@ -120,10 +120,10 @@ Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy meth
          alt="">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 5:</strong>   </figcaption>
+    <strong>Figure 5</strong>   </figcaption>
 </figure>
 
-<figcaption>UCB performs better than <span class="math inline"><em>ε</em></span>-greedy on both axes in the long run. The data is averaged over 50 000 runs, with a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
+<figcaption  style="text-align:center;">UCB performs better than <span class="math inline"><em>ε</em></span>-greedy on both axes in the long run. The data is averaged over 50 000 runs, with a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
 </figure>
 
 ## Simulation code

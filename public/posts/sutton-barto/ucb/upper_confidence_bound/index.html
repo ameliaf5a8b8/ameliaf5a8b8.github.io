@@ -151,7 +151,7 @@ UCB attempts to mitigate this issue through the addition of an uncertainty term,
     <h1 class="post-title entry-hint-parent">
       Upper Confidence Bound
     </h1>
-    <div class="post-meta"><span title='2026-03-08 00:00:00 +0000 UTC'>March 8, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>1079 words</span>&nbsp;·&nbsp;<span>Amelia</span>
+    <div class="post-meta"><span title='2026-03-08 00:00:00 +0000 UTC'>March 8, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>1080 words</span>&nbsp;·&nbsp;<span>Amelia</span>
 
 </div>
   </header> 
@@ -211,7 +211,7 @@ $$A_t \doteq \underset{a}{\text{argmax}} \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_
   <figcaption style="text-align:center;">
     <strong></strong>   </figcaption>
 </figure>
-<figcaption  style="text-align:center;">  <strong>Figure 3:</strong>UCB versus <span class="math inline"><em>ε</em></span>-greedy on different axes, averaged over 50 000 runs. Both methods used a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
+<figcaption  style="text-align:center;">  <strong>Figure 3:</strong> UCB versus <span class="math inline"><em>ε</em></span>-greedy on different axes, averaged over 50 000 runs. Both methods used a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
 </figure>
 <h1 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h1>
 <p>UCB is an excellent way to handle the explore-exploit trade-off. However, it is much more difficult than $\varepsilon$-greedy methods to extend beyond bandits into the general non-stationary case. Another difficulty arises when dealing with large state spaces, particularly when dealing with function approximation. For these reasons, UCB is a powerful tool, but is typically not practical in more advanced settings.</p>
@@ -232,7 +232,7 @@ $$A_t \doteq \underset{a}{\text{argmax}} \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_
          alt="">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 4:</strong>   </figcaption>
+    <strong>Figure 4</strong>   </figcaption>
 </figure>
 <figure id="">
   <picture>
@@ -243,9 +243,9 @@ $$A_t \doteq \underset{a}{\text{argmax}} \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_
          alt="">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 5:</strong>   </figcaption>
+    <strong>Figure 5</strong>   </figcaption>
 </figure>
-<figcaption>UCB performs better than <span class="math inline"><em>ε</em></span>-greedy on both axes in the long run. The data is averaged over 50 000 runs, with a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
+<figcaption  style="text-align:center;">UCB performs better than <span class="math inline"><em>ε</em></span>-greedy on both axes in the long run. The data is averaged over 50 000 runs, with a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
 </figure>
 <h2 id="simulation-code">Simulation code<a hidden class="anchor" aria-hidden="true" href="#simulation-code">#</a></h2>
 <p>Simulator</p>
