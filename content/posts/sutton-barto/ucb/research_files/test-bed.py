@@ -34,7 +34,7 @@ class Bandit:
 
         self.avg_rewards = np.zeros(self.steps)
         
-    def train(self,c,epsilon) -> None:
+    def train(self,c,epsilon) -> Bandit:
         """ Run the bandit simulation using a hybrid ε-greedy + UCB action selection strategy.
 
         At each time step, the agent either explores with probability `epsilon`
@@ -81,6 +81,8 @@ class Bandit:
             )
 
             self.optimal_action[t] = np.mean(actions == self.optimal_arm)
+
+        return self
             
     
     def pickle_data(self, path):
@@ -192,8 +194,19 @@ if __name__ == "__main__":
         filename="optimal_action_c2_long_term"  
         )
 
-    raise NotImplementedError
 
+
+    eps_grdy = Bandit(**conditions)
+    ucb = Bandit(**conditions)
+    with ProcessPoolExecutor() as e:
+        f1 = e.submit(eps_grdy.train, **eps_grdy_conds)
+        f2 = e.submit(ucb.train, **ucb_conds)
+
+        eps_grdy = f1.result()
+        ucb = f2.result()
+
+
+    raise NotImplementedError
     runs = 50000
     steps = 500
     k = 10
