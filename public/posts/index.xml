@@ -9,22 +9,22 @@
     <lastBuildDate>Sun, 08 Mar 2026 10:26:57 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Upper Confidence Bound</title>
+      <link>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;The commonly used epsilon-greedy methods has a significant drawback &amp;mdash; it explores a random action with no consideration of its likelihood to be the optimal actions. It would be better to selectively explore actions according to their potential to be optimal, based on their current action value and its associated uncertainties.&lt;/p&gt;
+&lt;h1 id=&#34;ucb&#34;&gt;UCB&lt;/h1&gt;
+&lt;p&gt;UCB attempts to mitigate this issue through the addition of an uncertainty term, to form a &lt;em&gt;maximising&lt;/em&gt; action. The action selection becomes &lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Optimistic Initial Values in the tabular case</title>
       <link>http://localhost:1313/posts/sutton-barto/optimistic-initial-values/blog-files/optimistic-initial-values-in-the-tabular-case/</link>
       <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/sutton-barto/optimistic-initial-values/blog-files/optimistic-initial-values-in-the-tabular-case/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent first chose, as other actions are estimated to be significantly worse due to the initial conditions.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Upper Confidence Bound</title>
-      <link>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</link>
-      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</guid>
-      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-&lt;p&gt;The commonly used epsilon-greedy methods has a significant drawback &amp;mdash; it explores a random action with no consideration of its likelihood to be the optimal actions. It would be better to selectively explore actions according to their potential to be optimal, based on their current action value and its associated uncertainties.&lt;/p&gt;
-&lt;h1 id=&#34;ucb&#34;&gt;UCB&lt;/h1&gt;
-&lt;p&gt;UCB attempts to mitigate this issue through the addition of an uncertainty term, to form a &lt;em&gt;maximising&lt;/em&gt; action. The action selection becomes &lt;/p&gt;</description>
     </item>
     <item>
       <title>Deriving Backpropagation Gradients</title>

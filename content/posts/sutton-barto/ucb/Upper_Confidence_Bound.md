@@ -1,8 +1,8 @@
 ---
 title: "Upper Confidence Bound"
-date: 2026-03-07
+date: 2026-03-08
 lastmod: 2026-03-08
-tags: []
+tags: ["Machine Learning", "Reinforcement Learning"]
 categories: []
 math: true
 summary:
