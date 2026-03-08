@@ -18,33 +18,33 @@ print(eps_reward[-10:])
 # 
 
 
-def plot_and_save(data1, data2, data1_label, data2_label, xlabel = "Steps", ylabel = "y", filename=None, show=True, helper=True):
+    def plot_and_save(data1, data2, data1_label, data2_label, xlabel = "Steps", ylabel = "y", filename=None, show=True, helper=True):
 
-    def plot():
-        plt.figure(figsize=(12,6))
+        def plot():
+            plt.figure(figsize=(12,6))
 
-        plt.xlabel(xlabel, fontsize=18)
-        plt.ylabel(ylabel, fontsize=18)
-        plt.xticks(fontsize=14)
-        plt.yticks(fontsize=14)
+            plt.xlabel(xlabel, fontsize=18)
+            plt.ylabel(ylabel, fontsize=18)
+            plt.xticks(fontsize=14)
+            plt.yticks(fontsize=14)
 
-        plt.plot(data1[:10_000], label= data1_label)
-        plt.plot(data2[:10_000], label=data2_label)
-        plt.legend(fontsize=16)
+            plt.plot(data1[:10_000], label= data1_label)
+            plt.plot(data2[:10_000], label=data2_label)
+            plt.legend(fontsize=16)
 
-    plot()
-    if filename:
-        plt.savefig(f"content/posts/sutton-barto/ucb/{filename}_light.svg", bbox_inches="tight")
-        # plt.savefig(f"content/posts/sutton-barto/ucb/{filename}._light.pdf", bbox_inches="tight")
+        plot()
+        if filename:
+            plt.savefig(f"content/posts/sutton-barto/ucb/{filename}_light.svg", bbox_inches="tight")
+            # plt.savefig(f"content/posts/sutton-barto/ucb/{filename}._light.pdf", bbox_inches="tight")
 
-   
-    plt.style.use("dark_background")
-    plot()
-    if filename:
-        plt.savefig(f"content/posts/sutton-barto/ucb/{filename}_dark.svg", bbox_inches="tight")
-        # plt.savefig(f"content/posts/sutton-barto/ucb/{filename}._dark.pdf", bbox_inches="tight")
+    
+        plt.style.use("dark_background")
+        plot()
+        if filename:
+            plt.savefig(f"content/posts/sutton-barto/ucb/{filename}_dark.svg", bbox_inches="tight")
+            # plt.savefig(f"content/posts/sutton-barto/ucb/{filename}._dark.pdf", bbox_inches="tight")
 
-    if show: plt.show()
+        if show: plt.show()
 
 
 
