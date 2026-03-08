@@ -45,7 +45,7 @@ The results in Figure 1 should be quite reliable because they are averaged over 
          alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1.">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 2:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.  </figcaption>
+    <strong>Figure 2:</strong> Zoomed-in view of the results shown in <a href="#fig:1">Figure 1</a>
 </figure>
 
 #### Observation.
