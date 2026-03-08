@@ -32,6 +32,18 @@ Suppose that each arm in the k-armed bandit problem has an expected reward of $[
 #### Initial spike.
 
 The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the curve in the optimistic method, particularly at the 11th time step where the accuracy jumps to $40\%$.
+<figure id="fig:2">
+  <picture>
+    <source srcset="../optimistic_initial_values_zoomed_dark.svg"
+            media="(prefers-color-scheme: dark)">
+    <img src="../optimistic_initial_values_zoomed_light.svg"
+         style="width:100%; display:block; margin:auto;"
+         alt="Zoomed-in view of the results shown in Figure 1">
+  </picture>
+  <figcaption style="text-align:center;">
+    <strong>Figure 2:</strong> Zoomed-in view of the results shown in <a href="#fig:1">Figure 1</a>
+  </figcaption>
+</figure>
 
 #### Non-stationary problem.
 

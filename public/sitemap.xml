@@ -3,16 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-03-08T01:16:07+08:00</lastmod>
+    <lastmod>2026-03-08T10:26:57+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/sutton-barto/optimistic-initial-values/blog-files/optimistic-initial-values-in-the-tabular-case/</loc>
     <lastmod>2026-03-08T01:12:23+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-03-08T01:16:07+08:00</lastmod>
+    <lastmod>2026-03-08T10:26:57+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</loc>
-    <lastmod>2026-03-08T01:16:07+08:00</lastmod>
+    <lastmod>2026-03-08T10:26:57+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/deriving-backpropagation-gradients/</loc>
     <lastmod>2026-02-17T11:16:06+08:00</lastmod>

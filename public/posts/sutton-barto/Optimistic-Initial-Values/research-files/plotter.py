@@ -9,7 +9,7 @@ with open('content/posts/sutton-barto/optimistic-initial-values/research-files/o
 
 print(realistic)
 print(optimistic)
-plt.style.use('dark_background')
+# plt.style.use('dark_background')
 
 plt.figure(figsize=(12,4.5))
 
@@ -19,8 +19,11 @@ plt.ylabel("% Optimal Action", fontsize=18)
 plt.plot(realistic * 100, label=r"$\epsilon$-greedy ($\epsilon=0.1$)")
 plt.plot(optimistic * 100, label=r"Optimistic $Q_0=5$")
 plt.legend(fontsize=16)
-plt.savefig("content/posts/sutton-barto/Optimistic-Initial-Values/optimistic_initial_values.svg", bbox_inches="tight")
+plt.savefig(r"content\posts\sutton-barto\optimistic-initial-values\blog-files\optimistic_initial_values_light.svg", bbox_inches="tight", transparent= True)
+plt.savefig(r"content\posts\sutton-barto\optimistic-initial-values\blog-files\optimistic_initial_values_light.pdf", bbox_inches="tight", transparent= True)
+
 plt.show()
+
 
 plt.figure(figsize=(12,4.5))
 
@@ -30,5 +33,8 @@ plt.ylabel("% Optimal Action", fontsize=16)
 plt.plot(realistic[:100] * 100, label=r"$\epsilon$-greedy ($\epsilon=0.1$)")
 plt.plot(optimistic[:100] * 100, label=r"Optimistic $Q_0=5$")
 plt.legend(fontsize=14)
-plt.savefig("content/posts/sutton-barto/Optimistic-Initial-Values/optimistic_initial_values_zoomed.pdf", bbox_inches="tight")
+plt.savefig(r"content\posts\sutton-barto\optimistic-initial-values\blog-files\optimistic_initial_values_zoomed_light.svg", bbox_inches="tight", transparent= True)
+plt.savefig(r"content\posts\sutton-barto\optimistic-initial-values\blog-files\optimistic_initial_values_zoomed_light.pdf", bbox_inches="tight", transparent= True)
+
 plt.show()
+

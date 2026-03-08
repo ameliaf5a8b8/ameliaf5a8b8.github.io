@@ -88,6 +88,11 @@ class Bandit:
         with open(path, "wb") as f:
             pickle.dump(self, f)
 
+    def load_model(self,path):
+        path = Path(path)
+        with open(path, "rb") as f:
+            self = pickle.load(f)
+
     def reset(self):
         """
         Reset the bandit to its initial state by reinitializing all parameters
