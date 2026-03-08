@@ -16,15 +16,19 @@ A key limitation of epsilon-greedy methods in managing the explore-exploit trade
 Suppose that each arm in the k-armed bandit problem has an expected reward of $[0,1]$, with a variance of $1$. By initialising $Q(a)=5 \; \forall a$ , the agent would initially be "disappointed" with the rewards that it receives, prompting it to explore each action until the initial bias is decayed.
 
 <figure id="fig:1">
-  <picture>
-    <source srcset="../optimistic_initial_values_dark.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="../optimistic_initial_values_light.svg"
-         style="width:100%; display:block; margin:auto;"
-         alt="The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1. Q_0 represents the action-values at time step 0">
-  </picture>
+  <img class="light figure-img"
+       src="../optimistic_initial_values_light.svg"
+       style="width:100%; display:block; margin:auto;"
+       alt="The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0">
+
+  <img class="dark figure-img"
+       src="../optimistic_initial_values_dark.svg"
+       style="width:100%; display:block; margin:auto;"
+       alt="The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0">
+
   <figcaption style="text-align:center;">
-    <strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1. Q_0 represents the action-values at time step 0  </figcaption>
+    <strong>Figure 1:</strong> The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0
+  </figcaption>
 </figure>
 
 # Exercise
@@ -33,13 +37,16 @@ Suppose that each arm in the k-armed bandit problem has an expected reward of $[
 
 The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the curve in the optimistic method, particularly at the 11th time step where the accuracy jumps to $40\%$.
 <figure id="fig:2">
-  <picture>
-    <source srcset="../optimistic_initial_values_zoomed_dark.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="../optimistic_initial_values_zoomed_light.svg"
-         style="width:100%; display:block; margin:auto;"
-         alt="Zoomed-in view of the results shown in Figure 1">
-  </picture>
+  <img class="light figure-img"
+       src="../optimistic_initial_values_zoomed_light.svg"
+       style="width:100%; display:block; margin:auto;"
+       alt="Zoomed-in view of the results shown in Figure 1">
+
+  <img class="dark figure-img"
+       src="../optimistic_initial_values_zoomed_dark.svg"
+       style="width:100%; display:block; margin:auto;"
+       alt="Zoomed-in view of the results shown in Figure 1">
+
   <figcaption style="text-align:center;">
     <strong>Figure 2:</strong> Zoomed-in view of the results shown in <a href="#fig:1">Figure 1</a>
   </figcaption>

@@ -17,35 +17,39 @@ UCB attempts to mitigate this issue through the addition of an uncertainty term,
 
 The idea of UCB is that the square root term represents the uncertainty in the action-value estimate. The quantity being argmaxed over becomes sort of upper bound on $Q(a)$ [^1], with $c$ determining the confidence level. Each time $a$ is selected, the uncertainty reduces. On the other hand, each time an action other than $a$ is selected, $\ln t$ increases, increasing the uncertainty. With the logarithm, increases in uncertainty get smaller over time, while remaining unbounded, causing all actions to be selected in future time steps, regardless of the current time step.
 
-
 <figure id="fig:1">
-  <picture>
-    <source srcset="../blog_imgs/dark/avg_reward.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="../blog_imgs/dark/avg_reward.svgg"
-         style="width:100%; display:block; margin:auto;"
-         alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1.">
-  </picture>
-  <figcaption style="text-align:center;">
-    <strong>Figure 1:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.</figcaption>
-</figure>
+  <img class="light figure-img"
+       src="../blog_imgs/light/avg_reward.svg"
+       alt="The effect of UCB on the 10-armed bandit problem.">
 
+  <img class="dark figure-img"
+       src="../blog_imgs/dark/avg_reward.svg"
+       alt="The effect of UCB on the 10-armed bandit problem.">
+
+  <figcaption style="text-align:center;">
+    <strong>Figure 1:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.
+  </figcaption>
+</figure>
 # Exercise
 
 #### Initial spike.
 
-The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the UCB curve, particularly at the 11th time step where the average reward jumps to $1.1$. Note that for your explanation to be complete, it must explain why the rewards increases on the 11th step and decreases on the subsequent steps
+The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the UCB curve, particularly at the 11th time step where the average reward jumps to $1.1$. Note that for your explanation to be complete, it must explain why the rewards increases on the 11th step and decreases on the subsequent steps.
 
 <figure id="fig:2">
-  <picture>
-    <source srcset="../blog_imgs/dark/avg_reward_zoomed.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="./blog_imgs/light/avg_reward_zoomed.svg"
-         style="width:100%; display:block; margin:auto;"
-         alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size \alpha = 0.1.">
-  </picture>
+  <img class="light figure-img"
+       src="./blog_imgs/light/avg_reward_zoomed.svg"
+       style="width:100%; display:block; margin:auto;"
+       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $$\alpha = 0.1$$.">
+
+  <img class="dark figure-img"
+       src="../blog_imgs/dark/avg_reward_zoomed.svg"
+       style="width:100%; display:block; margin:auto;"
+       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $$\alpha = 0.1$$.">
+
   <figcaption style="text-align:center;">
     <strong>Figure 2:</strong> Zoomed-in view of the results shown in <a href="#fig:1">Figure 1</a>
+  </figcaption>
 </figure>
 
 #### Observation.
@@ -53,28 +57,25 @@ The results in Figure 1 should be quite reliable because they are averaged over 
 By examining the nature in which UCB performs action selection, hypothesise how the $\varepsilon$-greedy method has a higher % Optimal action than UCB but a lower average reward. [^2]
 
 <figure data-latex-placement="H">
-<figure id="">
-  <picture>
-    <source srcset="../blog_imgs/dark/avg_reward_c2.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="../blog_imgs/light/avg_reward_c2.svg"
-         style="width:100%; display:block; margin:auto;"
+  <figure>
+    <img class="light figure-img"
+         src="../blog_imgs/light/avg_reward_c2.svg"
          alt="">
-  </picture>
-  <figcaption style="text-align:center;">
-    <strong></strong>   </figcaption>
-</figure>
+    <img class="dark figure-img"
+         src="../blog_imgs/dark/avg_reward_c2.svg"
+         alt="">
+    <figcaption style="text-align:center;"></figcaption>
+  </figure>
 
-<figure id="">
-  <picture>
-    <source srcset="../blog_imgs/dark/optimal_action_c2.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="../blog_imgs/light/optimal_action_c2.svg"
-         style="width:100%; display:block; margin:auto;"
+  <figure>
+    <img class="light figure-img"
+         src="../blog_imgs/light/optimal_action_c2.svg"
          alt="">
-  </picture>
-  <figcaption style="text-align:center;">
-    <strong></strong>   </figcaption>
+    <img class="dark figure-img"
+         src="../blog_imgs/dark/optimal_action_c2.svg"
+         alt="">
+    <figcaption style="text-align:center;"></figcaption>
+  </figure>
 </figure>
 
 <figcaption  style="text-align:center;">  <strong>Figure 3:</strong> UCB versus <span class="math inline"><em>ε</em></span>-greedy on different axes, averaged over 50 000 runs. Both methods used a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
@@ -99,30 +100,34 @@ Even though the $\varepsilon$-greedy method has a higher chance of choosing the 
 Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy method
 
 <figure data-latex-placement="H">
-<figure id="">
-  <picture>
-    <source srcset="..\blog_imgs\dark\avg_reward_c2_long_term.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="..\blog_imgs\light\avg_reward_c2_long_term.svg"
+  <figure>
+    <img class="light figure-img"
+         src="..\blog_imgs\light\avg_reward_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
-  </picture>
-  <figcaption style="text-align:center;">
-    <strong>Figure 4</strong>   </figcaption>
-</figure>
-
-<figure id="">
-  <picture>
-    <source srcset="..\blog_imgs\dark\optimal_action_c2_long_term.svg"
-            media="(prefers-color-scheme: dark)">
-    <img src="..\blog_imgs\light\optimal_action_c2_long_term.svg"
+    <img class="dark figure-img"
+         src="..\blog_imgs\dark\avg_reward_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
-  </picture>
-  <figcaption style="text-align:center;">
-    <strong>Figure 5</strong>   </figcaption>
-</figure>
+    <figcaption style="text-align:center;">
+      <strong>Figure 4</strong>
+    </figcaption>
+  </figure>
 
+  <figure>
+    <img class="light figure-img"
+         src="..\blog_imgs\light\optimal_action_c2_long_term.svg"
+         style="width:100%; display:block; margin:auto;"
+         alt="">
+    <img class="dark figure-img"
+         src="..\blog_imgs\dark\optimal_action_c2_long_term.svg"
+         style="width:100%; display:block; margin:auto;"
+         alt="">
+    <figcaption style="text-align:center;">
+      <strong>Figure 5</strong>
+    </figcaption>
+  </figure>
+</figure>
 <figcaption  style="text-align:center;">UCB performs better than <span class="math inline"><em>ε</em></span>-greedy on both axes in the long run. The data is averaged over 50 000 runs, with a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
 </figure>
 

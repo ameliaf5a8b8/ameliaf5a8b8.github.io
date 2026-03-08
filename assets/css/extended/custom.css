@@ -1,0 +1,13 @@
+[data-theme="dark"] img.light {
+  display: none !important;
+}
+
+[data-theme="light"] img.dark {
+  display: none !important;
+}
+
+.figure-img {
+  width: 100%;
+  display: block;
+  margin: auto;
+}
