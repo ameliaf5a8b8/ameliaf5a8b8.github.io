@@ -62,7 +62,7 @@ By examining the nature in which UCB performs action selection, hypothesise how 
          alt="">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 3:</strong>   </figcaption>
+    <strong></strong>   </figcaption>
 </figure>
 
 <figure id="">
@@ -74,7 +74,7 @@ By examining the nature in which UCB performs action selection, hypothesise how 
          alt="">
   </picture>
   <figcaption style="text-align:center;">
-    <strong>Figure 4:</strong>   </figcaption>
+    <strong></strong>   </figcaption>
 </figure>
 
 <figcaption>UCB versus <span class="math inline"><em>ε</em></span>-greedy on different axes, averaged over 50 000 runs. Both methods used a constant step size <span class="math inline"><em>α</em> = 0.1</span></figcaption>
