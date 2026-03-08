@@ -50,7 +50,7 @@ The results in Figure 1 should be quite reliable because they are averaged over 
 
 #### Observation.
 
-By examining the nature in which UCB performs action selection, hypothesise how $\varepsilon$-greedy method has a higher % Optimal action than UCB but lower average reward. [^2]
+By examining the nature in which UCB performs action selection, hypothesise how the $\varepsilon$-greedy method has a higher % Optimal action than UCB but a lower average reward. [^2]
 
 <figure data-latex-placement="H">
 <figure id="">
