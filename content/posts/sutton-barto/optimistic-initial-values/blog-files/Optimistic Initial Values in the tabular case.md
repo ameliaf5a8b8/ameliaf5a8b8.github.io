@@ -1,19 +1,19 @@
 ---
 title: "Optimistic Initial Values in the tabular case"
 date: 2026-03-07
-lastmod: 2026-03-07
-tags: ["Machine Learning", "Reinforcement Learning"]
-categories: []
+lastmod: 2026-03-09
+tags: ["epsilon-greedy", "explore-exploit trade-off", "k-armed Bandits"]
+categories: ["Machine Learning", "Reinforcement Learning"]  
 math: true
 summary:
 ---
 # Introduction
 
-A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the k-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent first chose, as other actions are estimated to be significantly worse due to the initial conditions.
+A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the *k*-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent first chose, as other actions are estimated to be significantly worse due to the initial conditions.
 
 # Optimistic exploration
 
-Suppose that each arm in the k-armed bandit problem has an expected reward of $[0,1]$, with a variance of $1$. By initialising $Q(a)=5 \; \forall a$ , the agent would initially be "disappointed" with the rewards that it receives, prompting it to explore each action until the initial bias is decayed.
+Suppose that each arm in the *k*-armed bandit problem has an expected reward of $[0,1]$, with a variance of $1$. By initialising $Q(a)=5 \; \forall a$ , the agent would initially be "disappointed" with the rewards that it receives, prompting it to explore each action until the initial bias is decayed.
 
 <figure id="fig:1">
   <img class="light figure-img"
@@ -149,7 +149,7 @@ plt.figure(figsize=(12,4.5))
 
 plt.xlabel("Steps", fontsize=18)
 plt.ylabel("% Optimal Action", fontsize=18)
-
+ 
 
 plt.plot(realistic * 100, label=r"$\epsilon$-greedy ($\epsilon=0.1$)")
 plt.plot(optimistic * 100, label=r"Optimistic $Q_0=5$")

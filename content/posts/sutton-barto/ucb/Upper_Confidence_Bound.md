@@ -1,9 +1,9 @@
 ---
 title: "Upper Confidence Bound"
 date: 2026-03-08
-lastmod: 2026-03-08
-tags: ["Machine Learning", "Reinforcement Learning"]
-categories: []
+lastmod: 2026-03-09
+tags: ["epsilon-greedy", "explore-exploit trade-off", "k-armed Bandits"]
+categories: ["Machine Learning", "Reinforcement Learning"]
 math: true
 summary:
 ---
@@ -30,6 +30,8 @@ The idea of UCB is that the square root term represents the uncertainty in the a
     <strong>Figure 1:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.
   </figcaption>
 </figure>
+
+
 # Exercise
 
 #### Initial spike.
@@ -38,14 +40,14 @@ The results in Figure 1 should be quite reliable because they are averaged over 
 
 <figure id="fig:2">
   <img class="light figure-img"
-       src="./blog_imgs/light/avg_reward_zoomed.svg"
+       src="../blog_imgs/light/avg_reward_zoomed.svg"
        style="width:100%; display:block; margin:auto;"
-       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $$\alpha = 0.1$$.">
+       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.">
 
   <img class="dark figure-img"
        src="../blog_imgs/dark/avg_reward_zoomed.svg"
        style="width:100%; display:block; margin:auto;"
-       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $$\alpha = 0.1$$.">
+       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.">
 
   <figcaption style="text-align:center;">
     <strong>Figure 2:</strong> Zoomed-in view of the results shown in <a href="#fig:1">Figure 1</a>
