@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Reinforcement-Learning on Amelia</title>
+    <title>Reinforcement Learning on Amelia</title>
     <link>http://localhost:1313/categories/reinforcement-learning/</link>
-    <description>Recent content in Reinforcement-Learning on Amelia</description>
+    <description>Recent content in Reinforcement Learning on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 06 Feb 2026 22:29:03 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 08 Mar 2026 21:19:16 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>ABOUT WIP</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;p&gt;$\lbrace \bar{o}_{n-1} \rbrace _{n \ge 0}$
-$$\bar{o}_{n-1} $$&lt;/p&gt;</description>
+      <title>Upper Confidence Bound</title>
+      <link>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;The commonly used epsilon-greedy methods has a significant drawback &amp;mdash; it explores a random action with no consideration of its likelihood to be the optimal actions. It would be better to selectively explore actions according to their potential to be optimal, based on their current action value and its associated uncertainties.&lt;/p&gt;
+&lt;h1 id=&#34;ucb&#34;&gt;UCB&lt;/h1&gt;
+&lt;p&gt;UCB attempts to mitigate this issue through the addition of an uncertainty term, to form a &lt;em&gt;maximising&lt;/em&gt; action. The action selection becomes &lt;/p&gt;</description>
     </item>
     <item>
-      <title>TEST</title>
-      <link>http://localhost:1313/posts/test/</link>
-      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/test/</guid>
+      <title>Optimistic Initial Values in the tabular case</title>
+      <link>http://localhost:1313/posts/sutton-barto/optimistic-initial-values/blog-files/optimistic-initial-values-in-the-tabular-case/</link>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/sutton-barto/optimistic-initial-values/blog-files/optimistic-initial-values-in-the-tabular-case/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-&lt;h4 id=&#34;problem&#34;&gt;Problem.&lt;/h4&gt;
-&lt;p&gt;Let $\lbrace R_n \rbrace_{n \ge 1}$ be a sequence of rewards and let $\alpha \in (0,1)$ be a constant step size. Consider the recursive update, for $n \ge 1$, $$Q_{n+1} = Q_n + \alpha \bigl(R_n - Q_n\bigr),
-\qquad Q_1 = 5, $$ where $Q_n \in \mathbb{R}$ for all $n$.&lt;/p&gt;
-&lt;p&gt;Define the auxiliary sequence $\lbrace \bar{o}_n \rbrace_{n \ge 0}$ by $$\bar{o}_n \doteq \bar{o}_{n-1} + \alpha \bigl(1 - \bar{o}_{n-1}\bigr),
-\quad \text{for } n &amp;gt; 0,
-\qquad \bar{o}_0 \doteq 0,$$ and let $$\beta_n \doteq \alpha \bar{o}_n.$$&lt;/p&gt;</description>
+&lt;p&gt;A key limitation of epsilon-greedy methods in managing the explore-exploit trade-off becomes apparent when examining their impact on the first few actions on the &lt;em&gt;k&lt;/em&gt;-armed bandit problem. By initialising $Q(a) = 0$, for all $a$, we are likely to underestimate the expected rewards of each action. In the initial stages of exploration, the greedy actions taken by the agent would be mostly dependent on which action the agent first chose, as other actions are estimated to be significantly worse due to the initial conditions.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

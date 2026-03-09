@@ -1,9 +1,9 @@
 ---
 title: "GRUs"
 date: 2026-02-07
-lastmod: 2026-02-07
-tags: ["Machine Learning", "RNNs"]
-categories: []
+lastmod: 2026-03-09
+tags: []
+categories: ["Machine Learning", "RNNs"]
 math: true
 summary: GRU stands for Gated Recurrent Unit, which is a type of recurrent neural network (RNN) that is based on Long Short-Term memory (LSTM). Like LSTM, GRU is designed to model sequential data by allowing information to be selectively remembered or forgotten over time. However, GRU has a simpler architecture than LSTM, with fewer parameters, which makes it easier to train at a cost of accuracy
 ---

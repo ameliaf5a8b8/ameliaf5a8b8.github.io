@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
 <title>Upper Confidence Bound | Amelia</title>
-<meta name="keywords" content="Machine Learning, Reinforcement Learning">
+<meta name="keywords" content="epsilon-greedy, explore-exploit trade-off, k-armed Bandits">
 <meta name="description" content="Introduction
 The commonly used epsilon-greedy methods has a significant drawback &mdash; it explores a random action with no consideration of its likelihood to be the optimal actions. It would be better to selectively explore actions according to their potential to be optimal, based on their current action value and its associated uncertainties.
 UCB
@@ -140,6 +140,11 @@ UCB attempts to mitigate this issue through the addition of an uncertainty term,
                     <span>About</span>
                 </a>
             </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -151,7 +156,7 @@ UCB attempts to mitigate this issue through the addition of an uncertainty term,
     <h1 class="post-title entry-hint-parent">
       Upper Confidence Bound
     </h1>
-    <div class="post-meta"><span title='2026-03-08 00:00:00 +0000 UTC'>March 8, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>1081 words</span>&nbsp;·&nbsp;<span>Amelia</span>
+    <div class="post-meta"><span title='2026-03-08 00:00:00 +0000 UTC'>March 8, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>1080 words</span>&nbsp;·&nbsp;<span>Amelia</span>
 
 </div>
   </header> 
@@ -172,18 +177,18 @@ alt="The effect of UCB on the 10-armed bandit problem."></p>
     <strong>Figure 1:</strong> The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.
   </figcaption>
 </figure>
-# Exercise
+<h1 id="exercise">Exercise<a hidden class="anchor" aria-hidden="true" href="#exercise">#</a></h1>
 <h4 id="initial-spike">Initial spike.<a hidden class="anchor" aria-hidden="true" href="#initial-spike">#</a></h4>
 <p>The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the UCB curve, particularly at the 11th time step where the average reward jumps to $1.1$. Note that for your explanation to be complete, it must explain why the rewards increases on the 11th step and decreases on the subsequent steps.</p>
 <figure id="fig:2">
   <img class="light figure-img"
-       src="./blog_imgs/light/avg_reward_zoomed.svg"
+       src="../blog_imgs/light/avg_reward_zoomed.svg"
        style="width:100%; display:block; margin:auto;"
-       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $$\alpha = 0.1$$.">
+       alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.">
 <p><img class="dark figure-img"
 src="../blog_imgs/dark/avg_reward_zoomed.svg"
 style="width:100%; display:block; margin:auto;"
-alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $$\alpha = 0.1$$."></p>
+alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$."></p>
   <figcaption style="text-align:center;">
     <strong>Figure 2:</strong> Zoomed-in view of the results shown in <a href="#fig:1">Figure 1</a>
   </figcaption>
@@ -383,8 +388,9 @@ alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. 
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/machine-learning/">Machine Learning</a></li>
-      <li><a href="http://localhost:1313/tags/reinforcement-learning/">Reinforcement Learning</a></li>
+      <li><a href="http://localhost:1313/tags/epsilon-greedy/">Epsilon-Greedy</a></li>
+      <li><a href="http://localhost:1313/tags/explore-exploit-trade-off/">Explore-Exploit Trade-Off</a></li>
+      <li><a href="http://localhost:1313/tags/k-armed-bandits/">K-Armed Bandits</a></li>
     </ul>
 <nav class="paginav">
   <a class="next" href="http://localhost:1313/posts/sutton-barto/optimistic-initial-values/blog-files/optimistic-initial-values-in-the-tabular-case/">
