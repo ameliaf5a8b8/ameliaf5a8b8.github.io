@@ -7,6 +7,8 @@ categories: [Machine Learning,Reinforcement Learning,Policy Gradient,Math]
 math: true
 summary:
 ---
+
+<!-- NOT DONE YET!!! -->
  # Introduction
 
 A common approach to select the optimal action is to compute their action-value for each action and select the one with the highest value. However, this method typically relies on epsilon-greedy exploration, which introduces random guessing during exploration. Instead, we aim to evaluate actions with a probability distribution, enabling the agent to explore each action in proportion to their potential.
@@ -119,6 +121,8 @@ baseline, with $\alpha = 0.1$, averaged over 1 million runs.">
     <strong>Figure 1:</strong> Performance of the gradient bandit algorithm with and without a
 baseline, with $\alpha = 0.1$, averaged over 1 million runs.  </figcaption>
 </figure>
+
+<!-- NEED TO EXPLAIN WHY THE VARIANCE IS WHAT THE VARIANCE IS -->
 
 # Conclusion
 

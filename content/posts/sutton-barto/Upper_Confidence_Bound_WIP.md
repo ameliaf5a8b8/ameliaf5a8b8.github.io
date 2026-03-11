@@ -31,6 +31,7 @@ The idea of UCB is that the square root term represents the uncertainty in the a
   </figcaption>
 </figure>
 
+<!-- TO EXPLAIN WHY WE USE THE SQRT -->
 
 # Exercise
 
