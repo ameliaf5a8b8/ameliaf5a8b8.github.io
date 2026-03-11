@@ -4,9 +4,7 @@ from tqdm import tqdm
 import pickle
 from pathlib import Path
 import matplotlib.pyplot as plt
-from multiprocessing import Pool
-from typing import Self, Union, Optional, Dict
-from concurrent.futures import ProcessPoolExecutor
+from typing import Self, Optional, Dict
 
 
 class Bandit:
@@ -161,11 +159,6 @@ def plot_and_save(
             plt.plot(d, label=label)
         plt.legend(fontsize=16)
 
-        if filename:
-            plt.savefig(f"content/posts/sutton-barto/gradient-algorithms/blog_imgs/{style}/{filename}.svg",
-                        bbox_inches="tight", transparent=True)
-            plt.savefig(f"content/posts/sutton-barto/gradient-algorithms/pdf_imgs/{style}/{filename}.pdf",
-                        bbox_inches="tight", transparent=True)
 
     # Light style
     plt.style.use("default")
@@ -191,8 +184,9 @@ if __name__ == "__main__":
     "alpha" : 0.1
     }
 
-    model_with_baseline = Bandit(**conditions, device="cuda")
-    model_without_baseline = Bandit(**conditions, device="cuda")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model_with_baseline = Bandit(**conditions, device=device)
+    model_without_baseline = Bandit(**conditions, device=device)
     
     model_with_baseline.train()
     model_without_baseline.train_without_baseline()

@@ -5,7 +5,10 @@
 | **Machine Learning** | **k-armed Bandits** |
 | **Reinforcement Learning** | **epsilon-greedy** |
 | **RNNs** | **explore-exploit trade-off** |
-| | **Backpropagation** |
-| | **Linear Algebra** |
-| | **Jacobian** |
+| **Policy Gradient**| **Backpropagation** |
+| **Action-Value**| **Linear Algebra** |
+|**Math** | **Jacobian** |
 | | **Matrix Calculus** |
+|| **Easy**|
+|| **Medium**|
+|| **Hard**|
