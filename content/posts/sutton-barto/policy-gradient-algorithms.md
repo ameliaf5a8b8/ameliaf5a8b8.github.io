@@ -106,12 +106,12 @@ To illustrate the purpose of the baseline, [Figure 1](#fig:1) shows results with
 
 <figure id="fig:1">
   <img class="light figure-img"
-       src="../blog_imgs/light/optimal_action_bandit_baseline_comparison.svg"
+       src="../policy-gradient-algorithms/blog_imgs/light/optimal_action_bandit_baseline_comparison.svg"
        alt="Performance of the gradient bandit algorithm with and without a
 baseline, with $\alpha = 0.1$, averaged over 1 million runs.">
 
   <img class="dark figure-img"
-       src="../blog_imgs/dark/optimal_action_bandit_baseline_comparison.svg"
+       src="../policy-gradient-algorithms/blog_imgs/dark/optimal_action_bandit_baseline_comparison.svg"
        alt="Performance of the gradient bandit algorithm with and without a
 baseline, with $\alpha = 0.1$, averaged over 1 million runs.">
 
