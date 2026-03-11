@@ -48,7 +48,7 @@ $$
 Here $B_t$, the *baseline*, can be any scalar independent of $A_t$.  
 To reduce variance we choose $B_t = \bar G_t$, the running average of observed returns.
 
-To form an expectation we apply the log-derivative trick.
+To form an expectation, we apply the log-derivative trick.
 
 $$
 \begin{aligned}
