@@ -4,10 +4,20 @@
     <title>Machine Learning on Amelia</title>
     <link>http://localhost:1313/categories/machine-learning/</link>
     <description>Recent content in Machine Learning on Amelia</description>
-    <generator>Hugo -- 0.155.2</generator>
+    <generator>Hugo</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 09 Mar 2026 07:13:34 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Policy Gradient Algorithms</title>
+      <link>http://localhost:1313/posts/sutton-barto/policy-gradient-algorithms/policy-gradient-algorithms/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/sutton-barto/policy-gradient-algorithms/policy-gradient-algorithms/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;A common approach to select the optimal action is to compute their action-value for each action and select the one with the highest value. However, this method typically relies on epsilon-greedy exploration, which introduces random guessing during exploration. Instead, we aim to evaluate actions with a probability distribution, enabling the agent to explore each action in proportion to their potential.&lt;/p&gt;
+&lt;h1 id=&#34;gradient-bandits&#34;&gt;Gradient Bandits&lt;/h1&gt;
+&lt;p&gt;We start by replacing $Q_t(a)$, the action-value function, with a numerical &lt;em&gt;preference&lt;/em&gt;, which we denote $H_t(a) \in \mathbb R$. The larger the preference, the more the action is favoured, but it has no interpretation in terms of expected reward. As these preferences represent relative scores rather than reward estimates, they can be treated as logits and passed through a softmax function to produce a probability distribution over actions, where only the differences between preferences determine the resulting probabilities. Thus, the probability of choosing each action, defined by our &lt;em&gt;policy&lt;/em&gt;, $\pi_t(a)$ is &lt;/p&gt;</description>
+    </item>
     <item>
       <title>Upper Confidence Bound</title>
       <link>http://localhost:1313/posts/sutton-barto/ucb/upper_confidence_bound/</link>

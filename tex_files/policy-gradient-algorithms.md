@@ -1,0 +1,117 @@
+---
+title: "policy-gradient-algorithms"
+date: 2026-03-11
+lastmod: 2026-03-11
+tags: []
+categories: []
+math: true
+summary:
+---
+ # Introduction
+
+A common approach to select the optimal action is to compute their action-value for each action and select the one with the highest value. However, this method typically relies on epsilon-greedy exploration, which introduces random guessing during exploration. Instead, we aim to evaluate actions with a probability distribution, enabling the agent to explore each action in proportion to their potential.
+
+# Gradient Bandits
+
+We start by replacing $Q_t(a)$, the action-value function, with a numerical *preference*, which we denote $H_t(a) \in \mathbb R$. The larger the preference, the more the action is favoured, but it has no interpretation in terms of expected reward. As these preferences represent relative scores rather than reward estimates, they can be treated as logits and passed through a softmax function to produce a probability distribution over actions, where only the differences between preferences determine the resulting probabilities. Thus, the probability of choosing each action, defined by our *policy*, $\pi_t(a)$ is $$\begin{equation}
+    \pi_t(a) \doteq \mathrm {P}(A_t = a) \doteq \frac{e^{H_t(a)}}{\sum_{b \in \mathcal A}e^{H_t(b)}}
+\end{equation}$$
+
+# Update rule {#sec:update-rule}
+
+In order to refine our action-preferences, we can use the ideas from stochastic gradient ascent. $$\begin{equation}
+    H_{t+1}(a) \doteq H_t(a) + \alpha \frac{\partial \mathbb E[G_t]}{\partial H_t(a)}
+\end{equation}$$ where $\alpha \in \mathbb R^+$ is the step size, and $G_t$ is the discounted sum of future rewards. (Or $R_t$ in the Gradient Bandit problem). $$\begin{align}
+\text{We want to solve for} \quad 
+\frac{\partial \mathbb E[G_t]}{\partial H_t(a)}
+&= \frac{\partial }{\partial H_t(a)} \sum_{A_t} \pi_t(A_t) G_t \notag \\
+&= \frac{\partial }{\partial H_t(a)} \sum_{A_t} \pi_t(A_t) q_*(A_t) \notag \\
+&= \sum_{A_t} q_*(A_t)\frac{\partial }{\partial H_t(a)}  \pi_t(A_t) \notag \\
+\text{Since } \sum_{A_t} \pi_t(A_t) = 1,\text{ we can introduce an arbitrary constant} 
+& \notag \\
+&= \sum_{A_t} q_*(A_t)\frac{\partial }{\partial H_t(a)} \pi_t(A_t)
+     - B_t \frac{\partial \sum_{A_t} \pi_t(A_t)}{\partial H_t(a)} \notag \\
+&= \sum_{A_t} \left( q_*(A_t) - B_t \right)
+     \frac{\partial }{\partial H_t(a)} \pi_t(A_t)
+     \label{baseline-eqn} \\
+\text{Here } B_t \text{ (the baseline) can be any scalar independent of } A_t.
+& \notag \\
+\text{To reduce variance we choose } B_t = \bar G_t,
+\text{ the running average of observed returns.}
+& \notag \\
+\text{To form an expectation we apply the log-derivative trick.}
+& \notag \\
+&= \sum_{A_t} \pi_t(A_t)
+   \left( q_*(A_t) - \bar G_t \right)
+   \frac{\partial \log \pi_t(A_t)}{\partial H_t(a)} \notag \\
+&= \mathbb E_{A_t \sim \pi}
+   \left[
+   \left( q_*(A_t) - \bar G_t \right)
+   \frac{\partial \log \pi_t(A_t)}{\partial H_t(a)}
+   \right] \notag \\
+&= \mathbb E_{A_t \sim \pi}
+   \left[
+   \left(
+   \mathbb E_{A_t \sim \pi}[G_t \mid A_t] - \bar G_t
+   \right)
+   \frac{\partial \log \pi_t(A_t)}{\partial H_t(a)}
+   \right] \notag \\
+&= \mathbb E_{A_t \sim \pi}
+   \left[
+   \left( G_t - \bar G_t \right)
+   \frac{\partial \log \pi_t(A_t)}{\partial H_t(a)}
+   \right].
+\end{align}$$ Solving the derivative $$\begin{align}
+    \frac{\partial \log \pi_t(A_t)}{\partial H_t(a)} &=   \frac{\partial}{\partial H_t(A_t)} \log \left( \frac{e^{H_t(A_t)}}{\sum_{b \in \mathcal A}e^{H_t(b)}} \right) \notag\\
+    &=  \frac{\partial}{\partial H_t(a)} \left( H_t(A_t) - \log \sum_{b \in \mathcal A}e^{H_t(b)} \right) \notag\\
+    &= \mathbf 1_{A_t=a} - \frac{1}{\sum_{b \in \mathcal A}e^{H_t(b)}} \frac{\partial  \sum_{b \in \mathcal A}e^{H_t(b)}}{\partial H_t(a)} \notag\\
+    &= \mathbf 1_{A_t=a} - \frac{e^{H_t(a)}}{\sum_{b \in \mathcal A}e^{H_t(b)}} \notag\\
+    &= \mathbf 1_{A_t=a} - \pi_t(a)
+\end{align}$$ Hence $$\begin{equation}
+     \frac{\partial \mathbb E[G_t]}{\partial H_t(a)} = \mathbb E_{A_t \sim \pi} \left[ \left( G_t- \bar G_t \right)\left( \mathbf 1_{A_t=a} - \pi_t(a) \right)\right]
+\end{equation}$$ Using a single sample to estimate the expectation, the update rule becomes $$\begin{align}
+    H_t(a) &= H_t(a) + \alpha \; \mathbb E_{A_t \sim \pi} \left[ \left( G_t- \bar G_t \right)\left( \mathbf 1_{A_t=a} - \pi_t(a) \right)\right] \notag \\
+    &= H_t(a) + \alpha  \left( G_t- \bar G_t \right)\left( \mathbf 1_{A_t=a} - \pi_t(a) \right)
+\end{align}$$ Splitting the cases $$\begin{equation}
+\begin{aligned}
+    H_{t+1}(A_t) &\doteq H_t(A_t) + \alpha(G_t - \bar{G}_t)(1 - \pi_t(A_t)), && \text{and} \\
+    H_{t+1}(a) &\doteq H_t(a) - \alpha(G_t - \bar{G}_t)\pi_t(a), && \forall a \neq A_t,
+\end{aligned}
+\end{equation}$$
+
+# Baseline
+
+In [3](#sec:update-rule){reference-type="ref+label" reference="sec:update-rule"}, we chose $\bar G_t$ as the baseline. If the expected sum of future rewards is higher than the baseline, the preference and probability of taking action $A_t$ increases, and if the expected sum of future rewards is below baseline, then the preference and probability would decrease. The non-selected actions move in the opposite direction.
+
+To illustrate the purpose of the baseline, [1](#fig:1){reference-type="ref+label" reference="fig:1"} shows results with the gradient bandit algorithm on a variant of the 10-armed bandit problem in which the true expected rewards were selected according to a normal distribution with a mean of $+4$ instead of zero. This biasing of rewards has no effect on the gradient bandit algorithm because of the reward baseline term. But if the baseline were omitted, then performance would be significantly degraded.
+
+<figure id="fig:1">
+  <img class="light figure-img"
+       src="../blog_imgs/light/optimal_action_bandit_baseline_comparison.pdf"
+       alt="Performance of the gradient bandit algorithm with and without a
+baseline, with $\alpha = 0.1$, averaged over 1 million runs.">
+
+  <img class="dark figure-img"
+       src="../blog_imgs/dark/optimal_action_bandit_baseline_comparison.pdf"
+       alt="Performance of the gradient bandit algorithm with and without a
+baseline, with $\alpha = 0.1$, averaged over 1 million runs.">
+
+  <figcaption style="text-align:center;">
+    <strong>Figure 1:</strong> Performance of the gradient bandit algorithm with and without a
+baseline, with $\alpha = 0.1$, averaged over 1 million runs.  </figcaption>
+</figure>
+
+# Conclusion
+
+Gradient algorithms provide an alternative way to evaluate actions based on the environment's rewards. Rather than estimating expected rewards directly, they assign preferences to actions and select them probabilistically using a softmax distribution. These preferences are updated via gradient ascent, allowing the agent to favour more promising actions while still exploring. This approach forms the foundation for a whole class of reinforcement learning algorithms and serves as the baseline for more advanced methods such as REINFORCE.
+
+# Appendix
+
+## Log-derivative trick {#sec:log-derivative-trick}
+
+$$\begin{gather}
+\intertext{Recall that}
+    \nabla_x \log f(x) = \frac{\nabla_x f(x)}{f(x)} \notag \\
+\intertext{Hence}
+    \nabla_x f(x) = f(x) \nabla_x \log f(x)
+\end{gather}$$
