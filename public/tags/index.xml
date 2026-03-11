@@ -6,27 +6,55 @@
     <description>Recent content in Tags on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 08 Mar 2026 01:12:23 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 08 Mar 2026 21:19:16 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Machine Learning</title>
-      <link>http://localhost:1313/tags/machine-learning/</link>
+      <title>Epsilon-Greedy</title>
+      <link>http://localhost:1313/tags/epsilon-greedy/</link>
       <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/machine-learning/</guid>
+      <guid>http://localhost:1313/tags/epsilon-greedy/</guid>
       <description></description>
     </item>
     <item>
-      <title>RNNs</title>
-      <link>http://localhost:1313/tags/rnns/</link>
-      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/rnns/</guid>
+      <title>Explore-Exploit Trade-Off</title>
+      <link>http://localhost:1313/tags/explore-exploit-trade-off/</link>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/explore-exploit-trade-off/</guid>
       <description></description>
     </item>
     <item>
-      <title>Classical RL</title>
-      <link>http://localhost:1313/tags/classical-rl/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/classical-rl/</guid>
+      <title>K-Armed Bandits</title>
+      <link>http://localhost:1313/tags/k-armed-bandits/</link>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/k-armed-bandits/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Backpropagation</title>
+      <link>http://localhost:1313/tags/backpropagation/</link>
+      <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/backpropagation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jacobian</title>
+      <link>http://localhost:1313/tags/jacobian/</link>
+      <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/jacobian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linear Algebra</title>
+      <link>http://localhost:1313/tags/linear-algebra/</link>
+      <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/linear-algebra/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Matrix Calculus</title>
+      <link>http://localhost:1313/tags/matrix-calculus/</link>
+      <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/matrix-calculus/</guid>
       <description></description>
     </item>
   </channel>
