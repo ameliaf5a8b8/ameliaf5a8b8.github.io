@@ -24,7 +24,8 @@ function Figure(fig)
 
   -- extract filename only
   local src = img.src
-  local filename = src:match("([^/]+)$")  -- ucb_reward.svg
+  local base = src:match("([^/]+)$")        -- original filename
+  local filename = base:gsub("%..+$", ".svg")  -- replace extension with .svg
 
   -- build light/dark paths
   local light = "../blog_imgs/light/" .. filename

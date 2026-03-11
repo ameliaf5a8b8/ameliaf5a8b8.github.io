@@ -4,22 +4,43 @@
     <title>Categories on Amelia</title>
     <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Amelia</description>
-    <generator>Hugo -- 0.155.2</generator>
+    <generator>Hugo</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 09 Mar 2026 09:19:12 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning</title>
       <link>http://localhost:1313/categories/machine-learning/</link>
-      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/categories/machine-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Math</title>
+      <link>http://localhost:1313/categories/math/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/math/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Policy Gradient</title>
+      <link>http://localhost:1313/categories/policy-gradient/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/policy-gradient/</guid>
       <description></description>
     </item>
     <item>
       <title>Reinforcement Learning</title>
       <link>http://localhost:1313/categories/reinforcement-learning/</link>
-      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/categories/reinforcement-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Action-Value</title>
+      <link>http://localhost:1313/categories/action-value/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/action-value/</guid>
       <description></description>
     </item>
     <item>
@@ -27,6 +48,13 @@
       <link>http://localhost:1313/categories/rnns/</link>
       <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/categories/rnns/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Action</title>
+      <link>http://localhost:1313/categories/action/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/action/</guid>
       <description></description>
     </item>
   </channel>

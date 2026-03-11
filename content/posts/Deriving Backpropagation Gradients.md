@@ -3,7 +3,7 @@ title: "Deriving Backpropagation Gradients"
 date: 2026-02-09
 lastmod: 2026-03-09
 tags: ["Backpropagation", "Linear Algebra", "Jacobian","Matrix Calculus"]
-categories: ["Machine Learning"]
+categories: ["Machine Learning",Math]
 math: true
 summary: A simple guide walking through the basic algebra involved in Backpropogation
 --- 
