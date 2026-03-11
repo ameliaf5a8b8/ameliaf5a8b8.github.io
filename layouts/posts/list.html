@@ -1,0 +1,138 @@
+{{- define "main" }}
+
+{{/* -------------------------------- */}}
+{{/* Header                           */}}
+{{/* -------------------------------- */}}
+
+{{ if not .IsHome | and .Title }}
+<header class="page-header">
+  {{ partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+
+  {{ if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{ end }}
+</header>
+{{ end }}
+
+{{/* -------------------------------- */}}
+{{/* Page Content (_index.md body)    */}}
+{{/* -------------------------------- */}}
+
+{{ if .Content }}
+<div class="post-content">
+  {{ .Content }}
+</div>
+{{ end }}
+
+{{/* -------------------------------- */}}
+{{/* Define Data Sources              */}}
+{{/* -------------------------------- */}}
+
+{{ $sections := .Sections }}
+{{ $posts := .RegularPages }}
+
+{{ if .IsHome }}
+{{ $posts = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{ end }}
+
+{{ $paginator := .Paginate $posts }}
+
+{{/* -------------------------------- */}}
+{{/* Topics                           */}}
+{{/* -------------------------------- */}}
+
+{{ if gt (len $sections) 0 }}
+
+<h2 class="section-header">Topics</h2>
+<div class="topics-list">
+
+{{ range $sections }}
+
+<article class="post-entry">
+  <header class="entry-header">
+  <h2 class="entry-hint-parent">{{ .Title }}</h2>
+  </header>
+  </header>
+
+  {{ if .Description }}
+  <div class="entry-content">
+    <p>{{ .Description }}</p>
+  </div>
+  {{ end }}
+
+  <a class="entry-link" href="{{ .Permalink }}"></a>
+
+</article>
+
+{{ end }}
+
+</div>
+
+{{ end }}
+
+{{/* -------------------------------- */}}
+{{/* Posts                            */}}
+{{/* -------------------------------- */}}
+
+{{ if gt (len $posts) 0 }}
+
+<h2 class="section-header">Posts</h2>
+
+{{ range $index, $page := $paginator.Pages }}
+
+  {{ $class := "post-entry" }}
+
+  {{ if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) }}
+  {{ $class = "first-entry" }}
+  {{ end }}
+
+  {{ partial "post_card.html" (dict "page" $page "class" $class) }}
+  {{ end }}
+
+{{ end }}
+
+{{/* -------------------------------- */}}
+{{/* Empty state                      */}}
+{{/* -------------------------------- */}}
+
+{{ if and (eq (len $sections) 0) (eq (len $posts) 0) }}
+
+<div class="empty-state">
+<p>Nothing here yet.</p>
+<a href="{{ "/" | relURL }}">← Back</a>
+</div>
+
+{{ end }}
+
+{{/* -------------------------------- */}}
+{{/* Pagination                       */}}
+{{/* -------------------------------- */}}
+
+{{ if gt $paginator.TotalPages 1 }}
+
+<footer class="page-footer">
+
+<nav class="pagination">
+
+{{ if $paginator.HasPrev }}
+<a class="prev" href="{{ $paginator.Prev.URL }}">
+« Prev
+</a>
+{{ end }}
+
+{{ if $paginator.HasNext }}
+<a class="next" href="{{ $paginator.Next.URL }}">
+Next »
+</a>
+{{ end }}
+
+</nav>
+
+</footer>
+
+{{ end }}
+
+{{- end }}
