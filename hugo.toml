@@ -1,4 +1,4 @@
-baseURL = "https://ameliaf5a8b8.github.io/"
+baseURL = "https://ameliaf5a8b8.github.io"
 languageCode = "en-gb"
 title = "Amelia"
 theme = "PaperMod"
@@ -35,20 +35,20 @@ disablePathToLower = false
   mainSections = ["posts"]
 
 
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/yourusername"
+  # [[params.socialIcons]]
+  #   name = "github"
+  #   url = "https://github.com/yourusername"
 
-  [[params.socialIcons]]
-    name = "email"
-    url = "mailto:you@email.com"
+  # [[params.socialIcons]]
+  #   name = "email"
+  #   url = "mailto:you@email.com"
 
   [params.breadcrumbs]
     enabled = true
   [params.profileMode]
     enabled = true
     title = "Amelia"
-    subtitle = "Machine Learning · Mathematics · Repeat"
+    subtitle = "Machine Learning · Mathematics"
     imageUrl = "pfp.jpg"
     imageWidth = 200
     imageHeight = 200
@@ -66,11 +66,11 @@ disablePathToLower = false
     url = "/about/"
     weight = 2
 
-  [[menu.main]]
-    identifier = "Categories"
-    name = "Categories"
-    url = "/categories/"
-    weight = 3
+  # [[menu.main]]
+  #   identifier = "Categories"
+  #   name = "Categories"
+  #   url = "/categories/"
+  #   weight = 3
 
   # [[menu.main]]
   #   identifier = "tags"
