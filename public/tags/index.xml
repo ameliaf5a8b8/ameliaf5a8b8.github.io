@@ -4,28 +4,42 @@
     <title>Tags on Amelia</title>
     <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Amelia</description>
-    <generator>Hugo -- 0.155.2</generator>
+    <generator>Hugo</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 08 Mar 2026 21:19:16 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Medium</title>
+      <link>http://localhost:1313/tags/medium/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/medium/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Easy</title>
+      <link>http://localhost:1313/tags/easy/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/easy/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Epsilon-Greedy</title>
       <link>http://localhost:1313/tags/epsilon-greedy/</link>
-      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/epsilon-greedy/</guid>
       <description></description>
     </item>
     <item>
       <title>Explore-Exploit Trade-Off</title>
       <link>http://localhost:1313/tags/explore-exploit-trade-off/</link>
-      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/explore-exploit-trade-off/</guid>
       <description></description>
     </item>
     <item>
       <title>K-Armed Bandits</title>
       <link>http://localhost:1313/tags/k-armed-bandits/</link>
-      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/k-armed-bandits/</guid>
       <description></description>
     </item>
@@ -55,6 +69,13 @@
       <link>http://localhost:1313/tags/matrix-calculus/</link>
       <pubDate>Mon, 09 Feb 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/matrix-calculus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ma</title>
+      <link>http://localhost:1313/tags/ma/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/ma/</guid>
       <description></description>
     </item>
   </channel>
