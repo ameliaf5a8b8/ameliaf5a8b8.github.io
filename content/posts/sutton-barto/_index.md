@@ -5,7 +5,7 @@ date: 2025-01-01
 ---
 
 Welcome to the reinforcement learning nook.
-
+<!-- 
 Here you'll find:
 
 - Detailed theory
@@ -13,7 +13,7 @@ Here you'll find:
 - Experiments and code snippets
 
 
-Start by exploring one of the topics below.
+Start by exploring one of the topics below. -->
 <!-- ---
 title: "Reinforcement Learning"
 summary: "Hello worlr"

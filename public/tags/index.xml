@@ -4,7 +4,7 @@
     <title>Tags on Amelia</title>
     <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Amelia</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
     <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -13,34 +13,6 @@
       <link>http://localhost:1313/tags/medium/</link>
       <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/medium/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Easy</title>
-      <link>http://localhost:1313/tags/easy/</link>
-      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/easy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Epsilon-Greedy</title>
-      <link>http://localhost:1313/tags/epsilon-greedy/</link>
-      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/epsilon-greedy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Explore-Exploit Trade-Off</title>
-      <link>http://localhost:1313/tags/explore-exploit-trade-off/</link>
-      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/explore-exploit-trade-off/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>K-Armed Bandits</title>
-      <link>http://localhost:1313/tags/k-armed-bandits/</link>
-      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/k-armed-bandits/</guid>
       <description></description>
     </item>
     <item>
@@ -72,10 +44,24 @@
       <description></description>
     </item>
     <item>
-      <title>Ma</title>
-      <link>http://localhost:1313/tags/ma/</link>
+      <title>Epsilon-Greedy</title>
+      <link>http://localhost:1313/tags/epsilon-greedy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ma/</guid>
+      <guid>http://localhost:1313/tags/epsilon-greedy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Explore-Exploit Trade-Off</title>
+      <link>http://localhost:1313/tags/explore-exploit-trade-off/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/explore-exploit-trade-off/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>K-Armed Bandits</title>
+      <link>http://localhost:1313/tags/k-armed-bandits/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/k-armed-bandits/</guid>
       <description></description>
     </item>
   </channel>

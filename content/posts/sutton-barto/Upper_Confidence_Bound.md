@@ -19,11 +19,11 @@ The idea of UCB is that the square root term represents the uncertainty in the a
 
 <figure id="fig:1">
   <img class="light figure-img"
-       src="../blog_imgs/light/avg_reward.svg"
+       src="../ucb/blog_imgs/light/avg_reward.svg"
        alt="The effect of UCB on the 10-armed bandit problem.">
 
   <img class="dark figure-img"
-       src="../blog_imgs/dark/avg_reward.svg"
+       src="../ucb/blog_imgs/dark/avg_reward.svg"
        alt="The effect of UCB on the 10-armed bandit problem.">
 
   <figcaption style="text-align:center;">
@@ -40,12 +40,12 @@ The results in Figure 1 should be quite reliable because they are averaged over 
 
 <figure id="fig:2">
   <img class="light figure-img"
-       src="../blog_imgs/light/avg_reward_zoomed.svg"
+       src="../ucb/blog_imgs/light/avg_reward_zoomed.svg"
        style="width:100%; display:block; margin:auto;"
        alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.">
 
   <img class="dark figure-img"
-       src="../blog_imgs/dark/avg_reward_zoomed.svg"
+       src="../ucb/blog_imgs/dark/avg_reward_zoomed.svg"
        style="width:100%; display:block; margin:auto;"
        alt="The effect of UCB on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$.">
 
@@ -61,20 +61,20 @@ By examining the nature in which UCB performs action selection, hypothesise how 
 <figure data-latex-placement="H">
   <figure>
     <img class="light figure-img"
-         src="../blog_imgs/light/avg_reward_c2.svg"
+         src="../ucb/blog_imgs/light/avg_reward_c2.svg"
          alt="">
     <img class="dark figure-img"
-         src="../blog_imgs/dark/avg_reward_c2.svg"
+         src="../ucb/blog_imgs/dark/avg_reward_c2.svg"
          alt="">
     <figcaption style="text-align:center;"></figcaption>
   </figure>
 
   <figure>
     <img class="light figure-img"
-         src="../blog_imgs/light/optimal_action_c2.svg"
+         src="../ucb/blog_imgs/light/optimal_action_c2.svg"
          alt="">
     <img class="dark figure-img"
-         src="../blog_imgs/dark/optimal_action_c2.svg"
+         src="../ucb/blog_imgs/dark/optimal_action_c2.svg"
          alt="">
     <figcaption style="text-align:center;"></figcaption>
   </figure>
@@ -104,11 +104,11 @@ Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy meth
 <figure data-latex-placement="H">
   <figure>
     <img class="light figure-img"
-         src="..\blog_imgs\light\avg_reward_c2_long_term.svg"
+         src="..\ucb\blog_imgs\light\avg_reward_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
     <img class="dark figure-img"
-         src="..\blog_imgs\dark\avg_reward_c2_long_term.svg"
+         src="..\ucb\blog_imgs\dark\avg_reward_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
     <figcaption style="text-align:center;">
@@ -118,11 +118,11 @@ Note that in the long run, UCB tends to outperform the $\varepsilon$-greedy meth
 
   <figure>
     <img class="light figure-img"
-         src="..\blog_imgs\light\optimal_action_c2_long_term.svg"
+         src="..\ucb\blog_imgs\light\optimal_action_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
     <img class="dark figure-img"
-         src="..\blog_imgs\dark\optimal_action_c2_long_term.svg"
+         src="..\ucb\blog_imgs\dark\optimal_action_c2_long_term.svg"
          style="width:100%; display:block; margin:auto;"
          alt="">
     <figcaption style="text-align:center;">
