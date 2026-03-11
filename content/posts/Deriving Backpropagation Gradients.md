@@ -1,12 +1,12 @@
 ---
 title: "Deriving Backpropagation Gradients"
 date: 2026-02-09
-lastmod: 2026-02-17
-tags: []
-categories: []
+lastmod: 2026-03-09
+tags: ["Backpropagation", "Linear Algebra", "Jacobian","Matrix Calculus"]
+categories: ["Machine Learning"]
 math: true
 summary: A simple guide walking through the basic algebra involved in Backpropogation
----
+--- 
 
 
 # Deriving the gradients for a single value
@@ -14,18 +14,21 @@ summary: A simple guide walking through the basic algebra involved in Backpropog
 Let us derive the gradients that happen in backpropogation, one value at a time.
 
 $$\text{let }\theta, W\in \mathbb R^n \text{ where } n \text{ is an arbitrary value}$$
-
 <figure>
-  <picture>
-    <source srcset="/images/ANN_with_labels_dark_mode.png"
-            media="(prefers-color-scheme: dark)">
-    <img src="/images/ANN_with_labels_light_mode.png"
-         style="width:60%; display:block; margin:auto;"
-         alt="A typical Neural Net">
-  </picture>
-  <figcaption style="text-align:center;">A typical Neural Net</figcaption>
-</figure>
+  <img class="light"
+       src="/images/ANN_with_labels_light_mode.png"
+       style="width:60%; display:block; margin:auto;"
+       alt="A typical Neural Net">
 
+  <img class="dark"
+       src="/images/ANN_with_labels_dark_mode.png"
+       style="width:60%; display:block; margin:auto;"
+       alt="A typical Neural Net">
+
+  <figcaption style="text-align:center;">
+    A typical Neural Net
+  </figcaption>
+</figure>
 
 # Adding the loss derivative
 

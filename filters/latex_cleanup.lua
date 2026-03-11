@@ -1,48 +1,55 @@
 fig_count = 0
 
-function get_image(fig)
+function Figure(fig)
+
+  fig_count = fig_count + 1
+
+  -- find image
+  local img = nil
   for _,block in ipairs(fig.content) do
-    if block.t == "Plain" or block.t == "Para" then
+    if block.t == "Para" or block.t == "Plain" then
       for _,inline in ipairs(block.content) do
         if inline.t == "Image" then
-          return inline
+          img = inline
         end
       end
     elseif block.t == "Image" then
-      return block
+      img = block
     end
   end
-  return nil
-end
 
-function Figure(fig)
-
-  local img = get_image(fig)
   if not img then
     return nil
   end
 
-  fig_count = fig_count + 1
-
+  -- extract filename only
   local src = img.src
-  local base = src:gsub("%.%w+$","")
-  base = base:gsub(" ","_")
+  local filename = src:match("([^/]+)$")  -- ucb_reward.svg
 
-  local caption = pandoc.utils.stringify(fig.caption)
-  local id = fig.identifier or ("fig:" .. fig_count)
+  -- build light/dark paths
+  local light = "../blog_imgs/light/" .. filename
+  local dark  = "../blog_imgs/dark/" .. filename
 
-  local light = "../" .. base .. "_light.svg"
-  local dark  = "../" .. base .. "_dark.svg"
+  -- preserve caption formatting (including math)
+  local caption = ""
+  if fig.caption and fig.caption.long then
+    local tmp = pandoc.Pandoc(fig.caption.long)
+    caption = pandoc.write(tmp, "markdown")
+    caption = caption:gsub("^%s*", ""):gsub("%s*$", "")
+  end
+
+  local id = fig.identifier ~= "" and fig.identifier or ("fig:" .. fig_count)
 
   local html = [[
 <figure id="]] .. id .. [[">
-  <picture>
-    <source srcset="]] .. dark .. [["
-            media="(prefers-color-scheme: dark)">
-    <img src="]] .. light .. [["
-         style="width:100%; display:block; margin:auto;"
-         alt="]] .. caption .. [[">
-  </picture>
+  <img class="light figure-img"
+       src="]] .. light .. [["
+       alt="]] .. caption .. [[">
+
+  <img class="dark figure-img"
+       src="]] .. dark .. [["
+       alt="]] .. caption .. [[">
+
   <figcaption style="text-align:center;">
     <strong>Figure ]] .. fig_count .. [[:</strong> ]] .. caption .. [[
   </figcaption>

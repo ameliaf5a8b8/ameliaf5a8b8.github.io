@@ -6,6 +6,15 @@ theme = "PaperMod"
 enableRobotsTXT = true
 enableGitInfo = true
 
+# --- NEW TAXONOMY SETTINGS ---
+# This preserves the casing (e.g., "RNNs" instead of "rnns")
+preserveTaxonomyNames = true
+
+# This ensures URLs stay clean (lowercase) while the display name stays pretty
+# Example: /tags/linear-algebra/ vs "Linear Algebra"
+disablePathToLower = false 
+# ------------------------------
+
 [pagination]
   pagerSize = 10
 
@@ -15,6 +24,7 @@ enableGitInfo = true
   ShowWordCount = true
   ShowLastMod = true
   ShowPostNavLinks = true
+  
 
   math = true
 
@@ -55,6 +65,20 @@ enableGitInfo = true
     name = "About"
     url = "/about/"
     weight = 2
+
+  [[menu.main]]
+    identifier = "Categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 3
+
+  # [[menu.main]]
+  #   identifier = "tags"
+  #   name = "Tags"
+  #   url = "/tags/"
+  #   weight = 3
+
+
 
 [markup]
   [markup.goldmark]

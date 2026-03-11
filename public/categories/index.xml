@@ -6,6 +6,28 @@
     <description>Recent content in Categories on Amelia</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en-gb</language>
+    <lastBuildDate>Mon, 09 Mar 2026 07:13:34 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Machine Learning</title>
+      <link>http://localhost:1313/categories/machine-learning/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/machine-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reinforcement Learning</title>
+      <link>http://localhost:1313/categories/reinforcement-learning/</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/reinforcement-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RNNs</title>
+      <link>http://localhost:1313/categories/rnns/</link>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/rnns/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
