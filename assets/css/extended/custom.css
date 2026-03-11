@@ -11,3 +11,8 @@
   display: block;
   margin: auto;
 }
+
+.section-header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
