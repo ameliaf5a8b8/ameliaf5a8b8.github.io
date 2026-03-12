@@ -1,9 +1,14 @@
 ---
-title: "Policy Gradient Algorithms"
+title: Policy Gradient Algorithms
 date: 2026-03-11
 lastmod: 2026-03-11
-tags: [Medium]
-categories: [Machine Learning,Reinforcement Learning,Policy Gradient,Math]
+tags:
+  - Medium
+categories:
+  - Machine Learning
+  - Reinforcement Learning
+  - Policy Gradient
+  - Math
 math: true
 summary:
 ---
@@ -94,8 +99,8 @@ $$\begin{align*}
 Splitting the cases
 $$\begin{equation*}
 \begin{aligned}
-    H_{t+1}(A_t) &\doteq H_t(A_t) + \alpha(G_t - \bar{G}_t)(1 - \pi_t(A_t)), && \text{and} \\
-    H_{t+1}(a) &\doteq H_t(a) - \alpha(G_t - \bar{G}_t)\pi_t(a), && \forall a \neq A_t,
+    H_{t+1}(A_t) &= H_t(A_t) + \alpha(G_t - \bar{G}_t)(1 - \pi_t(A_t)), && \text{and} \\
+    H_{t+1}(a) &= H_t(a) - \alpha(G_t - \bar{G}_t)\pi_t(a), && \forall a \neq A_t,
 \end{aligned}
 \end{equation*}$$
 
