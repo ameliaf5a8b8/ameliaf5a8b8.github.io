@@ -1,12 +1,11 @@
 ---
-title: "Introduction to Linear Regression"
+title: "Introduction to gradient descent"
 date: 2026-03-13
 lastmod: 2026-03-13
 tags: ["Linear Algebra", "Jacobian","Matrix Calculus"]
 categories: ["Machine Learning",Math]
 math: true
-draft: true
-summary: 
+summary: An intuitive understanding behind gradient descent.
 ---
 Consider a case where we want to predict a student's scores, $y$, based on their intelligence, $x$.  Assuming that a student's score is proportional to the their intelligence, one way we can achieve this is by assigning a weight $w$ to $x$. 
 $$\boxed{y= w x}$$
