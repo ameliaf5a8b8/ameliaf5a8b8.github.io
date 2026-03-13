@@ -64,9 +64,9 @@ $$
 &= P(A \mid B\cap C​)\, P(B \mid C)
 \end{align*}
 $$
-A few related identities to ponder over
+A related identity to ponder over
 $$
 \begin{gather*}
 P(A \mid B \cap C) \doteq \frac{P(A \cap B \mid C)}{P(B \mid C) }  \\
-P(A\cap B \mid C) \doteq P(A\mid B\cap C)\,P(B\mid C) 
+% P(A\cap B \mid C) \doteq P(A\mid B\cap C)\,P(B\mid C) 
 \end{gather*}$$
