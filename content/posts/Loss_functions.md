@@ -5,8 +5,7 @@ lastmod: 2026-03-13
 tags: ["Linear Algebra", "Jacobian","Matrix Calculus"]
 categories: ["Machine Learning",Math]
 math: true
-draft: true
-summary: 
+summary: A list of loss functions and their main uses.
 ---
 # Introduction
 
