@@ -12,9 +12,9 @@ $$\boxed{y= w x}$$
 However, this assumes that if both $x_1$ and $x_2$​ are zero, the predicted score is also zero. In practice, this assumption may not hold. There may be a baseline score that does not depend on either of these features. To account for this, we introduce a bias term $b$.
 $$\boxed{y= w x + b}$$
 
-We now have two parameters, $w$ and $b$, to tweak in order to refine our estimate. One way to do so would be to recursively reduce each value by its gradient with respect to a loss function, like MSE. [[Loss_functions]]
-$$\boxed{\begin{gather*}w \leftarrow w - \frac{\partial L}{\partial w} \\
-b \leftarrow b - \frac{\partial L}{\partial b}\end{gather*}} $$
+We now have two parameters, $w$ and $b$, to tweak in order to refine our estimate. One way to do so would be to recursively reduce each value by its gradient with respect to a [loss functions]({{< relref "Loss_functions.md" >}}), such as MSE. 
+$$\boxed{\begin{gather*}w \doteq w - \frac{\partial L}{\partial w} \\
+b \doteq b - \frac{\partial L}{\partial b}\end{gather*}} $$
 To understand why we subtract the gradient, consider a graph of the loss function as a function of $w$.
 
 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
