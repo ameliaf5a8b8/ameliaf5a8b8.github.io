@@ -15,14 +15,17 @@ The scalar multiple is a linear function.
 $$k(A+B) = kA + kB$$
 # Transpose
 The transpose function is both linear and has the multiplicative property.
-$$\begin{gather*}(A + B)^T = A^T + B^T \\
-(AB)^T = B^TA^T \end{gather*}$$
+$$\begin{gather*}(A + B)^\top  = A^\top  + B^\top  \\
+(AB)^\top  = B^\top A^\top  \end{gather*}$$
 # Trace
 The trace function is linear and has the cyclic property.
 $$\begin{gather*}
-\text{tr}(A + B) = \text{tr}(A) + \text{tr}(B) \\ 
-\text{tr}(AB) = \text{tr}(BA)
+\text{Tr}(A + B) = \text{Tr}(A) + \text{Tr}(B) \\ 
+\text{Tr}(AB) = \text{Tr}(BA)
 \end{gather*}$$
+It can also be used to calculate the **Frobenius inner product**, which is the sum of the element wise product between matrices.
+$$ \langle A,B\rangle_F = \sum (A \odot B) = \text{Tr}(A^T B) $$
+where $A$, $B \in \mathbb R^{n\times n}$ 
 # Inverse
 The inverse function is multiplicative, but **not** linear. 
 $$\begin{gather*}(AB)^{-1} = B^{-1} A^{-1}\\
@@ -36,16 +39,18 @@ $$
 
 Differentiation and Integration are linear operators.
 $$\begin{gather*} 
-\frac{d}{dt}(A + B) = \frac{dA}{dt} + \frac{dB}{dt}\\
-\int (A + B) dt= \int A \,dt + \int B \,dt
+\frac{\text d}{\text dt}(A + B) = \frac{\text dA}{\text dt} + \frac{\text dB}{\text dt}\\
+\int (A + B) \text dt= \int A \,\text dt + \int B \,\text dt
 \end{gather*}$$
 ## Differentiation
 
-$$\begin{gather*}\frac{d}{dx}(A B) = \frac{dA}{dx} B + A \frac{dB}{dx}\\ 
-\begin{aligned}\frac{d}{dx}(ABC) &= \frac{dA}{dx} BC  +A \frac{dBC}{dx}\\
-&= \frac{dA}{dx} BC  + A \left(\frac{dB}{dx} C + B \frac{dC}{dx}  \right)\\
-&=\frac{dA}{dx}BC + A\frac{dB}{dx}C + AB\frac{dC}{dx}
+When differentiating with matrices only, most of the rules from scalar differentiation carry over.
+$$\begin{gather*}\text d(A B) = \text dA B + A \text dB\\ 
+\begin{aligned}\text d(ABC) &= (\text dA) BC  +A (\text dBC)\\
+&=  (\text dA) BC  + A \left[ (\text dB) C + B  (\text dC)  \right]\\
+&= (\text dA)BC + A (\text dB)C + AB (\text dC)
 \end{aligned}
 \end{gather*}$$
+
 
 
