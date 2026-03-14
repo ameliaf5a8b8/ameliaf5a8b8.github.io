@@ -16,3 +16,39 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
+
+
+
+
+/* Body text */
+.post-content {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* Article headings */
+.post-content h1 { font-size: 1.9rem; }
+.post-content h2 { font-size: 1.6rem; }
+.post-content h3 { font-size: 1.4rem; }
+.post-content h4 { font-size: 1.2rem; }
+.post-content h5 { font-size: 1.1rem; }
+.post-content h6 { font-size: 1rem; }
+
+/* Post title */
+.post-title {
+  font-size: 2rem;
+}
+
+/* List / section titles (homepage, taxonomy pages) */
+.page-title,
+.list-title {
+  font-size: 1.7rem;
+}
+
+/* Slightly tighter spacing */
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+}
