@@ -52,3 +52,9 @@
   margin-top: 1.6em;
   margin-bottom: 0.6em;
 }
+
+
+
+.katex-display {
+  overflow: visible !important;
+}
