@@ -21,7 +21,7 @@ $$\begin{gather*}(A + B)^\top  = A^\top  + B^\top  \\
 The trace function is linear and has the cyclic property.
 $$\begin{gather*}
 \text{Tr}(A + B) = \text{Tr}(A) + \text{Tr}(B) \\ 
-\text{Tr}(AB) = \text{Tr}(BA)
+\text{Tr}(ABC) = \text{Tr}(CBA)
 \end{gather*}$$
 It can also be used to calculate the **Frobenius inner product**, which is the sum of the element wise product between matrices.
 $$ \langle A,B\rangle_F = \sum (A \odot B) = \text{Tr}(A^T B) $$
