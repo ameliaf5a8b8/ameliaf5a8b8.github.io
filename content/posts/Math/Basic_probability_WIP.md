@@ -61,7 +61,7 @@ Using the identity from <a href="#eqn:1">(1)</a>
 $$
 \begin{align*}P(A\cap B \mid C)&=\frac{P(A \mid (B \cap C)​)\,P(B\cap C)}{P(C)}\\
 &= \frac{P(A \mid B\cap C​)\,P(B\cap C)}{P(C)}\\
-&= P(A \mid B\cap C​)\, P(B \mid C)
+&= P(A \mid B\cap C​)\, P(B \mid C) \tag*{Q.E.D.}
 \end{align*}
 $$
 A related identity to ponder over

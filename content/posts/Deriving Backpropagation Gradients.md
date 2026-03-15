@@ -6,9 +6,7 @@ tags: ["Backpropagation", "Linear Algebra", "Jacobian","Matrix Calculus"]
 categories: ["Machine Learning",Math]
 math: true
 summary: A simple guide walking through the basic algebra involved in Backpropogation
---- 
-
-
+---
 # Deriving the gradients for a single value
 
 Let us derive the gradients that happen in backpropogation, one value at a time.
