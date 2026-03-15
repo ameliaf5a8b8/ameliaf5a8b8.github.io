@@ -134,7 +134,7 @@ $$\begin{align*} \text dL &= \langle \nabla_W L, \text dW \rangle_F \\
 By comparing our equations 
 <span id="eqn:1.3"></span>
 $$\frac{\partial L}{\partial W} =\frac{\partial L}{\partial \mathbf{\hat{y}}}  \mathbf{x}^\top \tag{1.3}$$
-Focusing on the differential of MSE, $\frac{\partial L}{\partial \mathbf y}$ 
+Focusing on the differential of MSE, $\frac{\partial L}{\partial \mathbf {\hat{y}}}$ 
 $$\begin{align*}
 L &= \frac{1}{n}\| \hat{\mathbf y} - \mathbf y \|_{2}^2\\
 &= \frac{1}{n}\| \mathbf{r} |_{2}^2
