@@ -114,15 +114,16 @@ L &= \frac{1}{n}\| \hat{\mathbf y} - \mathbf y \|_{2}^2
 where $n$ is the number of samples.
 We want to find
 $$\frac{\partial L}{\partial W}$$
-From the chain rule <span id="eqn:1.1"></span>$$\text d L = \left( \frac{\partial L}{\partial \mathbf{y}} \right)^\top \text d\mathbf{y} \tag {1.1}$$As we are taking the partial derivative w.r.t $W$, we treat $\mathbf x$ and $\mathbf b$ as constants.
-$$\begin{align*}\text d \mathbf y &= \text d(W) \mathbf x
-\end{align*}$$
+From the chain rule <span id="eqn:1.1"></span>$$\text d L = \left( \frac{\partial L}{\partial \mathbf{\hat{y}}} \right)^\top \text d\mathbf{\hat{y}} \tag {1.1}$$As we are taking the partial derivative w.r.t $W$, we treat $\mathbf x$ and $\mathbf b$ as constants.
+$$\begin{gather*}\hat{\mathbf y} = W \mathbf x + \mathbf b \\
+\text d \mathbf {\hat{y}} = \text d(W) \mathbf x
+\end{gather*}$$
 As $\text d L$ is a scalar, it is equal to its trace.
 $$\begin{align*}
-\text d L &= \left( \frac{\partial L}{\partial \mathbf y} \right)^\top \text d (W) \mathbf x \\
-&= \text{Tr} \left( \left( \frac{\partial L}{\partial \mathbf y} \right)^\top \text d (W) \mathbf x \right) \\
-&= \text{Tr}   \left(\mathbf x \left( \frac{\partial L}{\partial \mathbf y} \right)^\top \text d W \right) \\
-&=\text{Tr}\left( \left[ \frac{\partial L}{\partial \mathbf{y}} \mathbf{x}^\top \right]^\top \text{d}W \right) 
+\text d L &= \left( \frac{\partial L}{\partial \mathbf {\hat{y}}} \right)^\top \text d (W) \mathbf x \\
+&= \text{Tr} \left( \left( \frac{\partial L}{\partial \mathbf {\hat{y}}} \right)^\top \text d (W) \mathbf x \right) \\
+&= \text{Tr}   \left(\mathbf x \left( \frac{\partial L}{\partial \mathbf {\hat{y}}} \right)^\top \text d W \right) \\
+&=\text{Tr}\left( \left[ \frac{\partial L}{\partial \mathbf{{\hat{y}}}} \mathbf{x}^\top \right]^\top \text{d}W \right) 
 \end{align*}$$
 
 The formal definition of a matrix gradient is based on the [Frobenius Inner Product]({{% relref "Math/Matrix_operations/#trace" %}}):<span id="eqn:1.2"></span>
@@ -132,22 +133,22 @@ $$\begin{align*} \text dL &= \langle \nabla_W L, \text dW \rangle_F \\
 \end{align*} \tag {1.2}$$
 By comparing our equations 
 <span id="eqn:1.3"></span>
-$$\frac{\partial L}{\partial W} =\frac{\partial L}{\partial \mathbf{y}}  \mathbf{x}^\top \tag{1.3}$$
+$$\frac{\partial L}{\partial W} =\frac{\partial L}{\partial \mathbf{\hat{y}}}  \mathbf{x}^\top \tag{1.3}$$
 Focusing on the differential of MSE, $\frac{\partial L}{\partial \mathbf y}$ 
 $$\begin{align*}
 L &= \frac{1}{n}\| \hat{\mathbf y} - \mathbf y \|_{2}^2\\
 &= \frac{1}{n}\| \mathbf{r} |_{2}^2
 \end{align*}$$
 where $\mathbf r = \hat{\mathbf{y}} - \mathbf{ y}$ is the *residual*. 
-As we are differentiating with respect to $\mathbf{y}$, we treat $\hat{\mathbf{y}}$ as a constant.
-$$\text{d} \mathbf{y} = \text{d} \mathbf{r}$$
+As we are differentiating with respect to $\mathbf{\hat{y}}$, we treat ${\mathbf{y}}$ as a constant.
+$$\text{d} \mathbf{\hat{y}} = \text{d} \mathbf{r}$$
 Computing the differential
 $$\begin{align*} \text{d} L &= \frac{1}{n} \text{d} (\mathbf{r}^\top \mathbf{r}) \\ &= \frac{1}{n} (\text{d} \mathbf{r}^\top \mathbf{r} + \mathbf{r}^\top \text{d} \mathbf{r}) \\ &= \frac{1}{n} (\mathbf{r}^\top \text{d} \mathbf{r} + \mathbf{r}^\top \text{d} \mathbf{r}) \quad \text{since } \mathbf{a}^\top \mathbf{b} = (\mathbf{b}^\top \mathbf{a})^\top \\ &= \frac{2}{n} \mathbf{r}^\top \text{d} \mathbf{r} \\
-&= \frac{2}{n}\mathbf{r}^\top \text{d} \mathbf{ y} 
+&= \frac{2}{n}\mathbf{r}^\top \text{d} \mathbf{ \hat{y}} 
 \end{align*}$$
 <span id="eqn:1.4"></span>
 $$
-\frac{\partial L}{\partial \mathbf{y}} = \frac{2}{n}\mathbf{r^\top} \tag {1.4}
+\frac{\partial L}{\partial \mathbf{\hat{y}}} = \frac{2}{n}\mathbf{r^\top} \tag {1.4}
 $$
 Substituting into [equation 1.3](#eqn:1.3)
 
@@ -157,28 +158,28 @@ $$
 ## Derivation of the bias gradient
 To find the gradient of the loss $L$ with respect to the bias $\mathbf{b}$, we use the chain rule in its differential form. Given $\hat{\mathbf{y}} = W\mathbf{x} + \mathbf{b}$, we treat $W$ and $\mathbf{x}$ as constants.
 $$\begin{equation*}
-\text{d}\mathbf{y} = \text{d}\mathbf{b}
+\text{d}\mathbf{\hat{y}} = \text{d}\mathbf{b}
 \end{equation*}$$
 
 Starting from the total differential of the loss
 <span id="eqn:2.1"></span>
 $$
 \begin{align*}
-\text{d} L &= \left( \frac{\partial L}{\partial \mathbf{y}} \right)^\top \text{d}\mathbf{y} \\
-&= \left( \frac{\partial L}{\partial \mathbf{y}} \right)^\top \text{d}\mathbf{b} \quad \text{(Substituting } \text{d}\mathbf{y} = \text{d}\mathbf{b}\text{)}\tag {2.1}
+\text{d} L &= \left( \frac{\partial L}{\partial \mathbf{\hat{y}}} \right)^\top \text{d}\mathbf{\hat{y}} \\
+&= \left( \frac{\partial L}{\partial \mathbf{\hat{y}}} \right)^\top \text{d}\mathbf{b} \quad \tag {2.1}
 \end{align*}
 $$
 
 From our earlier derivation of the MSE differential in [equation 1.4](#eqn:1.4), we know:
 
 $$\begin{equation*}
-\text{d} L = \frac{2}{n} \mathbf{r}^\top \text{d}\mathbf{y}
+\text{d} L = \frac{2}{n} \mathbf{r}^\top \text{d}\mathbf{\hat{y}}
 \end{equation*}$$
 
-By comparing this to the general form $\text{d}L = \left( \frac{\partial L}{\partial \mathbf{y}} \right)^\top \text{d}\mathbf{y}$, we identify the Jacobian.
+By comparing this to the general form $\text{d}L = \left( \frac{\partial L}{\partial \mathbf{y}} \right)^\top \text{d}\mathbf{\hat{y}}$, we identify the Jacobian.
 
 $$\begin{equation*}
-\left( \frac{\partial L}{\partial \mathbf{y}} \right)^\top = \frac{2}{n} \mathbf{r}^\top
+\left( \frac{\partial L}{\partial \mathbf{\hat{y}}} \right)^\top = \frac{2}{n} \mathbf{r}^\top
 \end{equation*}$$
 
 Substituting this back into <a href="#eqn:2.1">equation 2.1</a>
@@ -197,8 +198,8 @@ $$\begin{equation*}
 # Derivation of equations [(1.1)](#eqn:1.1) and [(1.2)](#eqn:1.2)
 Equation 1
 $$\begin{align*}
-\text d L &= \begin{bmatrix} \frac{\partial L}{\partial y_1} & \cdots & \frac{\partial L}{\partial y_n} \end{bmatrix} \begin{bmatrix} \text d y_1 \\ \vdots \\ \text d y_n \end{bmatrix} \\
-&= \left( \frac{\partial L}{\partial \mathbf y} \right)^\top \text d \mathbf y
+\text d L &= \begin{bmatrix} \frac{\partial {L}}{\partial \hat{y_1}} & \cdots & \frac{\partial L}{\partial \hat{y_n}} \end{bmatrix} \begin{bmatrix} \text d \hat{y_1} \\ \vdots \\ \text d \hat{y_n} \end{bmatrix} \\
+&= \left( \frac{\partial L}{\partial \mathbf {\hat{y}}} \right)^\top \text d \mathbf {\hat{y}}
 \end{align*}$$
 Equation 2
 Let $A = \frac{\partial L}{\partial W}$ and $B = dW$. For a $2 \times 2$ system, these matrices look like this:
