@@ -1,7 +1,7 @@
 ---
 title: "Backpropagation in Linear Regression"
 date: 2026-03-13
-lastmod: 2026-03-14
+lastmod: 2026-03-16
 tags: ["Backpropagation", "Linear Algebra", "Jacobian","Matrix Calculus"]
 categories: ["Machine Learning",Math]
 math: true
@@ -137,7 +137,7 @@ $$\frac{\partial L}{\partial W} =\frac{\partial L}{\partial \mathbf{\hat{y}}}  \
 Focusing on the differential of MSE, $\frac{\partial L}{\partial \mathbf {\hat{y}}}$ 
 $$\begin{align*}
 L &= \frac{1}{n}\| \hat{\mathbf y} - \mathbf y \|_{2}^2\\
-&= \frac{1}{n}\| \mathbf{r} |_{2}^2
+&= \frac{1}{n}\| \mathbf{r} \|_{2}^2
 \end{align*}$$
 where $\mathbf r = \hat{\mathbf{y}} - \mathbf{ y}$ is the *residual*. 
 As we are differentiating with respect to $\mathbf{\hat{y}}$, we treat ${\mathbf{y}}$ as a constant.
@@ -196,12 +196,12 @@ $$\begin{equation*}
 
 
 # Derivation of equations [(1.1)](#eqn:1.1) and [(1.2)](#eqn:1.2)
-Equation 1
+## Equation 1
 $$\begin{align*}
 \text d L &= \begin{bmatrix} \frac{\partial {L}}{\partial \hat{y_1}} & \cdots & \frac{\partial L}{\partial \hat{y_n}} \end{bmatrix} \begin{bmatrix} \text d \hat{y_1} \\ \vdots \\ \text d \hat{y_n} \end{bmatrix} \\
 &= \left( \frac{\partial L}{\partial \mathbf {\hat{y}}} \right)^\top \text d \mathbf {\hat{y}}
 \end{align*}$$
-Equation 2
+## Equation 2
 Let $A = \frac{\partial L}{\partial W}$ and $B = dW$. For a $2 \times 2$ system, these matrices look like this:
 
 $$A = \begin{bmatrix} \frac{\partial L}{\partial w_{11}} & \frac{\partial L}{\partial w_{12}} \\ \frac{\partial L}{\partial w_{21}} & \frac{\partial L}{\partial w_{22}} \end{bmatrix}, \quad B = \begin{bmatrix} \text d w_{11} & \text d w_{12} \\ \text d w_{21} & \text d w_{22} \end{bmatrix}$$
