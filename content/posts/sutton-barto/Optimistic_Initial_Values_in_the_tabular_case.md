@@ -1,7 +1,7 @@
 ---
 title: "Optimistic Initial Values in the tabular case"
 date: 2026-03-07
-lastmod: 2026-03-09
+lastmod: 2026-03-16
 tags: ["epsilon-greedy", "explore-exploit trade-off", "k-armed Bandits",Easy]
 categories: ["Machine Learning", "Reinforcement Learning",Action-Value]  
 math: true
@@ -54,7 +54,7 @@ The results in Figure 1 should be quite reliable because they are averaged over 
 
 #### Non-stationary problem.
 
-Suggest a reason why Optimistic Initial Values are less effective than $\epsilon$-greedy methods in non-stationary contexts.
+Suggest a reason why Optimistic Initial Values are less effective than $\varepsilon$-greedy methods in non-stationary contexts.
 
 #### Observation.
 
@@ -78,7 +78,7 @@ As the environment changes, the initial exploration induced by OIV becomes less 
 
 #### Observation. 
 
-The value $\varepsilon$ is high at 0.1, causing the model to have a "built-in" 10% chance to choose a random option.
+The exploration rate $\varepsilon$ is high at 0.1, causing the model to have a "built-in" 10% chance to choose a random option.
 
 ## Simulation code
 
