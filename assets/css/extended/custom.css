@@ -1,8 +1,10 @@
-[data-theme="dark"] img.light {
+[data-theme="dark"] img.light,
+[data-theme="dark"] div.warning-light{
   display: none !important;
 }
 
-[data-theme="light"] img.dark {
+[data-theme="light"] img.dark,
+[data-theme="light"]  div.warning-dark{
   display: none !important;
 }
 

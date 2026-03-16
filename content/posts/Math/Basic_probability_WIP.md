@@ -9,6 +9,63 @@ categories:
 math: true
 summary:
 ---
+
+<div class="warning-dark">
+<h1> Whoops, dark mode is not supported on this page. Images might not look <i>quite</i> right.
+</div>
+
+# Probability using Venn diagrams
+
+Venn diagrams provide an intuitive way to view the logical relations between a finite number of sets.
+Let $S$ be the sample space of an experiment, where $A$ and $B$ are events in the sample space.
+The follow illustrates some simple but important relations.
+
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+  <div style="width: 60%;">
+    $$
+    \text{P}(A \cup B) = \text{P}(A) + \text{P}(B) - \text{P}(A \cap B)$$
+  </div>
+
+<figure  style="width: 35%; text-align: center; margin:0;">
+  <img class="light" src="/images/Basic_probability/II_light.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/II_dark.svg" style="border-radius:0;">
+</figure>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+  <div style="width: 60%;">
+    $$\text{P}(A \cap B') = \text{P}(A) - \text{P}(A \cap B)$$
+  </div>
+
+  <figure  style="width: 35%; text-align: center;">
+  <img class="light" src="/images/Basic_probability/III_light.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/III_dark.svg" style="border-radius:0;">
+</figure>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+  <div style="width: 60%;">
+    $$\text{P}(A \cap B') = \text{P}(A \cup B) - \text{P}(B)$$
+  </div>
+
+  <figure  style="width: 35%; text-align: center;">
+  <img class="light" src="/images/Basic_probability/IV_light.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/IV_dark.svg" style="border-radius:0;">
+</figure>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+  <div style="width: 60%;">
+    $$\begin{gather*}\text{P}(A) = \text{P}(A \cap B) + \text{P}(A \cap B')\\
+    \text{P}(A' \cap B') = 1 - \text{P}(A \cup B)\end{gather*}$$
+  </div>
+
+  <figure  style="width: 35%; text-align: center;">
+  <img class="light" src="/images/Basic_probability/V_light.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/V_dark.svg" style="border-radius:0;">
+</figure>
+</div>
+
 # Conditional probability
 The conditional probability of an event $A$ given that event $B$ has occurred is defined as follows
 <span id="eqn:1"></span>
@@ -40,14 +97,14 @@ $$
 $$
 This implies
 $$
-P(A\cap B) = P(A \mid B)\,P(B)
+P(A\cap B) = P(A \mid B)\,P(B) \tag*{Q.E.D.}
 $$
 
 
-The following identity is known result from the chain rule of conditional probability:
+The following identity with 3 variables is a known result from the chain rule of conditional probability:
 $$\boxed{P(A\cap B \mid C) \doteq P(A \mid B\cap C​)\, P(B \mid C)}$$
 
-To derive it, we start by applying the definition from [(1)](#eqn:1) conditioning on $C$
+We start by applying the definition from [(1)](#eqn:1) conditioning on $C$
 $$\begin{align*}
 P(A\cap B\mid C)&=\frac{P(A\cap B\cap C)​}{P(C)}\\
 &= \frac{P(A\cap (B\cap C))​}{P(C)}
