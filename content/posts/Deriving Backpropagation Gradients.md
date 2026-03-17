@@ -7,6 +7,15 @@ categories: ["Machine Learning",Math]
 math: true
 summary: A simple guide walking through the basic algebra involved in Backpropogation
 ---
+<div class="info-box">
+  <strong>Further reading:</strong>
+  For a more detailed explanation of the computation of the derivatives,
+  check out 
+  <a href='{{< relref "Backpropagation in Linear Regression.md" >}}'>
+    Backpropagation in Linear Regression
+  </a>.
+</div>
+
 # Deriving the gradients for a single value
 
 Let us derive the gradients that happen in backpropogation, one value at a time.
@@ -33,7 +42,7 @@ $$\text{let }\theta, W\in \mathbb R^n \text{ where } n \text{ is an arbitrary va
 Let $\mathcal L$ denote the loss. The update rule uses the gradient of the loss with respect to the variable we are tuning:
 $$
 W_{h_1} 
-\leftarrow W_{h_1} - \alpha \frac{\partial \mathcal L}{\partial W_{h_1}} 
+\doteq W_{h_1} - \alpha \frac{\partial \mathcal L}{\partial W_{h_1}} 
 $$
 
 To find $\frac{\partial \mathcal L}{\partial W_{h_1}}$, we can expand it with the chain rule
@@ -49,7 +58,7 @@ $$
 Similarly for the bias:
 $$
 \begin{align*}
-b_{h_1}&\leftarrow b_{h_1}- \alpha\left(\frac{\partial \mathcal L}{\partial o_1}\frac{\partial o_1}{\partial b_{h_1}}+ \dots +\frac{\partial \mathcal L}{\partial o_n}\frac{\partial o_n}{\partial b_{h_1}}\right) \\
+b_{h_1}&\doteq b_{h_1}- \alpha\left(\frac{\partial \mathcal L}{\partial o_1}\frac{\partial o_1}{\partial b_{h_1}}+ \dots +\frac{\partial \mathcal L}{\partial o_n}\frac{\partial o_n}{\partial b_{h_1}}\right) \\
 &= b_{h_1} - \alpha \frac{\partial \mathcal L}{\partial b_{h_1}}
 \end{align*}
 $$
@@ -80,7 +89,7 @@ $$\begin{gather*}
 \end{gather*}$$ 
 By the update rule: 
 $$
-W_h \leftarrow W_{h} - \alpha \frac{\partial \mathcal L}{\partial W_h}
+W_h \doteq W_{h} - \alpha \frac{\partial \mathcal L}{\partial W_h}
 $$
 
 
