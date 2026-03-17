@@ -29,4 +29,4 @@ $$\begin{gather*}(A \circ B) \circ C = A \circ (B \circ C)\end{gather*}$$
 
 
 # Appendix
-**Exercise 1.** $\;$Both the derivative and integral operator are linear. Show that this is true.
+**Exercise 1.** $\;$Both the derivative and integral operators are linear. Show that this is true.
