@@ -27,10 +27,21 @@ We start by replacing $Q_t(a)$, the action-value function, with a numerical *pre
 # Update rule {#sec:update-rule}
 
 In order to refine our action-preferences, we can use the ideas from stochastic gradient ascent. 
+$$
+\boxed{\begin{equation*}
+\begin{aligned}
+    H_{t+1}(A_t) &\doteq H_t(A_t) + \alpha(G_t - \bar{G}_t)(1 - \pi_t(A_t)), && \text{and} \\
+    H_{t+1}(a) &\doteq H_t(a) - \alpha(G_t - \bar{G}_t)\pi_t(a), && \forall a \neq A_t,
+\end{aligned}
+\end{equation*}}
+$$
+
+In *exact* gradient ascent, each action preference is incremented in proprotion to the increment's impact on expected returns.
+
 $$H_{t+1}(a) \doteq H_t(a) + \alpha \frac{\partial \mathbb E[G_t]}{\partial H_t(a)}$$ 
 where $\alpha \in \mathbb R^+$ is the step size, and $G_t$ is the discounted sum of future rewards. (Or $R_t$ in the Gradient Bandit problem).
 
-We want to solve for
+We want to solve for gradient term.
 $$
 \begin{aligned}
 \frac{\partial \mathbb E[G_t]}{\partial H_t(a)}
@@ -51,10 +62,9 @@ $$
 $$
 
 Here $B_t$, the *baseline*, can be any scalar independent of $A_t$.  
-To reduce variance we choose $B_t = \bar G_t$, the running average of observed returns.
+To reduce variance, we choose $B_t = \bar G_t$, the running average of observed returns.
 
-To form an expectation, we apply the log-derivative trick.
-
+Next, we rewrite the sum over actions as an expectation with respect to the distribution of $A_t$ , allowing us the estimate the gradient through sampling and perform stochastic gradient ascent. To do this, we apply the log-derivative trick.
 $$
 \begin{aligned}
 &= \sum_{A_t} \pi_t(A_t)
@@ -91,7 +101,7 @@ Hence
 $$\begin{equation*}
      \frac{\partial \mathbb E[G_t]}{\partial H_t(a)} = \mathbb E_{A_t \sim \pi} \left[ \left( G_t- \bar G_t \right)\left( \mathbf 1_{A_t=a} - \pi_t(a) \right)\right]
 \end{equation*}$$
-Using a single sample to estimate the expectation, the update rule becomes
+As we do not have access to the full expectation, we use a single sample to estimate it. 
 $$\begin{align*}
     H_t(a) &= H_t(a) + \alpha \; \mathbb E_{A_t \sim \pi} \left[ \left( G_t- \bar G_t \right)\left( \mathbf 1_{A_t=a} - \pi_t(a) \right)\right] \notag \\
     &= H_t(a) + \alpha  \left( G_t- \bar G_t \right)\left( \mathbf 1_{A_t=a} - \pi_t(a) \right)
@@ -100,7 +110,7 @@ Splitting the cases
 $$\begin{equation*}
 \begin{aligned}
     H_{t+1}(A_t) &= H_t(A_t) + \alpha(G_t - \bar{G}_t)(1 - \pi_t(A_t)), && \text{and} \\
-    H_{t+1}(a) &= H_t(a) - \alpha(G_t - \bar{G}_t)\pi_t(a), && \forall a \neq A_t,
+    H_{t+1}(a) &= H_t(a) - \alpha(G_t - \bar{G}_t)\pi_t(a), && \forall a \neq A_t, \tag*{Q.E.D.}
 \end{aligned}
 \end{equation*}$$
 
