@@ -1,7 +1,7 @@
 ---
 title: Basic probability
 date: 2026-03-12
-lastmod: 2026-03-12
+lastmod: 2026-03-17
 tags:
   - Easy
 categories:
@@ -9,10 +9,9 @@ categories:
 math: true
 summary:
 ---
-
-<div class="warning-dark">
-<h1> Whoops, dark mode is not supported on this page. Images might not look <i>quite</i> right.
-</div>
+<!-- <div class="dark warning-box">
+  <strong>Whoops:</strong> Dark mode is not supported on this page. Images might not look <i>quite</i> right.
+</div> -->
 
 # Probability using Venn diagrams
 
@@ -22,49 +21,51 @@ The follow illustrates some simple but important relations.
 
 
 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-  <div style="width: 60%;">
+  <div style="width: 55%;">
     $$
     \text{P}(A \cup B) = \text{P}(A) + \text{P}(B) - \text{P}(A \cap B)$$
   </div>
 
-<figure  style="width: 35%; text-align: center; margin:0;">
-  <img class="light" src="/images/Basic_probability/II_light.svg" style="border-radius:0;">
-  <img class="dark" src="/images/Basic_probability/II_dark.svg" style="border-radius:0;">
+<figure  style="width: 40%; text-align: center; margin:0;">
+  <img class="light" src="/images/Basic_probability/light_imgs/II.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/dark_imgs/II.svg" style="border-radius:0;">
 </figure>
 </div>
 
 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-  <div style="width: 60%;">
+  <div style="width: 55%;">
     $$\text{P}(A \cap B') = \text{P}(A) - \text{P}(A \cap B)$$
   </div>
 
-  <figure  style="width: 35%; text-align: center;">
-  <img class="light" src="/images/Basic_probability/III_light.svg" style="border-radius:0;">
-  <img class="dark" src="/images/Basic_probability/III_dark.svg" style="border-radius:0;">
+  <figure  style="width: 40%; text-align: center;">
+  <img class="light" src="/images/Basic_probability/light_imgs/III.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/dark_imgs/III.svg" style="border-radius:0;">
 </figure>
 </div>
 
 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-  <div style="width: 60%;">
+  <div style="width: 55%;">
     $$\text{P}(A \cap B') = \text{P}(A \cup B) - \text{P}(B)$$
   </div>
 
-  <figure  style="width: 35%; text-align: center;">
-  <img class="light" src="/images/Basic_probability/IV_light.svg" style="border-radius:0;">
-  <img class="dark" src="/images/Basic_probability/IV_dark.svg" style="border-radius:0;">
+  <figure  style="width: 40%; text-align: center;">
+  <img class="light" src="/images/Basic_probability/light_imgs/IV.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/dark_imgs/IV.svg" style="border-radius:0;">
 </figure>
 </div>
+
 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-  <div style="width: 60%;">
+  <div style="width: 55%;">
     $$\begin{gather*}\text{P}(A) = \text{P}(A \cap B) + \text{P}(A \cap B')\\
     \text{P}(A' \cap B') = 1 - \text{P}(A \cup B)\end{gather*}$$
   </div>
 
-  <figure  style="width: 35%; text-align: center;">
-  <img class="light" src="/images/Basic_probability/V_light.svg" style="border-radius:0;">
-  <img class="dark" src="/images/Basic_probability/V_dark.svg" style="border-radius:0;">
+  <figure  style="width: 40%; text-align: center;">
+  <img class="light" src="/images/Basic_probability/light_imgs/V.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/dark_imgs/V.svg" style="border-radius:0;">
 </figure>
 </div>
+
 
 # Conditional probability
 The conditional probability of an event $A$ given that event $B$ has occurred is defined as follows
@@ -75,15 +76,15 @@ $$
 The probability of an event $A$ occurring, given that an event $B$ has occurred, is written
 as $P(A \mid B)$. It is fair to assume here that since $B$ has occurred, $P(B) \neq 0$ .
 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-  <div style="width: 70%;">
+  <div style="width: 65%;">
     In the Venn diagram <a href="#fig:1">Figure 1</a>, the sample space is reduced to $B$ only, since $B$ has occurred. 
     That is, $P(A \mid B)$ is the probability of $A$ occurring by considering $B$ as the sample space. 
     $B$ is often called the reduced sample space.
   </div>
 
-  <figure id="fig:1" style="width: 25%; text-align: center;">
-  <img class="light" src="/images/Basic_probability/Conditional_probability_light.svg" style="border-radius:0;">
-  <img class="dark" src="/images/Basic_probability/Conditional_probability_dark.svg" style="border-radius:0;">
+  <figure id="fig:1" style="width: 40%; text-align: center;">
+  <img class="light" src="/images/Basic_probability/light_imgs/Conditional_probability.svg" style="border-radius:0;">
+  <img class="dark" src="/images/Basic_probability/dark_imgs/Conditional_probability.svg" style="border-radius:0;">
   <figcaption style="text-align:center;">Figure 1</figcaption>
 </figure>
 </div>
