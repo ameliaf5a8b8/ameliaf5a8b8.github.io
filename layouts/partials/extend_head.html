@@ -1,3 +1,7 @@
 {{ if .Params.math }}
   {{ partial "katex.html" . }}
 {{ end }}
+
+{{ if .Params.smiles }}
+  {{ partial "chem.html" . }}
+{{ end }}

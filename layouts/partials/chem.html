@@ -1,0 +1,54 @@
+<script src="https://unpkg.com/smiles-drawer@1.0.10/dist/smiles-drawer.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  function getTheme() {
+    return document.documentElement.getAttribute("data-theme") === "dark"
+      ? "dark"
+      : "light";
+  }
+
+  function renderAll() {
+    const elements = document.querySelectorAll("[data-smiles]");
+    const theme = getTheme();
+
+    elements.forEach((el, i) => {
+      const smiles = el.getAttribute("data-smiles");
+      if (!smiles) return;
+
+      const id = "smiles-" + i;
+
+      let canvas = el.querySelector("canvas");
+      if (!canvas) {
+        canvas = document.createElement("canvas");
+        canvas.id = id;
+        el.innerHTML = "";
+        el.appendChild(canvas);
+      }
+
+      SmilesDrawer.parse(smiles, function(tree) {
+        const drawer = new SmilesDrawer.Drawer({ width: 300, height: 200 });
+        drawer.draw(tree, canvas.id, theme, false);
+      });
+    });
+  }
+
+  // Initial render
+  renderAll();
+
+  // Watch for theme changes (PaperMod toggles data-theme)
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === "data-theme") {
+        renderAll();
+      }
+    });
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true
+  });
+
+});
+</script>
