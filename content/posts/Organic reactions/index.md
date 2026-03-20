@@ -16,13 +16,11 @@ AI_warning: true
 $$\ce{CH4 + Cl2 ->[UV] CH3Cl + HCl}$$
 
 ### Nucleophilic Substitution (Halogenoalkanes)
-#### To Alcohols. 
-      
+#### To Alcohols
 $$\ce{R-X + OH- ->[NaOH(aq), heat] R-OH + X-}$$
 
 
-#### To Nitriles.  
-     
+#### To Nitriles
 
 $$\ce{R-X + CN- ->[KCN in ethanol, heat] R-CN + X-}$$
 
@@ -43,7 +41,7 @@ $$\ce{R-OH + HX ->[conc. H2SO4 / ZnCl2, heat] R-X + H2O}$$
 ### Nucleophilic Acyl Substitution $\ce{R-CO2H}$ to $\ce{R-COCL}$
 $$\ce{R-COOH + PCl5 ->[PCl5 / SOCl2 / PCl3] R-COCl + POCl3 + HCl}$$
 
----
+
 
 ## Addition
 
@@ -60,7 +58,7 @@ $$\ce{C=C + H2O(g) ->[H3PO4, high T \& P] CH-COH}$$
 ### Nucleophilic Addition (Carbonyls)
 $$\ce{R2C=O + HCN ->[trace KCN, 10-20\degree C] R2C(OH)CN}$$
 
----
+
 
 ## Elimination
 
@@ -74,13 +72,12 @@ $$\ce{NaOH \text{in ethanol, heat}}$$
 
 Other possible reagents & conditions include: excess concentrated $\ce{H2SO4}$, heat or $\ce{Al2O3}$, heat
 
----
 
 ## Condensation
 
 ### Esterification (Ester Formation)
 #### From Carboxylic Acids
-$$\ce{R-COOH + R'-OH <=> [conc. H2SO4, heat] R-COOR' + H2O}$$
+$$\ce{R-COOH + R'-OH <=>[conc. H2SO4, heat] R-COOR' + H2O}$$
 
 #### From Acyl Chlorides
 $$\ce{R-COCl + R'-OH ->[\text{r.t.}] R-COOR' + HCl}$$
@@ -91,7 +88,7 @@ $$\ce{R-COCl + R'-NH2 ->[excess amine, \text{r.t.}] R-CONHR' + HCl}$$
 ### Carbonyl Identification (Addition-Elimination)
 $$\ce{R2C=O + H2N-NHC6H3(NO2)2 ->[2,4-DNPH, \text{r.t.}] R2C=N-NHC6H3(NO2)2 + H2O}$$
 
----
+
 
 ## Hydrolysis
 
@@ -100,7 +97,7 @@ $$\ce{R-COCl + H2O ->[\text{r.t.}] R-COOH + HCl}$$
 
 ### Esters
 #### Acidic
-$$\ce{R-COOR' + H2O <=> [dilute H2SO4, heat] R-COOH + R'OH}$$
+$$\ce{R-COOR' + H2O <=>[dilute H2SO4, heat] R-COOH + R'OH}$$
 
 #### Alkaline
 $$\ce{R-COOR' + OH- ->[dilute NaOH, heat] R-COO- + R'OH}$$
@@ -112,7 +109,7 @@ $$\ce{R-CN + H+ + 2H2O ->[dilute H2SO4, heat] R-COOH + NH4+}$$
 #### Alkaline
 $$\ce{R-CN + OH- + H2O ->[dilute NaOH, heat] R-COO- + NH3}$$
 
----
+
 
 ## Oxidation
 
@@ -128,18 +125,46 @@ $$\ce{C=C ->[KMnO4, dilute H2SO4, heat] \text{Carbonyls / Carboxylic Acids}}$$
 $$\ce{R-CH2OH + [O] ->[K2Cr2O7, dil. H2SO4, distil] R-CHO + H2O}$$
 
 #### Primary (to Acid)
-$$\ce{R-CH2OH + 2[O] ->[KMnO4, dil. H2SO4, reflux] R-COOH + H2O}$$
+$$\ce{R-CH2OH + 2[O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H + H2O}$$
 
 #### Secondary (to Ketone)
 $$\ce{R2CHOH + [O] ->[K2Cr2O7, dil. H2SO4, reflux] R2C=O + H2O}$$
 
 ### Aldehydes
-$$\ce{R-CHO + [O] ->[KMnO4, dil. H2SO4, reflux] R-COOH}$$
+$$\ce{R-CHO + [O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H}$$
+
+### Side chain oxidation
+$$\ce{\text{ethylbenzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + 2H20 + CO2}$$
+$$\ce{ R-C-C-\text{benzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + H20 + R-CO2H}$$
+
+
 
 ### Tri-iodomethane (Iodoform) Test
 $$\ce{R-COCH3 ->[I2(aq), NaOH(aq), warm] R-COO- + CHI3}$$
+$$\ce{R-CH3CHOH ->[I2(aq), NaOH(aq), warm] R-COO- + CHI3}$$
+It is a common positive test for secondary alcohols, aldehydes, and methyl ketones [See a general test for alcohols.](NOT LINKED YET)
 
----
+<div style="display: flex; justify-content: center; gap: 40px; align-items: center;">
+
+  <div style="text-align: center;">
+    <img src="secondary_alcohol.png" style="max-height:100px; width:auto;">
+    <div>Secondary Alcohol</div>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="aldehyde.png" style="max-height:100px; width:auto;">
+    <div>Aldehyde</div>
+  </div>
+
+
+  <div style="text-align: center;">
+    <img src="methyl_ketone.png" style="max-height:100px; width:auto;">
+    <div>Methyl Ketone</div>
+  </div>
+</div>
+
+
+
 
 ## Reduction
 
@@ -154,3 +179,18 @@ $$\ce{R-COOH ->[LiAlH4 in dry ether] R-CH2OH}$$
 
 ### Nitriles
 $$\ce{R-CN ->[LiAlH4 in dry ether / H2, Ni] R-CH2NH2}$$
+
+# Carboxylic Acids
+## Formation
+### Oxidation of primary alcohols and aldehydes
+$$\ce{R-CH2OH + 2[O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H + H2O}$$
+$$\ce{R-CHO + [O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H}$$
+### Oxidative cleavage of secondary alkenes
+$$\ce{R=CHR ->[KMnO4, dilute H2SO4, heat] \text{Carboxylic Acid}}$$
+### Side chain oxidation
+$$\ce{\text{ethylbenzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + 2H20 + CO2}$$
+$$\ce{ R-C-C-\text{benzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + H20 + R-CO2H}$$
+### Hydrolysis of Nitriles
+$$\ce{R-CN + H+ + 2H2O ->[dilute H2SO4, heat] R-COOH + NH4+}$$
+
+
