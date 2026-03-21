@@ -53,6 +53,9 @@
   color: #bae0ff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 .figure-img {
   width: 100%;

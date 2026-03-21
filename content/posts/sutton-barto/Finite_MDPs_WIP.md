@@ -1,21 +1,34 @@
 ---
-title: "Finite MDPs"
+title: Finite MDPs
 date: 2026-03-12
-lastmod: 2026-03-12
-tags: [Easy]
-categories: ["Machine Learning", "Reinforcement Learning",Action-Value]  
-draft: true
+lastmod: 2026-03-22
+tags:
+categories:
+  - Machine Learning
+  - Reinforcement Learning
+  - Action-Value
+draft: false
+build:
+ list: never
 math: true
+mathEngine: mathjax
 summary:
 ---
 
+<div class="info-box">
+  <strong>NOTE:</strong>
+  This post is only accessible by link.
+</div>
 <!-- NOTE:draft is set to true. it will not be shown , but still accessible by link -->
 
 # Characteristics of MDPs
 
 
 In a *finite* MDP, the set of states, actions, and rewards ($\mathcal S$, $\mathcal A$, and $\mathcal R$) all have a finite number of elements. For particular values of $S_t$ and $A_t$, there is a joint probability that the next state and reward will be $s^\prime$ and $r$, respectively.
-$$\boxed{p(s^\prime,r \mid s,a) \doteq P(S_{t+1} = s^\prime, R_{t+1} = r, \mid  S_{t}=s, A_{t}= a)}$$
+$$\begin{equation}
+\boxed{p(s^\prime,r \mid s,a) \doteq P(S_{t+1} = s^\prime, R_{t+1} = r, \mid  S_{t}=s, A_{t}= a)}
+\label{four_value_prob}
+\end{equation}$$
 
 where the probabilities given by $p$ completely characterise the *dynamics* of the environment.
 
@@ -23,14 +36,91 @@ A state representation satisfies the Markov property if the probability of each 
 
 # Returns and episodes
 The goal of the agent is to maximise the *expected return*, denoted $G_t$, is defined as some specific function of future rewards. In the simplest case, the return is is the sum of future rewards.
-<span id="eqn:1"></span>
-$$G_t \doteq  R_{t+1} +  R_{t+2} +  R_{t+3} +\cdots + R_T \tag 1$$
+$$\begin{equation}
+G_t \doteq  R_{t+1} +  R_{t+2} +  R_{t+3} +\cdots + R_T
+\label{return}
+\end{equation}$$
 where $T$ is the final time step. This approach makes sense when there is a natural notion of a final time step, in which the sequence of agent–environment interactions naturally terminates. This sequence of interactions is called *episodes*.
 
-However, not all tasks naturally terminate and can be broken down into discrete episodes. We call these *continuing* tasks. In these cases, the return formulation in [(1)]("#eqn:1") is problematic as the return, which we are trying to maximise, could be unbounded.
+However, not all tasks naturally terminate and can be broken down into discrete episodes. We call these *continuing* tasks. In these cases, the return formulation in \eqref{return} is problematic as the return, which we are trying to maximise, could be unbounded.
 
 To address this issue, we introduce the concept of discounting.
-$$\begin{align}G_t &\doteq  R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} \notag\\
-&= \sum_{k=0}^\infty \gamma^k R_{t+k+1}\end{align}$$ <span id="eqn:2"></span>
+
+$$
+\begin{align} 
+G_t &\doteq  R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots \notag\\ 
+&= R_{t+1} + \gamma G_{t+1} \label{discounted_return}\\
+&= \sum_{k=0}^\infty \gamma^k R_{t+k+1} \notag
+\end{align}
+$$ 
 where $\gamma \in [0,1]$, a hyper parameter, is the *discount rate*.
-The discount rate determines the present value of future rewards. If $\gamma < 1$, the infinite sum in [(2)](#eqn:2) has a finite value as long as the reward sequence ${R_k}$ is bounded. 
+The discount rate determines the present value of future rewards. If $\gamma < 1$, the infinite sum in \eqref{discounted_return} has a finite value as long as the reward sequence ${R_k}$ is bounded. 
+
+## Exercises from Sutton Barto
+
+<span id="exercise:2.1"></span>**Exercise *2.1***  Imagine that you are designing a robot to run a maze. You decide to give it a reward of $+1$ for escaping from the maze and a reward of zero at all other times. The task seems to break down naturally into episodes—the successive runs through the maze—so you decide to treat it as an episodic task, where the goal is to maximize expected total reward \eqref{return}. After running the learning agent for a while, you find that it is showing no improvement in escaping from the maze. What is going wrong? Have you effectively communicated to the agent what you want it to achieve?
+
+# Policies and Value functions
+
+## Formal definitions
+
+Most reinforcement learning algorithms involving estimating *value functions*, which estimates the expected return for an agent in a given state. As the expected return is dependent on action taken, value functions are defined with respect to particular ways of acting, called *policies*.
+
+Formally, a policy is a mapping from states to probabilities of selecting each possible
+action. 
+$$\begin{gather*}
+\pi(a \mid s) \doteq P(A_t = a \mid S_{t} = s ) 
+\end{gather*}$$
+<span id="exercise:3.1"></span>**Exercise *3.1***  If the current state is $S_t$, and actions are selected according to a stochastic policy $\pi$, what is the expectation of $R_{t+1}$ in terms of $\pi$ and the four-argument
+function $p$ \eqref{four_value_prob}?
+
+The *value function* of a state $s$ under a policy $\pi$, denoted $v_\pi(s)$, is the expected return when starting in $s$ and following $\pi$. For MDPs, $v_{\pi}$ is formally defined as 
+$$v_{\pi}(s) \doteq \mathbb{E}_{\pi} [G_t \mid S_t = s] = \mathbb{E}_{\pi} \left[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \;\middle| \; S_t = s \right], \text{for all } s \in \mathcal{S}$$
+Similarly, we define the value of taking action $a$ in state $s$ under a policy $\pi$, denoted
+$q_\pi(s, a)$, as the expected return starting from $s$, taking the action $a$, and thereafter
+following policy $\pi$, as the *action-value* function for policy $\pi$.
+$$q_{\pi}(s,a) \doteq \mathbb{E}_{\pi} [G_t \mid S_t = s, A_{t} = a] = \mathbb{E}_{\pi} \left[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \;\middle| \; S_t = s , A_{t} = a\right]$$
+<span id="exercise:3.2"></span>**Exercise *3.2***  Find $v_\pi$ in terms of $q_\pi$ and $\pi$.   
+<span id="exercise:3.3"></span>**Exercise *3.3***  Find $q_\pi$ in terms of $v_\pi$ and the four-argument function $p$ \eqref{four_value_prob}
+
+## Estimating value functions
+
+The value functions $v_\pi$ and $q_{\pi}$ can be estimated from experience. By taking a sample averages of the returns in each state, an approximation can be found for $v_*$, or the true value function. Likewise, sample averages can be taken in each state-action pair to find an approximation of $q_\pi$. These are called *Monte Carlo methods*.
+
+A fundamental property of value functions used throughout reinforcement learning problems is that they satisfy a recursive relationship, like the return in \eqref{discounted_return}. The recursive relations for $v_\pi$ and $q_\pi$ are also their *Bellman equations*.
+$$\begin{align*}
+v_\pi(s) &\doteq \mathbb{E}_\pi [G_t \mid S_t = s] \\
+&= \mathbb{E}_\pi [R_{t+1} + \gamma G_{t+1} \mid S_t = s] \tag{by \eqref{discounted_return}}\\
+&= \sum_a \pi(a \mid s) \sum_{s'} \sum_r p(s', r \mid s, a) \left[ r + \gamma \mathbb{E}_\pi [G_{t+1} \mid S_{t+1} = s'] \right] \\
+&= \sum_a \pi(a \mid s) \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v_\pi(s') \right], \quad \text{for all } s \in \mathcal{S}
+\end{align*}$$
+<span id="exercise:3.4"></span>**Exercise *3.4***  Find a recursive relation for $q_\pi$. 
+## Solutions to Exercises
+
+[**Exercise *3.1*** ](#exercise:3.1)  To compute the expected reward given the current state $S_{t} = s$, we weight each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
+$$\begin{align*}
+\mathbb{E}[R_{t+1} \mid S_t = s] 
+&= \sum_{a} \pi(a \mid s) \, \mathbb{E}[R_{t+1} \mid s, a] \\
+&= \sum_{a} \pi(a \mid s) \, \sum_{r} r p(r \mid s, a)\\
+&= \sum_{a} \pi(a \mid s) \sum_{s^\prime} \sum_{r} r \, p(s^\prime, r \mid s,a)
+\end{align*}$$
+[**Exercise *3.2*** ](#exercise:3.2)  
+$$\begin{align*}
+v_{\pi}(s) &= \mathbb{E} [G_t \mid S_t = s] \\
+&= \sum_{a} \pi(a \mid s)\, \mathbb{E} [G_t \mid S_t = s, A_t = a] \\
+&= \sum_{a} \pi(a \mid s)\, q_{\pi}(s, a)
+\end{align*}$$
+
+[**Exercise *3.3*** ](#exercise:3.3)  
+$$\begin{align*}
+q_{\pi}(s,a)  
+&= \mathbb{E} [G_t \mid S_t = s, A_t = a] \\
+&= \sum_{s^\prime} \sum_{r} \, p(s^\prime, r \mid s,a) \, \mathbb{E} [G_{t}]\\
+&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]
+\end{align*}$$
+[**Exercise *3.4*** ](#exercise:3.4)  Substituting the result from Exercise 3.2 into Exercise 3.3
+$$\begin{align*}
+q_{\pi}(s,a)  
+&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]\\
+&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma \sum_{b \in \mathcal{A}} \pi(b \mid s^\prime) \, q_{\pi}(s^\prime, b)] 
+\end{align*}$$
