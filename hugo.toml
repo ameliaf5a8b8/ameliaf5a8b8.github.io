@@ -28,9 +28,11 @@ disablePathToLower = false
 
   math = true
 
+  mathEngine = "katex" # or "mathjax"
+
   [params.katex]
-    enable = true
-    macros = { "\\doteq" = "\\mathrel{\\dot{=}}" }
+    enable = false
+  
  
   mainSections = ["posts"]
 

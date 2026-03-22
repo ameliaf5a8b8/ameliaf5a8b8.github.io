@@ -9,6 +9,55 @@ smiles: true
 summary:
 AI_warning: true
 ---
+
+# Carboxylic Acids
+## Formation
+### Oxidation of primary alcohols and aldehydes
+$$\ce{R-CH2OH + 2[O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H + H2O}$$
+$$\ce{R-CHO + [O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H}$$
+### Oxidative cleavage of secondary alkenes
+$$\ce{R=CHR ->[KMnO4, dilute H2SO4, heat] \text{Carboxylic Acid}}$$
+### Side chain oxidation
+$$\ce{\text{ethylbenzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + 2H20 + CO2}$$
+$$\ce{ R-C-C-\text{benzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + H20 + R-CO2H}$$
+### Hydrolysis of Nitriles
+$$\ce{R-CN + H+ + 2H2O ->[dilute H2SO4, heat] R-COOH + NH4+}$$
+
+# Hydroxy Compounds
+## Alcohols
+
+### Distinguishing tests 
+<span id="sec:distinguishing-tests-alcohol"></span>
+Distinguishing test with $\ce{PCl5}$
+$$\ce{R-OH + PCl5 ->[anhydrous, \text{r.t.p.}] R-Cl + POCl3 + HCl}$$
+[Iodoform test](#tri-iodomethane-iodoform-test) for **secondary alcohols**, **aldehydes**, and **methyl ketones**
+![](iodoform_test_secondary_alcohols.png)
+
+### Formation
+#### Steam (Industrial Hydration)
+$$\ce{C=C + H2O(g) ->[H3PO4, high T \& P] CH-COH}$$
+#### Mild oxidation of alkenes
+![](mild_oxidation_alkenes.png)
+
+#### Nucleophilic substitution with $\ce{OH-}$
+$$\ce{R-X + OH- ->[NaOH(aq), heat] R-OH + X-}$$
+#### Reduction of Carbonyl compounds
+$$\ce{R2C=O ->[LiAlH4 in dry ether / H2, Ni] R2CHOH}$$
+$$\ce{R-CO2H ->[LiAlH4 in dry ether] R-CH2OH}$$
+
+## Phenols
+<span id="sec:distinguishing-tests-phenol"></span>
+Distinguishing test with $\ce{Br2(aq)}$
+![](phenol_distinguishing_test.png)
+
+# Arenes (todo)
+
+## Electrophilic substitution
+
+  <div style="text-align: center;">
+    <img src="alkylation_of_benzene.png" style="max-height:100px; width:auto;">
+  </div>
+
 # Types of reactions
 ## Substitution
 
@@ -142,10 +191,9 @@ $$\ce{ R-C-C-\text{benzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + H2
 ### Tri-iodomethane (Iodoform) Test
 $$\ce{R-COCH3 ->[I2(aq), NaOH(aq), warm] R-COO- + CHI3}$$
 $$\ce{R-CH3CHOH ->[I2(aq), NaOH(aq), warm] R-COO- + CHI3}$$
-It is a common positive test for secondary alcohols, aldehydes, and methyl ketones [See a general test for alcohols.](NOT LINKED YET)
+It is a common positive test for secondary alcohols, aldehydes, and methyl ketones [See a general test for alcohols.](#sec:distinguishing-tests-alcohol)
 
 <div style="display: flex; justify-content: center; gap: 40px; align-items: center;">
-
   <div style="text-align: center;">
     <img src="secondary_alcohol.png" style="max-height:100px; width:auto;">
     <div>Secondary Alcohol</div>
@@ -163,9 +211,6 @@ It is a common positive test for secondary alcohols, aldehydes, and methyl keton
   </div>
 </div>
 
-
-
-
 ## Reduction
 
 ### Alkenes
@@ -180,17 +225,41 @@ $$\ce{R-COOH ->[LiAlH4 in dry ether] R-CH2OH}$$
 ### Nitriles
 $$\ce{R-CN ->[LiAlH4 in dry ether / H2, Ni] R-CH2NH2}$$
 
-# Carboxylic Acids
-## Formation
-### Oxidation of primary alcohols and aldehydes
-$$\ce{R-CH2OH + 2[O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H + H2O}$$
-$$\ce{R-CHO + [O] ->[KMnO4, dil. H2SO4, reflux] R-CO2H}$$
-### Oxidative cleavage of secondary alkenes
-$$\ce{R=CHR ->[KMnO4, dilute H2SO4, heat] \text{Carboxylic Acid}}$$
-### Side chain oxidation
-$$\ce{\text{ethylbenzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + 2H20 + CO2}$$
-$$\ce{ R-C-C-\text{benzene} ->[KMnO4, dil. H2SO4, heat] \text{Benzoic acid} + H20 + R-CO2H}$$
-### Hydrolysis of Nitriles
-$$\ce{R-CN + H+ + 2H2O ->[dilute H2SO4, heat] R-COOH + NH4+}$$
 
+# TODO later
+##### Halogenation
+###### Benzene
+$$\ce{C6H6 + X2 ->[AlX3 / FeX3 catalyst, warm] C6H5X + HX} \quad (\text{X = Cl, Br})$$
+###### Methylbenzene
+$$\ce{C6H5CH3 + X2 ->[AlX3 catalyst, r.t., \text{absence of UV}] CH3C6H4X + HX} \quad (\text{X = Cl, Br})$$
+Note: The methyl group is an activating group, so milder conditions (room temperature) are used compared to benzene. The 2- and 4- positions are the major products due to the directing effect of the methyl group.
 
+##### Nitration
+###### Benzene
+$$\ce{C6H6 + HNO3(conc.) ->[conc. H2SO4 catalyst, 50\degree C] C6H5NO2 + H2O}$$
+###### Methylbenzene
+$$\ce{C6H5CH3 + HNO3(conc.) ->[conc. H2SO4 catalyst, 30\degree C] CH3C6H4NO2 + H2O}$$
+Note: Concentrated $\ce{H2SO4}$ acts as a Brønsted-Lowry acid catalyst to generate the strong electrophile $\ce{NO2+}$.
+
+##### Friedel-Crafts Alkylation
+###### Benzene
+$$\ce{C6H6 + R-Cl ->[AlCl3 catalyst, warm] C6H5R + HCl}$$
+###### Methylbenzene
+$$\ce{C6H5CH3 + R-Cl ->[AlCl3 catalyst, r.t.] CH3C6H4R + HCl}$$
+
+#### Side-chain reactions
+##### Free-radical substitution (Side-chain Halogenation)
+$$\ce{C6H5CH3 + X2 ->[UV light, r.t.] C6H5CH2X + HX}$$
+Note: This reaction occurs on the alkyl side-chain rather than the ring, similar to the free-radical substitution of alkanes.
+
+##### Side-chain oxidation
+$$\ce{C6H5R ->[KMnO4, dil. H2SO4, heat] C6H5COOH}$$
+Note: Oxidation only occurs if the carbon atom directly attached to the benzene ring possesses at least one hydrogen atom. Regardless of the side-chain length, it is oxidised to a $\ce{-COOH}$ group.
+
+ <style> img {  
+display:block !important;
+margin-left:auto !important;
+margin-right:auto !important;
+max-height:100px !important;
+width:auto !important;
+} </style> 
