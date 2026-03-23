@@ -94,7 +94,7 @@ v_\pi(s) &\doteq \mathbb{E}_\pi [G_t \mid S_t = s] \\
 <span id="exercise:3.4"></span>**Exercise *3.4***  Find a recursive relation for $q_\pi$.   
 [See solution](#solution:3.4)
 
-By solving the Bellman equations, we can find the value functions of a policy.
+By solving the Bellman equations, we can find the value functions $v_\pi$ and $q_\pi$ of a policy. (See [Appendix](#Appendix) for more details).
 ## Optimal policies
 
 One way to obtain the optimal policy $\pi_*$ is by computing its corresponding value functions $v_*$ and $q_*$. Since an optimal policy assigns probability only to optimal actions, and all optimal actions have the same action-value, we can rewrite the value function as
@@ -141,4 +141,31 @@ q_{\pi}(s,a)
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma \sum_{a^\prime \in \mathcal{A}} \pi(a^\prime \mid s^\prime) \, q_{\pi}(s^\prime, a^\prime)] \label{ex:3.4}
 \end{align}$$
 
+# Appendix
 
+The Bellman equations guarantees a unique solution to $v_\pi$ and $q_\pi$. It is helpful to specify notation as follows:
+- A value vector $V_\pi$ of length $|\mathcal S|$
+- The action-value and reward $Q_\pi$ and $\mathbf r$ as vectors of length $|\mathcal{S} \cdot \mathcal{A}|$
+- A matrix $P$ of size $(|\mathcal S|\cdot|\mathcal A| \times |\mathcal S|)$, where the entry $P_{(s,a),s^\prime} \coloneqq P(s^\prime \mid s,a)$ 
+- A transition matrix induced by a deterministic stationary policy $\pi$, where the entry $P^\pi_{(s,a),(s^\prime, a^\prime)} \coloneqq P(s^\prime \mid s,a)\,\pi(a^\prime \mid s^\prime)$ 
+
+Using the above notation
+$$\begin{gather*}
+Q_\pi = \mathbf r + \gamma P\,V _\pi\\
+\\
+Q_\pi = \mathbf r + \gamma P^\pi q_\pi \\
+Q_\pi (\mathbf{I}- \gamma P^\pi)= \mathbf r\\
+Q_\pi = (\mathbf{I}- \gamma P^\pi)^{-1} \, \mathbf r
+
+\end{gather*}$$
+If $\mathbf{I}- \gamma P^\pi$ is invertible, then $Q_\pi$ has a unique solution. Observe that for any non-zero vector $x \in \mathbb R^{|S||A|}$
+$$\begin{align*}
+\|(I - \gamma P^\pi)x\|_\infty &= \|x - \gamma P^\pi x\|_\infty \\
+&\ge \|x\|_\infty - \gamma \|P^\pi x\|_\infty & \text{(triangle inequality for norms)} \\
+&\ge \|x\|_\infty - \gamma \|x\|_\infty & (P^\pi \text{ is row-stochastic}) \\
+&= (1 - \gamma)\|x\|_\infty > 0, & (\gamma < 1, x \neq 0)
+\end{align*}$$
+which implies $\mathbf{I}- \gamma P^\pi$ is full rank and thus invertible.
+
+**Corollary.**$\;$If $q_\pi$ has a unique solution, then so does $v_\pi$.
+$$v_\pi(s) = \sum_a \pi(a \mid s)\,q_\pi(s,a)$$
