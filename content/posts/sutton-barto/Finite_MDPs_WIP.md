@@ -12,13 +12,9 @@ math: true
 mathEngine: mathjax
 summary:
 ---
-
-
-# Characteristics of MDPs
-
-
+# Characteristics of MDPs 
 In a *finite* MDP, the set of states, actions, and rewards ($\mathcal S$, $\mathcal A$, and $\mathcal R$) all have a finite number of elements. For particular values of $S_t$ and $A_t$, there is a joint probability that the next state and reward will be $s^\prime$ and $r$, respectively.
-$$\begin{equation}
+$$\newcommand{\coloneqq}{\mathrel{\mathop:}=} \begin{equation}
 \boxed{p(s^\prime,r \mid s,a) \doteq P(S_{t+1} = s^\prime, R_{t+1} = r, \mid  S_{t}=s, A_{t}= a)}
 \label{four_value_prob}
 \end{equation}$$
@@ -150,13 +146,13 @@ The Bellman equations guarantees a unique solution to $v_\pi$ and $q_\pi$. It is
 - A transition matrix induced by a deterministic stationary policy $\pi$, where the entry $P^\pi_{(s,a),(s^\prime, a^\prime)} \coloneqq P(s^\prime \mid s,a)\,\pi(a^\prime \mid s^\prime)$ 
 
 Using the above notation
+
 $$\begin{gather*}
 Q_\pi = \mathbf r + \gamma P\,V _\pi\\
 \\
 Q_\pi = \mathbf r + \gamma P^\pi q_\pi \\
 Q_\pi (\mathbf{I}- \gamma P^\pi)= \mathbf r\\
 Q_\pi = (\mathbf{I}- \gamma P^\pi)^{-1} \, \mathbf r
-
 \end{gather*}$$
 If $\mathbf{I}- \gamma P^\pi$ is invertible, then $Q_\pi$ has a unique solution. Observe that for any non-zero vector $x \in \mathbb R^{|S||A|}$
 $$\begin{align*}
