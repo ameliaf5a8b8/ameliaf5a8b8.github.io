@@ -87,7 +87,8 @@ A fundamental property of value functions used throughout reinforcement learning
 $$\begin{align*}
 v_\pi(s) &\doteq \mathbb{E}_\pi [G_t \mid S_t = s] \\
 &= \mathbb{E}_\pi [R_{t+1} + \gamma G_{t+1} \mid S_t = s] \tag{by \eqref{discounted_return}}\\
-&= \sum_a \pi(a \mid s) \sum_{s'} \sum_r p(s', r \mid s, a) \left[ r + \gamma \mathbb{E}_\pi [G_{t+1} \mid S_{t+1} = s'] \right] \\
+&= \mathbb{E}_\pi [R_{t+1} + \gamma v_\pi(S_{t+1}) \mid S_t = s]  \\
+% &= \sum_a \pi(a \mid s) \sum_{s'} \sum_r p(s', r \mid s, a) \left[ r + \gamma \mathbb{E}_\pi [G_{t+1} \mid S_{t+1} = s'] \right] \\
 &= \sum_a \pi(a \mid s) \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v_\pi(s') \right], \quad \text{for all } s \in \mathcal{S}
 \end{align*}$$
 <span id="exercise:3.4"></span>**Exercise *3.4***  Find a recursive relation for $q_\pi$.   
@@ -110,7 +111,7 @@ q_{*}(s,a)
 \end{align*}$$
 # Solutions to Exercises
 
-<span id="solution:3.1"></span>[**Exercise *3.1*** ](#exercise:3.1)$\;$  To compute the expected reward given the current state $S_{t} = s$, we weigh each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
+<span id="solution:3.1"></span>[**Exercise *3.1*** ](#exercise:3.1)$\;$To compute the expected reward given the current state $S_{t} = s$, we weigh each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
 $$\begin{align*}
 \mathbb{E}[R_{t+1} \mid S_t = s] 
 &= \sum_{a} \pi(a \mid s) \, \mathbb{E}[R_{t+1} \mid s, a] \\
