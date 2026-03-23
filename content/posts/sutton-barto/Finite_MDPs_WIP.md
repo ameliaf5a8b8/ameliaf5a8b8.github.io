@@ -72,7 +72,8 @@ $$\begin{gather*}
 \pi(a \mid s) \doteq P(A_t = a \mid S_{t} = s ) 
 \end{gather*}$$
 <span id="exercise:3.1"></span>**Exercise *3.1***  If the current state is $S_t$, and actions are selected according to a stochastic policy $\pi$, what is the expectation of $R_{t+1}$ in terms of $\pi$ and the four-argument
-function $p$ \eqref{four_value_prob}?
+function $p$ \eqref{four_value_prob}?  
+[See solution](#solution:3.1)
 
 The *value function* of a state $s$ under a policy $\pi$, denoted $v_\pi(s)$, is the expected return when starting in $s$ and following $\pi$. For MDPs, $v_{\pi}$ is formally defined as 
 $$v_{\pi}(s) \doteq \mathbb{E}_{\pi} [G_t \mid S_t = s] = \mathbb{E}_{\pi} \left[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \;\middle| \; S_t = s \right], \text{for all } s \in \mathcal{S}$$
@@ -81,7 +82,9 @@ $q_\pi(s, a)$, as the expected return starting from $s$, taking the action $a$, 
 following policy $\pi$, as the *action-value* function for policy $\pi$.
 $$q_{\pi}(s,a) \doteq \mathbb{E}_{\pi} [G_t \mid S_t = s, A_{t} = a] = \mathbb{E}_{\pi} \left[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \;\middle| \; S_t = s , A_{t} = a\right]$$
 <span id="exercise:3.2"></span>**Exercise *3.2***  Find $v_\pi$ in terms of $q_\pi$ and $\pi$.   
-<span id="exercise:3.3"></span>**Exercise *3.3***  Find $q_\pi$ in terms of $v_\pi$ and the four-argument function $p$ \eqref{four_value_prob}
+<span id="exercise:3.3"></span>**Exercise *3.3***  Find $q_\pi$ in terms of $v_\pi$ and the four-argument function $p$ 
+\eqref{four_value_prob}  
+[See solutions](#solution:3.2)
 
 ## Estimating value functions
 
@@ -94,33 +97,52 @@ v_\pi(s) &\doteq \mathbb{E}_\pi [G_t \mid S_t = s] \\
 &= \sum_a \pi(a \mid s) \sum_{s'} \sum_r p(s', r \mid s, a) \left[ r + \gamma \mathbb{E}_\pi [G_{t+1} \mid S_{t+1} = s'] \right] \\
 &= \sum_a \pi(a \mid s) \sum_{s', r} p(s', r \mid s, a) \left[ r + \gamma v_\pi(s') \right], \quad \text{for all } s \in \mathcal{S}
 \end{align*}$$
-<span id="exercise:3.4"></span>**Exercise *3.4***  Find a recursive relation for $q_\pi$. 
-## Solutions to Exercises
+<span id="exercise:3.4"></span>**Exercise *3.4***  Find a recursive relation for $q_\pi$.   
+[See solution](#solution:3.4)
 
-[**Exercise *3.1*** ](#exercise:3.1)  To compute the expected reward given the current state $S_{t} = s$, we weight each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
+By solving the Bellman equations, we can find the value functions of a policy.
+## Optimal policies
+
+One way to obtain the optimal policy $\pi_*$ is by computing its corresponding value functions $v_*$ and $q_*$. Since an optimal policy assigns probability only to optimal actions, and all optimal actions have the same action-value, we can rewrite the value function as
+$$\begin{align*}
+v_{*}(s) &= \sum_{a} \pi_*(a \mid s)\, q_{*}(s, a) \tag{by \eqref{ex:3.2}}\\
+&=  \underset{a}{\max} q_*(s,a)\\
+&=  \underset{a}{\max} \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{*}(s^\prime)] \tag{by \eqref{ex:3.3}}
+\end{align*}$$
+Likewise, we can rewrite the action-value function as
+$$\begin{align*}
+q_{*}(s,a)  
+&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma \sum_{a^\prime \in \mathcal{A}} *(a^\prime \mid s^\prime) \, q_{*}(s^\prime, a^\prime)] \tag{by \eqref{ex:3.4}} \\
+&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma  \,\underset{a^\prime}{\max q_*(s,a)}] \notag
+\end{align*}$$
+# Solutions to Exercises
+
+<span id="solution:3.1"></span>[**Exercise *3.1*** ](#exercise:3.1)  To compute the expected reward given the current state $S_{t} = s$, we weight each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
 $$\begin{align*}
 \mathbb{E}[R_{t+1} \mid S_t = s] 
 &= \sum_{a} \pi(a \mid s) \, \mathbb{E}[R_{t+1} \mid s, a] \\
 &= \sum_{a} \pi(a \mid s) \, \sum_{r} r p(r \mid s, a)\\
 &= \sum_{a} \pi(a \mid s) \sum_{s^\prime} \sum_{r} r \, p(s^\prime, r \mid s,a)
 \end{align*}$$
-[**Exercise *3.2*** ](#exercise:3.2)  
-$$\begin{align*}
-v_{\pi}(s) &= \mathbb{E} [G_t \mid S_t = s] \\
-&= \sum_{a} \pi(a \mid s)\, \mathbb{E} [G_t \mid S_t = s, A_t = a] \\
-&= \sum_{a} \pi(a \mid s)\, q_{\pi}(s, a)
-\end{align*}$$
+<span id="solution:3.2"></span>[**Exercise *3.2*** ](#exercise:3.2)  
+$$\begin{align}
+v_{\pi}(s) &= \mathbb{E} [G_t \mid S_t = s] \notag \\
+&= \sum_{a} \pi(a \mid s)\, \mathbb{E} [G_t \mid S_t = s, A_t = a] \notag \\
+&= \sum_{a} \pi(a \mid s)\, q_{\pi}(s, a) 
+\label{ex:3.2}
+\end{align}$$
 
-[**Exercise *3.3*** ](#exercise:3.3)  
-$$\begin{align*}
+<span id="solution:3.3"></span>[**Exercise *3.3*** ](#exercise:3.3)  
+$$\begin{align}
 q_{\pi}(s,a)  
-&= \mathbb{E} [G_t \mid S_t = s, A_t = a] \\
-&= \sum_{s^\prime} \sum_{r} \, p(s^\prime, r \mid s,a) \, \mathbb{E} [G_{t}]\\
+&= \mathbb{E} [G_t \mid S_t = s, A_t = a] \notag \\ 
+&= \sum_{s^\prime} \sum_{r} \, p(s^\prime, r \mid s,a) \, \mathbb{E} [G_{t}]\notag \\
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]
-\end{align*}$$
-[**Exercise *3.4*** ](#exercise:3.4)  Substituting the result from Exercise 3.2 into Exercise 3.3
-$$\begin{align*}
+\label{ex:3.3}
+\end{align}$$
+<span id="solution:3.4"></span>[**Exercise *3.4*** ](#exercise:3.4)  Substituting the result from Exercise 3.2 into Exercise 3.3
+$$\begin{align}
 q_{\pi}(s,a)  
-&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]\\
-&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma \sum_{b \in \mathcal{A}} \pi(b \mid s^\prime) \, q_{\pi}(s^\prime, b)] 
-\end{align*}$$
+&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]\notag \\
+&= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma \sum_{a^\prime \in \mathcal{A}} \pi(a^\prime \mid s^\prime) \, q_{\pi}(s^\prime, a^\prime)] \label{ex:3.4}
+\end{align}$$
