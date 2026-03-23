@@ -117,7 +117,7 @@ q_{*}(s,a)
 \end{align*}$$
 # Solutions to Exercises
 
-<span id="solution:3.1"></span>[**Exercise *3.1*** ](#exercise:3.1)  To compute the expected reward given the current state $S_{t} = s$, we weight each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
+<span id="solution:3.1"></span>[**Exercise *3.1*** ](#exercise:3.1)$\;$  To compute the expected reward given the current state $S_{t} = s$, we weigh each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
 $$\begin{align*}
 \mathbb{E}[R_{t+1} \mid S_t = s] 
 &= \sum_{a} \pi(a \mid s) \, \mathbb{E}[R_{t+1} \mid s, a] \\
@@ -140,7 +140,7 @@ q_{\pi}(s,a)
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]
 \label{ex:3.3}
 \end{align}$$
-<span id="solution:3.4"></span>[**Exercise *3.4*** ](#exercise:3.4)  Substituting the result from Exercise 3.2 into Exercise 3.3
+<span id="solution:3.4"></span>[**Exercise *3.4*** ](#exercise:3.4) $\;$Substituting the result from Exercise 3.2 into Exercise 3.3
 $$\begin{align}
 q_{\pi}(s,a)  
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]\notag \\
