@@ -1,7 +1,7 @@
 ---
 title: Matrix operations
 date: 2026-03-14
-lastmod: 2026-03-14
+lastmod: 2026-03-23
 tags:
   - Easy
 categories:
@@ -89,6 +89,21 @@ The Frobenius norm is the matrix equivalent of the Euclidean norm for vectors. I
 
 <div class="info-box">
 <strong>TODO</strong></div>
+
+## Triangle inequality for vectors
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+  <div style="width: 100%;">  
+    If $\vec x$ and $\vec y$ are two vectors in $\mathbb R^n$
+    $$\|\vec x + \vec y\| \leq \|\vec x\| + \|\vec y\|$$
+  </div>
+  <figure id="fig:1" style="width: 25%; text-align: center;">
+    <img class="light figure-img"
+        src="light_imgs/triangle_inequalitiy.svg">
+    <img class="dark figure-img"
+        src="dark_imgs/triangle_inequalitiy.svg">
+    </figure>
+</div>
 
 # Calculus
 
