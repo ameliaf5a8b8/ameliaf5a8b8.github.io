@@ -1,25 +1,18 @@
 ---
 title: Finite MDPs
 date: 2026-03-12
-lastmod: 2026-03-22
+lastmod: 2026-03-23
 tags:
 categories:
   - Machine Learning
   - Reinforcement Learning
   - Action-Value
 draft: false
-build:
- list: never
 math: true
 mathEngine: mathjax
 summary:
 ---
 
-<div class="info-box">
-  <strong>NOTE:</strong>
-  This post is only accessible by link.
-</div>
-<!-- NOTE:draft is set to true. it will not be shown , but still accessible by link -->
 
 # Characteristics of MDPs
 
@@ -117,7 +110,7 @@ q_{*}(s,a)
 \end{align*}$$
 # Solutions to Exercises
 
-<span id="solution:3.1"></span>[**Exercise *3.1*** ](#exercise:3.1)  To compute the expected reward given the current state $S_{t} = s$, we weight each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
+<span id="solution:3.1"></span>[**Exercise *3.1*** ](#exercise:3.1)  To compute the expected reward given the current state $S_{t} = s$, we weigh each action by the policy $\pi(a \mid s)$, and for each action, we take the expected reward under the environment dynamics.
 $$\begin{align*}
 \mathbb{E}[R_{t+1} \mid S_t = s] 
 &= \sum_{a} \pi(a \mid s) \, \mathbb{E}[R_{t+1} \mid s, a] \\
@@ -146,3 +139,5 @@ q_{\pi}(s,a)
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]\notag \\
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma \sum_{a^\prime \in \mathcal{A}} \pi(a^\prime \mid s^\prime) \, q_{\pi}(s^\prime, a^\prime)] \label{ex:3.4}
 \end{align}$$
+
+
