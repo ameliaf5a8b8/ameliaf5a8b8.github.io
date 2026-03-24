@@ -84,8 +84,8 @@ $$
 #### With $\ce{PCl5}$
 $$\ce{R-OH + PCl5 ->[anhydrous, \text{r.t.p.}] R-Cl + POCl3 + HCl}$$
 Common positive test for alcohols
-#### With $\ce{HX}$
-$$\ce{R-OH + HX ->[conc. H2SO4 / ZnCl2, heat] R-X + H2O}$$
+#### With $\ce{HBr}$
+$$\ce{R-OH + HBr ->[conc. H2SO4, heat] R-Br + H2O}$$
 
 ### Nucleophilic Acyl Substitution $\ce{R-CO2H}$ to $\ce{R-COCL}$
 $$\ce{R-COOH + PCl5 ->[PCl5 / SOCl2 / PCl3] R-COCl + POCl3 + HCl}$$
