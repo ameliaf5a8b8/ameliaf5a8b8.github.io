@@ -21,7 +21,7 @@ $$\newcommand{\coloneqq}{\mathrel{\mathop:}=} \begin{equation}
 
 where the probabilities given by $p$ completely characterise the *dynamics* of the environment.
 
-A state representation satisfies the Markov property if the probability of each possible value of $S_{t+1}$ and $R_{t+1}$ must depend only on the current state and action, $S_{t}$ and $A_{t}$, and completely independent on all earlier states and actions. This can be interpreted as a restriction on the state to include all information required to determine the probability distribution of the next state and reward, given the current action. In most Reinforcement Learning tasks, the state is assumed to hold the Markov property.
+A state representation satisfies the *Markov property* if the probability of each possible value of $S_{t+1}$ and $R_{t+1}$ must depend only on the current state and action, $S_{t}$ and $A_{t}$, and completely independent on all earlier states and actions. This can be interpreted as a restriction on the state to include all information required to determine the probability distribution of the next state and reward, given the current action. In most Reinforcement Learning tasks, the state is assumed to hold the Markov property.
 
 # Returns and episodes
 The goal of the agent is to maximise the *expected return*, denoted $G_t$, is defined as some specific function of future rewards. In the simplest case, the return is is the sum of future rewards.
@@ -136,6 +136,13 @@ q_{\pi}(s,a)
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma v_{\pi}(s^\prime)]\notag \\
 &= \sum_{s^\prime, r} \, p(s^\prime, r \mid s,a) \,[ r + \gamma \sum_{a^\prime \in \mathcal{A}} \pi(a^\prime \mid s^\prime) \, q_{\pi}(s^\prime, a^\prime)] \label{ex:3.4}
 \end{align}$$
+
+# Summary
+- Most reinforcement learning tasks assume the markov property.
+- Returns are typically discounted to 
+	- Bound the return in continuing tasks
+	- Increase agent myopia 
+
 
 # Appendix
 

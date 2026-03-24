@@ -71,33 +71,45 @@ $$\begin{gather*}
 
 # $L_1$  
 
-The $L_1$ norm, also known as the Manhattan distance, measures the magnitude of a vector by summing the absolute values of its components.
+The $L_1$ norm, or the Manhattan distance, measures the magnitude of a vector by summing the absolute values of its components.
 $$\|x\|_1 = \sum^{n}_{i=1}|x_i|$$
 For matrices, the L1 norm is calculated by
 - Taking the L1 norm of each column
 - Finding the highest value
 
 ## $L_2$
-The $L_2$ norm, or Euclidean distance, measures the magnitude of a vector by computing the square root of the sum of squared components.
+The $L_2$ norm, or Euclidean distance, measures the magnitude of a vector as the square root of the sum of squared components.
 $$\|x\|_2 = \sqrt{\sum^{n}_{i=1}x_i^2}$$
 It is congruent to the square root of the inner product of a vector with itself.  
 
-The Frobenius norm is the matrix equivalent of the Euclidean norm for vectors. It is calculated by flattening the matrix into a vector, and applying the L2 norm above.
- It is also the square root of the [Frobenius inner product](#sec:frobenius_inner_product) of the matrix with itself.
+The Frobenius norm is the matrix equivalent of the Euclidean norm for vectors. It is calculated by flattening the matrix into a vector, and applying the L2 norm above.  
+
+It is also the square root of the [Frobenius inner product](#sec:frobenius_inner_product) of the matrix with itself.
 
 ## $L_\infty$
+The $L_\infty$ norm, or the Chebyshev distance, measures the magnitude of a vector by taking the maximum absolute value of its components.
 
-<div class="info-box">
-<strong>TODO</strong></div>
+$$\|x\|_\infty = \max_i|x_i|$$
+
 
 ## Triangle inequality for vectors
 
-<div style="display: flex; justify-content: space-between; align-items: flex-start;">
-  <div style="width: 100%;">  
-    If $\vec x$ and $\vec y$ are two vectors in $\mathbb R^n$
-    $$\|\vec x + \vec y\| \leq \|\vec x\| + \|\vec y\|$$
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="width: 100%;padding-right: 1rem;">  
+    In any normed vector space, if two vectors are linearly dependent
+$$\|\vec x + \vec y\| = \|\vec x\| + \|\vec y\|$$
+
+otherwise
+    $$\begin{gather*}\|\vec x + \vec y\| \leq \|\vec x\| + \|\vec y\| \\
+    \left\| \vec{x} - \vec{y} \right\| \geq \left| \left\| \vec{x} \right\| - \left\| \vec{y} \right\| \right|
+    \end{gather*}$$
+by substituting $\vec y$ with - $\vec y$
+   $$\begin{gather*}\|\vec x - \vec y\| \leq \|\vec x\| + \|\vec y\| \\
+    \left\| \vec{x} + \vec{y} \right\| \geq \left| \left\| \vec{x} \right\| - \left\| \vec{y} \right\| \right|
+    \end{gather*}$$
+
   </div>
-  <figure id="fig:1" style="width: 25%; text-align: center;">
+  <figure id="fig:1" style="width: 30%; text-align: center;">
     <img class="light figure-img"
         src="light_imgs/triangle_inequalitiy.svg">
     <img class="dark figure-img"

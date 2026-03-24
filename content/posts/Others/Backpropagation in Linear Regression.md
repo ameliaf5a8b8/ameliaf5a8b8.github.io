@@ -126,7 +126,7 @@ $$\begin{align*}
 &=\text{Tr}\left( \left[ \frac{\partial L}{\partial \mathbf{{\hat{y}}}} \mathbf{x}^\top \right]^\top \text{d}W \right) 
 \end{align*}$$
 
-The formal definition of a matrix gradient is based on the [Frobenius Inner Product]({{% relref "Math/Matrix_operations/#trace" %}}):<span id="eqn:1.2"></span>
+The formal definition of a matrix gradient is based on the [Frobenius Inner Product]({{% ref "posts/Math/Matrix_operations.md" %}}#trace):<span id="eqn:1.2"></span>
 $$\begin{align*} \text dL &= \langle \nabla_W L, \text dW \rangle_F \\
 &= \text{Tr}\left( (\nabla_W L)^\top \text dW \right)\\
 &= \text{Tr}\left( \left( \frac{\partial L}{\partial W} \right)^\top \text dW \right)
