@@ -80,7 +80,7 @@ as $P(A \mid B)$. It is fair to assume here that since $B$ has occurred, $P(B) \
     In the Venn diagram <a href="#fig:1">Figure 1</a>, the sample space is reduced to $B$ only, since $B$ has occurred. 
     That is, $P(A \mid B)$ is the probability of $A$ occurring by considering $B$ as the sample space. 
     $B$ is often called the reduced sample space.
-  </div>
+  </div> 
 
   <figure id="fig:1" style="width: 40%; text-align: center;">
   <img class="light" src="/images/Basic_probability/light_imgs/Conditional_probability.svg" style="border-radius:0;">
