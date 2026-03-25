@@ -17,12 +17,12 @@ Suppose that each arm in the *k*-armed bandit problem has an expected reward of 
 
 <figure id="fig:1">
   <img class="light figure-img"
-       src="../blog-files/optimistic_initial_values_light.svg"
+       src="blog-files/optimistic_initial_values_light.svg"
        style="width:100%; display:block; margin:auto;"
        alt="The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0">
 
   <img class="dark figure-img"
-       src="../blog-files/optimistic_initial_values_dark.svg"
+       src="blog-files/optimistic_initial_values_dark.svg"
        style="width:100%; display:block; margin:auto;"
        alt="The effect of optimistic initial action-values on the 10-armed bandit problem, averaged over 5000 runs. Both methods used a constant step size $\alpha = 0.1$. $Q_0$ represents the action-values at time step 0">
 
@@ -38,12 +38,12 @@ Suppose that each arm in the *k*-armed bandit problem has an expected reward of 
 The results in Figure 1 should be quite reliable because they are averaged over 5000 individual, independent 10-armed bandit tasks. Explain the oscillations in the early part of the curve in the optimistic method, particularly at the 11th time step where the accuracy jumps to $40\%$.
 <figure id="fig:2">
   <img class="light figure-img"
-       src="../blog-files/optimistic_initial_values_zoomed_light.svg"
+       src="blog-files/optimistic_initial_values_zoomed_light.svg"
        style="width:100%; display:block; margin:auto;"
        alt="Zoomed-in view of the results shown in Figure 1">
 
   <img class="dark figure-img"
-       src="../blog-files/optimistic_initial_values_zoomed_dark.svg"
+       src="blog-files/optimistic_initial_values_zoomed_dark.svg"
        style="width:100%; display:block; margin:auto;"
        alt="Zoomed-in view of the results shown in Figure 1">
 
