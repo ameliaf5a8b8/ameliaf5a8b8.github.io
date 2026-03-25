@@ -12,7 +12,7 @@ summary:
 This is a long term WIP. Information may not be accurate.
 </div>
 
-# State-space and Plan-space planning.
+# State-space and Plan-space planning
 
 ## Plan-space planning
 In plan-space planning, planning is a search through the space of plans.
@@ -31,5 +31,8 @@ Example of a such a method is Dynamic Programming.
 
 
 reading section 8.2, pg 161
+
+# DynaQ
+
 
 [^1]: a backup operation is just an RL update
