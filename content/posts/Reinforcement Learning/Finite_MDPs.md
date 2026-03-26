@@ -146,7 +146,7 @@ q_{\pi}(s,a)
 
 # Appendix
 
-The Bellman equations guarantees a unique solution to $v_\pi$ and $q_\pi$. It is helpful to specify notation as follows:
+**Proof.** The Bellman equations guarantees a unique solution to $v_\pi$ and $q_\pi$. It is helpful to specify notation as follows:
 - A value vector $V_\pi$ of length $|\mathcal S|$
 - The action-value and reward $Q_\pi$ and $\mathbf r$ as vectors of length $|\mathcal{S} \cdot \mathcal{A}|$
 - A matrix $P$ of size $(|\mathcal S|\cdot|\mathcal A| \times |\mathcal S|)$, where the entry $P_{(s,a),s^\prime} \coloneqq P(s^\prime \mid s,a)$ 
@@ -157,7 +157,7 @@ Using the above notation
 $$\begin{gather*}
 Q_\pi = \mathbf r + \gamma P\,V _\pi\\
 \\
-Q_\pi = \mathbf r + \gamma P^\pi q_\pi \\
+Q_\pi = \mathbf r + \gamma P^\pi Q_\pi \\
 Q_\pi (\mathbf{I}- \gamma P^\pi)= \mathbf r\\
 Q_\pi = (\mathbf{I}- \gamma P^\pi)^{-1} \, \mathbf r
 \end{gather*}$$

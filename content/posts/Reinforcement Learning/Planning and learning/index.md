@@ -49,7 +49,7 @@ Example of a such a method is Dynamic Programming.
 </figure>
 </div>
 
-**Pseudocode for DynaQ from Sutton Barto**   <span id="pseudocode-for-dynaq"></span>
+**Pseudocode for DynaQ from Sutton Barto**   <span id="pseudocode-for-dynaq"></span>      
 Initialise $Q(s, a)$ and $\textit{Model}(s, a)$ for all $s\in \mathcal S$ and $a \in \mathcal A$   
 Loop forever:   
 $\hspace{2em}$(a) $S \leftarrow$ current (nonterminal) state   
