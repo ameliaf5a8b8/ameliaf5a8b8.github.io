@@ -86,11 +86,10 @@ The exploration bonus is applied to all unvisited transitions, inducing the agen
 ### Exercises from Sutton and Barto
 
 <figure >
-  <img 
+  <img id="fig:shortcut"
     src="dyna_vs_dynaq+_on_shortcut_maze.png"
     alt="General Dyna structure"
-    style="display:block; margin: 0 auto;"
-  >
+    style="display:block; margin: 0 auto;">
   <figcaption style="text-align:center;">
     <strong>Figure 2:</strong> Average performance of Dyna agents on a shortcut task. The left environment was used for the first 3000 steps, the right environment for the rest.
   </figcaption>
@@ -100,9 +99,33 @@ The exploration bonus is applied to all unvisited transitions, inducing the agen
 
 **Exercise 8.3** Careful inspection of Figure 8.5 reveals that the difference between Dyna-Q+ and Dyna-Q narrowed slightly over the first part of the experiment. What is the reason for this?
 
-**Exercise 8.4 (programming)** The exploration bonus described above actually changes the estimated values of states and actions. Is this necessary? Suppose the bonus $\kappa \sqrt{\tau}$ was used not in updates, but solely in action selection. That is, suppose the action selected was always that for which $Q(S_t, a) + \kappa \sqrt{\tau(S_t, a)}$ was maximal. Carry out a gridworld experiment that tests and illustrates the strengths and weaknesses of this alternate approach.
+<span id="ex:8.4"></span>**Exercise 8.4 (programming)** The exploration bonus described above actually changes the estimated values of states and actions. Is this necessary? Suppose the bonus $\kappa \sqrt{\tau}$ was used not in updates, but solely in action selection. That is, suppose the action selected was always that for which $Q(S_t, a) + \kappa \sqrt{\tau(S_t, a)}$ was maximal. Carry out a gridworld experiment that tests and illustrates the strengths and weaknesses of this alternate approach.  
+[Comments](#ex-comment:8.4) on this exercise.
 
 **Exercise 8.5** How might the tabular Dyna-Q algorithm shown [above](#pseudocode-for-dynaq) be modified to handle stochastic environments? How might this modification perform poorly on changing environments such as considered in this section? How could the algorithm be modified to handle stochastic environments **and** changing environments?
 
+## Prioritised sweeping
+## Comments on Exercises
+
+<span id="ex-comment:8.4"></span>[**Exercise 8.4 (programming)**](#ex:8.4) 
+In the implementations below, four variants of DynaQ are put against each other. The environments are changed at step 3000.
+- Vanilla DynaQ
+- DynaQ+
+- DynaQ+ Selective, which only plans on visited states
+- DynaQ+ Action selection, which applies the exploration bonus when selecting an action.  
+
+<figure id="fig:1">
+  <img class="light figure-img"
+    src="programming_task/light_imgs/reg_shortcut.svg" 
+    alt="Variants of DynaQ on the shortcut problem.">
+  <img class="dark figure-img"
+    src="programming_task/dark_imgs/reg_shortcut.svg"
+    alt="Variants of DynaQ on the shortcut problem.">
+  <figcaption style="text-align:center;">
+    <strong>Figure 1:</strong> Variants of DynaQ on the <a href="#fig:shortcut">shortcut</a> problem. All runs used an exploration constant of $\kappa = 0.001.$ 
+  </figcaption>
+</figure>
+
+	In the first environment, DynaQ+ converged the fastest, while Action Bonus performed the best.
+
 [^1]: a backup operation is just an RL update
-    
