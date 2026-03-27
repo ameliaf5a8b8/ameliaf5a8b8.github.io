@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 
-class Gridworld:
+class Gridworld:    
     def __init__(self, device, no_runs, gridsize, start_state=(5, 3), goal_state=(0, 8)) -> None:
         self.device = device
         self.no_runs = no_runs
@@ -74,7 +74,6 @@ class Gridworld:
 
     def reset_all(self):
         self.state[:] = self.start_state
-
 
 class DynaQ:
     def __init__(self,device, no_runs, no_states, no_actions,env: Gridworld , alpha= 0.1, epsilon= 0.1,gamma = 0.95) -> None:
@@ -355,7 +354,7 @@ class DynaQ_plus_action_bonus:
 
         done = torch.zeros(self.no_runs, device=self.device, dtype=torch.bool)
 
-        for i in range(max_steps):
+        for i in tqdm(range(max_steps)):
             # Real experience
             state = self.env.get_processed_state()
             action = self._select_action(state)
@@ -404,11 +403,14 @@ class DynaQ_plus_action_bonus:
 gridsize = 6, 9
 no_states = gridsize[0] * gridsize[1]
 no_actions = 4
-max_steps = 3000
+max_steps_envA = 3000
 no_runs = 20
-planning_steps = 50
+max_steps_envA = 5000
+max_steps_envB = 5000
+planning_steps = 5
 device = "cuda" if torch.cuda.is_available() else "cpu"
-
+device = "cpu"
+print(device)
 
 env = Gridworld(device, no_runs, gridsize, goal_state=(0, 8))
 
@@ -420,60 +422,69 @@ def set_wall_a(env):
 def set_wall_b(env):
     env.reset_all()
     env.reset_wall()
-    env.wall[3, 0:8] = True
+    env.wall[3, 1:8] = True
 
 def run_and_plot(env, name):
     # DynaQ plus action bonus
     print("Working on: DynaQ plus action bonus")
     agent = DynaQ_plus_action_bonus(device,no_runs, no_states, no_actions, env, gamma=0.8)
     set_wall_a(agent.env)
-    dynaQ_plus_act_a = agent.train(max_steps, planning_steps)
+    dynaQ_plus_act_a = agent.train(max_steps_envA, planning_steps)
     set_wall_b(agent.env)
-    dynaQ_plus_act_b = agent.train(max_steps, planning_steps)
+    dynaQ_plus_act_b = agent.train(max_steps_envB, planning_steps)
 
     # DynaQ plus
     print("Working on: DynaQ plus")
     agent = DynaQ_plus(device,no_runs, no_states, no_actions, env, gamma=0.8)
     set_wall_a(agent.env)
-    dynaQ_plus_a = agent.train(max_steps, planning_steps)
+    dynaQ_plus_a = agent.train(max_steps_envA, planning_steps)
     set_wall_b(agent.env)
-    dynaQ_plus_b = agent.train(max_steps, planning_steps)
+    dynaQ_plus_b = agent.train(max_steps_envB, planning_steps)
 
     # DynaQ 
     print("Working on: DynaQ ")
     agent = DynaQ(device,no_runs, no_states, no_actions, env, gamma=0.8)
     set_wall_a(agent.env)
-    dynaQ_left_env_r = agent.train(max_steps, planning_steps)
+    dynaQ_left_env_r = agent.train(max_steps_envA, planning_steps)
     set_wall_b(agent.env)
-    dynaQ_right_env_r = agent.train(max_steps, planning_steps)
+    dynaQ_right_env_r = agent.train(max_steps_envB, planning_steps)
 
     # DynaQ plus selective
     print("Working on: DynaQ plus selective")
     agent = DynaQ_plus_selective_sample(device,no_runs, no_states, no_actions, env, gamma=0.8)
     set_wall_a(agent.env)
-    dynaQ_plus_left_env_r = agent.train(max_steps, planning_steps)
+    dynaQ_plus_left_env_r = agent.train(max_steps_envA, planning_steps)
     set_wall_b(agent.env)
-    dynaQ_plus_right_env_r = agent.train(max_steps, planning_steps)
+    dynaQ_plus_right_env_r = agent.train(max_steps_envB, planning_steps)
+
+
+    styles = [('default', 'light_imgs'), ('dark_background', 'dark_imgs')]
+        
+    for i, (style, folder) in enumerate(styles):
+        plt.style.use(style)
+        plt.figure(figsize=(12, 4.5))
+        
+        # Plotting logic
+        plt.plot(torch.concat((dynaQ_left_env_r,dynaQ_right_env_r + dynaQ_left_env_r[-1])).cpu(), label="DynaQ")
+        plt.plot(torch.concat((dynaQ_plus_left_env_r,dynaQ_plus_right_env_r + dynaQ_plus_left_env_r[-1])).cpu(), label="DynaQ+ Selective")
+        plt.plot(torch.concat((dynaQ_plus_a,dynaQ_plus_b + dynaQ_plus_a[-1])).cpu(), label="DynaQ+")
+        plt.plot(torch.concat((dynaQ_plus_act_a,dynaQ_plus_act_b + dynaQ_plus_act_a[-1])).cpu(), label="DynaQ+ Action Bonus")
+        
+        plt.xlabel("Steps", fontsize=18)
+        plt.ylabel("Cumulative Reward", fontsize=18)
+        plt.legend(fontsize=16)
+        
+        save_path = f"content/posts/Reinforcement Learning/Planning and learning/programming_task/{folder}/{name}.svg"
+        plt.savefig(save_path, bbox_inches="tight", transparent=True)
+
+        if i == len(styles) -1:
+            plt.show()
+
+        plt.close() # Close after saving each version
 
 
 
-    plt.figure(figsize=(12,4.5))
-    plt.xlabel("Steps", fontsize=18)
-    plt.ylabel("Cumulative Reward", fontsize=18)
-    plt.plot(torch.concat((dynaQ_left_env_r,dynaQ_right_env_r + dynaQ_left_env_r[-1])).cpu(), label="DynaQ")
-    plt.plot(torch.concat((dynaQ_plus_left_env_r,dynaQ_plus_right_env_r + dynaQ_plus_left_env_r[-1])).cpu(), label="DynaQ+ Selective")
-    plt.plot(torch.concat((dynaQ_plus_a,dynaQ_plus_b + dynaQ_plus_a[-1])).cpu(), label="DynaQ+")
-    plt.plot(torch.concat((dynaQ_plus_act_a,dynaQ_plus_act_b + dynaQ_plus_act_a[-1])).cpu(), label="DynaQ+ Action Bonus")
-    plt.legend(fontsize=16)
-
-    plt.savefig(f"content/posts/Reinforcement Learning/Planning and learning/programming_task/light_imgs/{name}.svg", bbox_inches="tight", transparent= True)
-    plt.style.use('dark_background')
-    plt.savefig(f"content/posts/Reinforcement Learning/Planning and learning/programming_task/dark_imgs/{name}.svg", bbox_inches="tight", transparent= True)
-
-    plt.show()
 
 
-
-
-run_and_plot(env, "blocking_avg_reward")
+run_and_plot(env, "less_planning")
 

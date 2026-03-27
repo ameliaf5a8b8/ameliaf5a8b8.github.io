@@ -2,7 +2,7 @@
 
 the `state space` is a grid of 6 by 9.
 so, a state is a, b, where  a is 0 - 5 and b is 0 - 8
-state =-> Discrete(2)
+state => Discrete(2)
 
 has methods
 - `env.reset`
