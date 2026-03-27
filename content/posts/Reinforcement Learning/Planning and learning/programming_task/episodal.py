@@ -84,46 +84,50 @@ class DynaQ:
         mask = np.random.rand() < self.epsilon
         return np.where(mask, random_actions, greedy_actions)
 
-    def train(self, max_steps, planning_steps, env: Gridworld):
-        cumulative_reward = []
+    def train(self, episodes, planning_steps, env: Gridworld):
+        cumulative_reward = np.zeros(episodes, dtype=np.float64)
+        for i in tqdm(range(episodes)):
+            done = False
+            env.reset()
+            if i > 0:
+                cumulative_reward[i] = cumulative_reward[i - 1]
 
-        for no_steps in tqdm(range(max_steps)):
-            # Real experience
-            state = env.get_processed_state()
-            action = self._select_action(state)
-            next_state, reward, done = env.step(action)
+            no_steps = 0
+            while not done:
+                no_steps += 1
+                state = env.get_processed_state()
+                action = self._select_action(state)
+                next_state, reward, done = env.step(action)
 
-            td_target = reward + self.gamma * self.Q[next_state].max(axis=-1) * (1 - int(done))
-            td_error = td_target - self.Q[state, action]
-            self.Q[state, action] += self.alpha * td_error
+                td_target = reward + self.gamma * self.Q[next_state].max(axis=-1) * (1 - int(done))
+                td_error = td_target - self.Q[state, action]
+                self.Q[state, action] += self.alpha * td_error
 
+                cumulative_reward[i] += reward * (self.gamma ** no_steps)
 
-            # Model learning
-            self.model[state, action] = np.stack((next_state, reward))
-            self.visited.add((int(state), int(action)))
+                # Planning
+                self.model[state, action] = np.stack((next_state, reward))
 
-            # Planning
-            visited_entries = tuple(self.visited)
-            sample_indices = np.random.randint(0, len(visited_entries), size=planning_steps)
-            sampled_entries = np.array([visited_entries[idx] for idx in sample_indices], dtype=np.int64)
-            sampled_states = sampled_entries[:, 0]
-            sampled_actions = sampled_entries[:, 1]
+                self.visited.add((int(state), int(action)))
 
-            transition_entry = self.model[sampled_states, sampled_actions]
-            planned_next_state = transition_entry[..., 0]
-            planned_reward = transition_entry[..., 1]
+                visited_entries = tuple(self.visited)
+                sample_indices = np.random.randint(0, len(visited_entries), size=planning_steps)
+                sampled_entries = np.array([visited_entries[idx] for idx in sample_indices], dtype=np.int64)
+                sampled_states = sampled_entries[:, 0]
+                sampled_actions = sampled_entries[:, 1]
 
-            planned_td_target = planned_reward + self.gamma * self.Q[planned_next_state].max(axis=-1)
-            planned_td_error = planned_td_target - self.Q[sampled_states, sampled_actions]
-            self.Q[sampled_states, sampled_actions] += self.alpha * planned_td_error
+                transition_entry = self.model[sampled_states, sampled_actions]
 
-            prev = cumulative_reward[-1] if cumulative_reward else 0
-            cumulative_reward.append(prev + reward)
+                # similar to unbind in torch
+                planned_next_state = transition_entry[..., 0]
+                planned_reward = transition_entry[..., 1]
 
-            if done:
-                env.reset()
+                planned_td_target = planned_reward + self.gamma * self.Q[planned_next_state].max(axis=-1)
+                planned_td_error = planned_td_target - self.Q[sampled_states, sampled_actions]
+                self.Q[sampled_states, sampled_actions] += self.alpha * planned_td_error
 
-        return np.array(cumulative_reward)
+        return cumulative_reward
+
 
     def reset(self):
         self.Q = np.zeros_like(self.Q)
@@ -133,25 +137,29 @@ class DynaQ:
 gridsize = 6, 9
 no_states = gridsize[0] * gridsize[1]
 no_actions = 4
-max_steps = 6000
+no_episodes = 100
 planning_steps = 5
 
 env = Gridworld(gridsize)
+
+
 env.wall[3, 1:9] = True
-
+print(env.wall)
 agent = DynaQ(no_states, no_actions, gamma=0.8)
-left_env_reward = agent.train(max_steps, planning_steps, env)
+
+left_env_reward = agent.train(no_episodes, planning_steps, env)
 
 
-env = Gridworld(gridsize)
+env.wall[:] = False
 env.wall[3, 1:8] = True
+print(env.wall)
 agent.reset()
-right_env_reward = agent.train(max_steps, planning_steps, env)
+right_env_reward = agent.train(no_episodes, planning_steps, env)
 
 
 
 
 plt.plot(np.concat((left_env_reward,right_env_reward + left_env_reward[-1])))
-plt.xlabel("Steps")
+plt.xlabel("Episodes")
 plt.ylabel("Cummulative Reward")
 plt.show()

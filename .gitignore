@@ -19,3 +19,4 @@ Thumbs.db
 content/.obsidian/
 .obsidian/
 
+__pycache__/
