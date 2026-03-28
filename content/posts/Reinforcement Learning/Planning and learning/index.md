@@ -7,7 +7,9 @@ categories: ["Machine Learning", "Reinforcement Learning",Action-Value]
 math: true
 summary:
 ---
-
+<div class="info-box">
+This post contains heavy graphics. It may take a while to load.
+</div>
 <div class="info-box">
 This is a long term WIP. Information may not be accurate.
 </div>
@@ -108,24 +110,25 @@ The exploration bonus is applied to all unvisited transitions, inducing the agen
 ## Comments on Exercises
 
 <span id="ex-comment:8.4"></span>[**Exercise 8.4 (programming)**](#ex:8.4) 
-In the implementations below, four variants of DynaQ are put against each other. The environments are changed at step 3000.
-- Vanilla DynaQ
+In the implementations below, four variants of DynaQ are put against each other. The environments are changed at step 6000.
+- DynaQ
 - DynaQ+
 - DynaQ+ Selective, which only plans on visited states
 - DynaQ+ Action selection, which applies the exploration bonus when selecting an action.  
 
-<figure id="fig:1">
-  <img class="light figure-img"
-    src="programming_task/light_imgs/reg_shortcut.svg" 
-    alt="Variants of DynaQ on the shortcut problem.">
-  <img class="dark figure-img"
-    src="programming_task/dark_imgs/reg_shortcut.svg"
-    alt="Variants of DynaQ on the shortcut problem.">
+
+
+
+<figure id="fig:planning_plot">
+  <div class="light figure-img">
+    {{< plotly src="/images/reinforcement-learning/planning-and-learning/light_imgs/planning_plot.html" height="500" >}}
+  </div>
+  <div class="dark figure-img">
+    {{< plotly src="/images/reinforcement-learning/planning-and-learning/dark_imgs/planning_plot.html" height="500" >}}
+  </div>
   <figcaption style="text-align:center;">
     <strong>Figure 1:</strong> Variants of DynaQ on the <a href="#fig:shortcut">shortcut</a> problem. All runs used an exploration constant of $\kappa = 0.001.$ 
   </figcaption>
 </figure>
-
-	In the first environment, DynaQ+ converged the fastest, while Action Bonus performed the best.
 
 [^1]: a backup operation is just an RL update

@@ -1,9 +1,9 @@
-[data-theme="dark"] img.light,
+[data-theme="dark"] .light,
 [data-theme="dark"] div.light.warning-box{
   display: none !important;
 }
 
-[data-theme="light"] img.dark,
+[data-theme="light"] .dark,
 [data-theme="light"]  div.dark.warning-box{
   display: none !important;
 }
