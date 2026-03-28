@@ -3,6 +3,7 @@ from algorithms import Gridworld, DynaQ, DynaQ_plus, DynaQ_plus_action_bonus, Dy
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import pickle
+import multiprocessing as mp
 
 gridsize = 6, 9
 no_states = gridsize[0] * gridsize[1]
@@ -31,9 +32,9 @@ algorithms = {"DynaQ" : DynaQ,
               "DynaQ+" : DynaQ_plus, 
               "DynaQ+ Action Bonus" : DynaQ_plus_action_bonus}
 
-def run_algorithms(algorithms, planning_steps=50,kappa, max_steps_envA= 5000,max_steps_envB= 5000):
+def run_algorithms(algorithms, planning_steps,kappa, max_steps_envA,max_steps_envB):
     results = {}
-    for name, algorithm in tqdm(algorithms.items(), leave=False, desc="Running Algorithms"):
+    for name, algorithm in algorithms.items():
         env.reset()
         agent = algorithm(device,no_runs, no_states, no_actions, env, kappa = kappa, gamma=0.8)
         set_wall_a(agent.env)
@@ -45,11 +46,54 @@ def run_algorithms(algorithms, planning_steps=50,kappa, max_steps_envA= 5000,max
 
     return results
 
-def run_planning_study(start=1, stop=50, step= 1,kappa= 0.001, algorithms= algorithms, max_steps_envA = max_steps_envA, max_steps_envB=max_steps_envB):
+def _run_planning_step(args):
+    planning_steps, algorithms, kappa, max_steps_envA, max_steps_envB = args
+    results = run_algorithms(algorithms, planning_steps, kappa, max_steps_envA, max_steps_envB)
+    return planning_steps, results
+
+def run_kappa_study(start=0.0001, stop=0.001, step=0.0001,
+                        planning_steps=50, algorithms=algorithms,
+                        max_steps_envA=max_steps_envA, max_steps_envB=max_steps_envB,
+                        processes=None):
+    kappa_values = []
+    v = start
+    while v <= stop:
+        kappa_values.append(round(v, 10))
+        v = round(v + step, 10)
+
+    tasks = [
+        (planning_steps, algorithms, kappa, max_steps_envA, max_steps_envB)
+        for kappa in kappa_values
+    ]
+
     data = {}
-    for planning_steps in tqdm(range(start, stop, step), desc="Iter over planning steps"):
-        results = run_algorithms(algorithms,planning_steps,kappa, max_steps_envA, max_steps_envB)
-        data[planning_steps] = results
+    with mp.Pool(processes=processes) as pool:
+        for kappa, results in tqdm(
+            pool.imap_unordered(_run_planning_step, tasks),
+            total=len(tasks),
+            desc="Iter over kappa values",
+        ):
+            data[kappa] = results
+
+    return dict(sorted(data.items()))
+
+def run_planning_study(start=1, stop=50, step= 1,kappa= 0.001, algorithms= algorithms, max_steps_envA = max_steps_envA, max_steps_envB=max_steps_envB, processes=None):
+    planning_range = list(range(start, stop, step))
+    tasks = [
+        (planning_steps, algorithms, kappa, max_steps_envA, max_steps_envB)
+        for planning_steps in planning_range
+    ]
+    data = {}
+
+    with mp.Pool(processes=processes) as pool:
+        for planning_steps, results in tqdm(
+            pool.imap_unordered(_run_planning_step, tasks),
+            total=len(tasks),
+            desc="Iter over planning steps",
+        ):
+            data[planning_steps] = results
+
+    data = dict(sorted(data.items()))
     return data
 
 def plot(results, filename=None, show= True):
@@ -76,8 +120,8 @@ def plot(results, filename=None, show= True):
 
         plt.close() 
 
-# dataA = run_planning_study(stop=21, max_steps_envA=6000,max_steps_envB = 6000)
-data = run_planning_study(start=1, stop=6, kappa= 0.0005, max_steps_envA=6000,max_steps_envB = 6000)
-# data = dataA | dataB
-with open('content/posts/Reinforcement Learning/Planning and learning/programming_task/low_kappa.pickle', 'wb') as f:
-    pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+if __name__ == "__main__":
+    # data = run_planning_study(start=1, stop=6, kappa= 0.0005, max_steps_envA=6000,max_steps_envB = 6000, processes=5)
+    data = run_kappa_study(start=0.0001, stop=0.001, step=0.0001, planning_steps=1, max_steps_envA=6000,max_steps_envB = 6000, processes=5)
+    with open('content/posts/Reinforcement Learning/Planning and learning/programming_task/low_kappa.pickle', 'wb') as f:
+        pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
