@@ -17,7 +17,7 @@ This is a long term WIP. Information may not be accurate.
 # State-space and Plan-space planning
 
 ## Plan-space planning
-In plan-space planning, planning is a search through the space of plans.
+	In plan-space planning, planning is a search through the space of plans.
 
 Examples of such methods include
 - policy gradient
