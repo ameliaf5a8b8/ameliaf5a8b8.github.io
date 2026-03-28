@@ -74,7 +74,7 @@ class Gridworld:
         self.state[:] = self.start_state
 
 class DynaQ:
-    def __init__(self,device, no_runs, no_states, no_actions,env: Gridworld , alpha= 0.1, epsilon= 0.1,gamma = 0.95) -> None:
+    def __init__(self,device, no_runs, no_states, no_actions,env: Gridworld ,kappa=0.001, alpha= 0.1, epsilon= 0.1,gamma = 0.95) -> None:
         self.device = device
         self.no_runs = no_runs
         self.runs = torch.arange(no_runs, device=self.device)

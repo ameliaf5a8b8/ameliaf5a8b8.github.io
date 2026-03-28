@@ -94,7 +94,7 @@ def interactive_plot(data):
     plt.show()
 
 
-with open("6k step switch.pickle", "rb") as f:
+with open("low_kappa.pickle", "rb") as f:
     data = pickle.load(f)
-
+plt.style.use("dark_background")
 interactive_plot(data)

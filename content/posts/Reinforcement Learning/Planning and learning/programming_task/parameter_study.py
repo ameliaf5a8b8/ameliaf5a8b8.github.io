@@ -31,11 +31,11 @@ algorithms = {"DynaQ" : DynaQ,
               "DynaQ+" : DynaQ_plus, 
               "DynaQ+ Action Bonus" : DynaQ_plus_action_bonus}
 
-def run_algorithms(algorithms, planning_steps=50, max_steps_envA= 5000,max_steps_envB= 5000):
+def run_algorithms(algorithms, planning_steps=50,kappa, max_steps_envA= 5000,max_steps_envB= 5000):
     results = {}
     for name, algorithm in tqdm(algorithms.items(), leave=False, desc="Running Algorithms"):
         env.reset()
-        agent = algorithm(device,no_runs, no_states, no_actions, env, gamma=0.8)
+        agent = algorithm(device,no_runs, no_states, no_actions, env, kappa = kappa, gamma=0.8)
         set_wall_a(agent.env)
         left = agent.train(max_steps_envA, planning_steps)
         set_wall_b(agent.env)
@@ -45,10 +45,10 @@ def run_algorithms(algorithms, planning_steps=50, max_steps_envA= 5000,max_steps
 
     return results
 
-def run_planning_study(start=1, stop=50, step= 1, algorithms= algorithms, max_steps_envA = max_steps_envA, max_steps_envB=max_steps_envB):
+def run_planning_study(start=1, stop=50, step= 1,kappa= 0.001, algorithms= algorithms, max_steps_envA = max_steps_envA, max_steps_envB=max_steps_envB):
     data = {}
     for planning_steps in tqdm(range(start, stop, step), desc="Iter over planning steps"):
-        results = run_algorithms(algorithms,planning_steps, max_steps_envA, max_steps_envB)
+        results = run_algorithms(algorithms,planning_steps,kappa, max_steps_envA, max_steps_envB)
         data[planning_steps] = results
     return data
 
@@ -77,7 +77,7 @@ def plot(results, filename=None, show= True):
         plt.close() 
 
 # dataA = run_planning_study(stop=21, max_steps_envA=6000,max_steps_envB = 6000)
-data = run_planning_study(start=21, stop=51, max_steps_envA=6000,max_steps_envB = 6000)
+data = run_planning_study(start=1, stop=6, kappa= 0.0005, max_steps_envA=6000,max_steps_envB = 6000)
 # data = dataA | dataB
-with open('content/posts/Reinforcement Learning/Planning and learning/programming_task/data1.pickle', 'wb') as f:
+with open('content/posts/Reinforcement Learning/Planning and learning/programming_task/low_kappa.pickle', 'wb') as f:
     pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
