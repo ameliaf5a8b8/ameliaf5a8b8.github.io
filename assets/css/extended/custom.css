@@ -63,6 +63,26 @@ html {
   margin: auto;
 }
 
+.plotly-embed {
+  width: 100%;
+  overflow: hidden;
+  border: 0;
+  line-height: 0;
+}
+
+.plotly-embed iframe {
+  display: block;
+  border: 0;
+}
+
+.plotly-embed-light {
+  background: transparent;
+}
+
+.plotly-embed-dark {
+  background: #1d1e20;
+}
+
 .section-header {
   margin-top: 2rem;
   margin-bottom: 1rem;
