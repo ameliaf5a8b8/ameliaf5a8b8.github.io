@@ -1,9 +1,9 @@
-[data-theme="dark"] img.light,
+[data-theme="dark"] .light,
 [data-theme="dark"] div.light.warning-box{
   display: none !important;
 }
 
-[data-theme="light"] img.dark,
+[data-theme="light"] .dark,
 [data-theme="light"]  div.dark.warning-box{
   display: none !important;
 }
@@ -61,6 +61,26 @@ html {
   width: 100%;
   display: block;
   margin: auto;
+}
+
+.plotly-embed {
+  width: 100%;
+  overflow: hidden;
+  border: 0;
+  line-height: 0;
+}
+
+.plotly-embed iframe {
+  display: block;
+  border: 0;
+}
+
+.plotly-embed-light {
+  background: transparent;
+}
+
+.plotly-embed-dark {
+  background: #1d1e20;
 }
 
 .section-header {

@@ -1,0 +1,94 @@
+{{- $src := .Get "src" -}}
+{{- $resolvedSrc := $src -}}
+{{- with .Page.Resources.GetMatch $src -}}
+  {{- $resolvedSrc = .RelPermalink -}}
+{{- end -}}
+{{- $iframeID := printf "plotly-iframe-%s" (md5 $resolvedSrc) -}}
+
+<div class='plotly-embed {{ if in $resolvedSrc "/dark_imgs/" }}plotly-embed-dark{{ else }}plotly-embed-light{{ end }}'>
+  <iframe
+    id='{{ $iframeID }}'
+    src='{{ $resolvedSrc | safeURL }}'
+    width="100%" 
+    height='{{ .Get "height" | default "500" }}'
+    frameborder="0"
+    tabindex="0"
+    scrolling="no"
+    style="border: 0; display: block; background: transparent;">
+  </iframe>
+</div>
+<script>
+  (function () {
+    const iframe = document.getElementById('{{ $iframeID }}');
+    if (!iframe) return;
+
+    let hovered = false;
+
+    function stepEmbeddedPlot(direction) {
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (!iframeDoc) return false;
+
+      const plot = iframeDoc.querySelector('.plotly-graph-div');
+      const plotly = iframe.contentWindow?.Plotly;
+      const slider = plot?._fullLayout?.sliders?.[0];
+      const steps = slider?.steps || [];
+
+      if (!plot || !plotly || !steps.length) {
+        return false;
+      }
+
+      const currentIndex = slider.active || 0;
+      const nextIndex = Math.max(0, Math.min(steps.length - 1, currentIndex + direction));
+      if (nextIndex === currentIndex) {
+        return true;
+      }
+
+      const frameName = steps[nextIndex].label;
+      slider.active = nextIndex;
+      plotly.relayout(plot, { 'sliders[0].active': nextIndex });
+      plotly.animate(plot, [frameName], {
+        frame: { duration: 0, redraw: true },
+        mode: 'immediate',
+        fromcurrent: true,
+        transition: { duration: 0 },
+      });
+
+      return true;
+    }
+
+    iframe.addEventListener('mouseenter', function () {
+      hovered = true;
+    });
+
+    iframe.addEventListener('mouseleave', function () {
+      hovered = false;
+    });
+
+    iframe.addEventListener('click', function () {
+      iframe.focus();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') {
+        return;
+      }
+
+      const isFocused = document.activeElement === iframe;
+      if (!hovered && !isFocused) {
+        return;
+      }
+
+      const direction = event.key === 'ArrowRight' ? 1 : -1;
+      if (!stepEmbeddedPlot(direction)) {
+        iframe.contentWindow?.postMessage(
+          {
+            type: 'plotly-slider-step',
+            direction,
+          },
+          '*'
+        );
+      }
+      event.preventDefault();
+    });
+  })();
+</script>
