@@ -106,8 +106,6 @@ class DynaQ:
         done = torch.zeros(self.no_runs, device=self.device, dtype=torch.bool)
 
         for i in tqdm(range(max_steps), leave=False, desc="DynaQ"):
-
-
             # Real experience
             state = self.env.get_processed_state()
             action = self._select_action(state)
@@ -270,7 +268,6 @@ class DynaQ_plus:
         done = torch.zeros(self.no_runs, device=self.device, dtype=torch.bool)
 
         for i in tqdm(range(max_steps), leave=False, desc="DynaQ_plus"):
-
             # Real experience
             state = self.env.get_processed_state()
             action = self._select_action(state)
