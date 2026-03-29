@@ -64,15 +64,38 @@ html {
 }
 
 .plotly-embed {
+  position: relative;
   width: 100%;
   overflow: hidden;
   border: 0;
-  line-height: 0;
+  line-height: normal;
 }
 
 .plotly-embed iframe {
   display: block;
   border: 0;
+}
+
+.plotly-loading-message {
+  display: none;
+  padding: 0.85rem 1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.plotly-embed[data-plotly-loading="true"] .plotly-loading-message {
+  display: block;
+}
+
+.plotly-embed-light .plotly-loading-message {
+  background: #f5f7fb;
+  color: #4a5568;
+}
+
+.plotly-embed-dark .plotly-loading-message {
+  background: #2a2c31;
+  color: #d7dce5;
 }
 
 .plotly-embed-light {

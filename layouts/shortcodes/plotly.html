@@ -5,7 +5,10 @@
 {{- end -}}
 {{- $iframeID := printf "plotly-iframe-%s" (md5 $resolvedSrc) -}}
 
-<div class='plotly-embed {{ if in $resolvedSrc "/dark_imgs/" }}plotly-embed-dark{{ else }}plotly-embed-light{{ end }}'>
+<div class='plotly-embed {{ if in $resolvedSrc "/dark_imgs/" }}plotly-embed-dark{{ else }}plotly-embed-light{{ end }}' data-plotly-loading="true">
+  <div class="plotly-loading-message" aria-live="polite">
+    This graph may take a few seconds to load.
+  </div>
   <iframe
     id='{{ $iframeID }}'
     src='{{ $resolvedSrc | safeURL }}'
@@ -20,9 +23,18 @@
 <script>
   (function () {
     const iframe = document.getElementById('{{ $iframeID }}');
+    const embed = iframe?.closest('.plotly-embed');
     if (!iframe) return;
 
     let hovered = false;
+
+    function markLoaded() {
+      embed?.setAttribute('data-plotly-loading', 'false');
+    }
+
+    iframe.addEventListener('load', function () {
+      window.setTimeout(markLoaded, 150);
+    });
 
     function stepEmbeddedPlot(direction) {
       const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
