@@ -47,9 +47,9 @@ The order of performance seems to be
 
 $$\text{DynaQ > Action Bonus > DynaQ+ >> DynaQ+ Selective}$$
 
-DynaQ+ Selective performs much worse than other variants. As it only samples from visited states, the bonus only propagates within seen states, paradoxically, reducing the exploration.
+DynaQ+ Selective performs much worse than other variants. As it only samples from visited states, the bonus only propagates within seen states, paradoxically, reducing exploration.
 
-DynaQ+ Action Bonus does not suffer from the same problem, despite having the same sampling pattern. The bonus is applied during action-selection, which encourages the agent explore, causing it to converge quickly.
+DynaQ+ Action Bonus does not suffer from the same problem, despite having the same sampling pattern. The bonus is applied during action-selection, which encourages the agent to explore, causing it to converge quickly.
 
 DynaQ+ also performs well. It samples from all states during planning, causing action-values to accumulate in unseen states. These high values attract the agent, leading to increased exploration.
 
