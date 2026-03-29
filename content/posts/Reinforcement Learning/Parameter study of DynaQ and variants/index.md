@@ -41,15 +41,15 @@ Four variants of DynaQ are put against each other in the [shortcut maze]({{< ref
        alt="Heat map of kappa against planning steps, across DynaQ variants.">
 
   <figcaption style="text-align:center;">
-    <strong>Figure 2:</strong> Heat map of kappa against planning steps, across DynaQ variants. </figcaption>
+    <strong>Figure 2:</strong> Heat map of kappa against planning steps, with ties broken arbitrarity, across DynaQ variants. </figcaption>
 </figure>
 The order of performance seems to be
 
 $$\text{DynaQ > Action Bonus > DynaQ+ >> DynaQ+ Selective}$$
 
-DynaQ+ Selective performs much worse than other variants. As it only samples from visited states, the bonus only propagates within seen states, paradoxically, reducing the exploration.
+DynaQ+ Selective performs much worse than other variants. As it only samples from visited states, the bonus only propagates within seen states, paradoxically, reducing exploration.
 
-DynaQ+ Action Bonus does not suffer from the same problem, despite having the same sampling pattern. The bonus is applied during action-selection, which encourages the agent explore, causing it to converge quickly.
+DynaQ+ Action Bonus does not suffer from the same problem, despite having the same sampling pattern. The bonus is applied during action-selection, which encourages the agent to explore, causing it to converge quickly.
 
 DynaQ+ also performs well. It samples from all states during planning, causing action-values to accumulate in unseen states. These high values attract the agent, leading to increased exploration.
 
@@ -73,7 +73,7 @@ But, there's also a difference in performance between DynaQ+ Action Bonus and Dy
        alt="Heat map of kappa against planning steps, across DynaQ variants.">
 
   <figcaption style="text-align:center;">
-    <strong>Figure 3:</strong> Heat map of kappa against planning steps, across DynaQ variants. </figcaption>
+    <strong>Figure 3:</strong> Heat map of kappa against planning steps, with ties broken arbitrarity, across DynaQ variants. </figcaption>
 </figure>
 The order of performance seems to be
 
