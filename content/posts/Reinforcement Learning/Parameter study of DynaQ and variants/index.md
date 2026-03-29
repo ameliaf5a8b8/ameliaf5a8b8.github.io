@@ -15,7 +15,7 @@ Four variants of DynaQ are put against each other in the [shortcut maze]({{< ref
 - DynaQ
 - DynaQ+, which plans on all states.
 - DynaQ+ Selective, which only plans on visited states
-- DynaQ+ Action selection, which applies the exploration bonus when selecting an action.  It also only plans on visited states.
+- DynaQ+ Action selection, which applies the exploration bonus when selecting an action. It also only plans on visited states.
 
  <figure id="fig:planning_plot">
   <div class="light figure-img">
@@ -25,7 +25,7 @@ Four variants of DynaQ are put against each other in the [shortcut maze]({{< ref
     {{< plotly src="/images/reinforcement-learning/planning-and-learning/dark_imgs/planning_plot.html" height="500" >}}
   </div>
   <figcaption style="text-align:center;">
-    <strong>Figure 1:</strong> Variants of DynaQ on the <a href="#fig:shortcut">shortcut</a> problem. All runs used an exploration constant of $\kappa = 0.001.$ 
+    <strong>Figure 1:</strong> Variants of DynaQ on the <a href="#fig:shortcut">shortcut</a> problem. All runs used an exploration constant of $\kappa = 0.001$. Note that ties were <strong>not</strong> broken arbitrarily in the simulation above, which resulted in increased exploration for all non-vanilla variants.  
   </figcaption>
 </figure> 
 
