@@ -119,7 +119,7 @@ In the implementations below, four variants of DynaQ are put against each other.
 
 
 
-<figure id="fig:planning_plot">
+ <!-- <figure id="fig:planning_plot">
   <div class="light figure-img">
     {{< plotly src="/images/reinforcement-learning/planning-and-learning/light_imgs/planning_plot.html" height="500" >}}
   </div>
@@ -129,6 +129,10 @@ In the implementations below, four variants of DynaQ are put against each other.
   <figcaption style="text-align:center;">
     <strong>Figure 1:</strong> Variants of DynaQ on the <a href="#fig:shortcut">shortcut</a> problem. All runs used an exploration constant of $\kappa = 0.001.$ 
   </figcaption>
-</figure>
+</figure>   -->
+
+
+
+### Stationary case
 
 [^1]: a backup operation is just an RL update

@@ -15,6 +15,11 @@ def _as_param_tensor(value, no_params, device, dtype):
     return tensor
 
 
+def _argmax_with_random_tie_break(values):
+    noise = torch.rand_like(values) * torch.finfo(values.dtype).eps
+    return (values + noise).argmax(dim=-1)
+
+
 class Gridworld:
     def __init__(
         self,
@@ -123,7 +128,9 @@ class _BaseDynaQ:
             (self.no_params, self.no_runs),
             device=self.device,
         )
-        greedy_actions = self.Q[self.param_idx, self.run_idx, state].argmax(dim=-1)
+        greedy_actions = _argmax_with_random_tie_break(
+            self.Q[self.param_idx, self.run_idx, state]
+        )
         mask = torch.rand(self.no_params, self.no_runs, device=self.device) < self.epsilon
         return torch.where(mask, random_actions, greedy_actions)
 
@@ -431,7 +438,8 @@ class DynaQ_plus_action_bonus(_BaseDynaQ):
             device=self.device,
         )
         action_bonus = self.kappa * self.tau[self.param_idx, self.run_idx, state].sqrt()
-        greedy_actions = (self.Q[self.param_idx, self.run_idx, state] + action_bonus).argmax(dim=-1)
+        greedy_values = self.Q[self.param_idx, self.run_idx, state] + action_bonus
+        greedy_actions = _argmax_with_random_tie_break(greedy_values)
         mask = torch.rand(self.no_params, self.no_runs, device=self.device) < self.epsilon
         return torch.where(mask, random_actions, greedy_actions)
 

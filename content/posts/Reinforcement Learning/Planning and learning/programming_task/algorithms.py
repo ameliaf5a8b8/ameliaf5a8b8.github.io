@@ -2,6 +2,11 @@ import torch
 from tqdm import tqdm
 
 
+def _argmax_with_random_tie_break(values):
+    noise = torch.rand_like(values) * * values.abs().max() * torch.finfo(values.dtype).eps
+    return (values + noise).argmax(dim=-1)
+
+
 class Gridworld:    
     def __init__(self, device, no_runs, gridsize, start_state=(5, 3), goal_state=(0, 8)) -> None:
         self.device = device
@@ -94,7 +99,7 @@ class DynaQ:
 
     def _select_action(self, state):
         random_actions = torch.randint(0, self.no_actions, (self.no_runs,), device=self.device)
-        greedy_actions = self.Q[self.runs, state].argmax(dim=-1)
+        greedy_actions = _argmax_with_random_tie_break(self.Q[self.runs, state])
         mask = torch.rand(self.no_runs, device=self.device) < self.epsilon
         return torch.where(mask, random_actions, greedy_actions)
 
@@ -170,7 +175,7 @@ class DynaQ_plus_selective_sample:
 
     def _select_action(self, state):
         random_actions = torch.randint(0, self.no_actions, (self.no_runs,), device=self.device)
-        greedy_actions = self.Q[self.runs, state].argmax(dim=-1)
+        greedy_actions = _argmax_with_random_tie_break(self.Q[self.runs, state])
         mask = torch.rand(self.no_runs, device=self.device) < self.epsilon
         return torch.where(mask, random_actions, greedy_actions)
 
@@ -257,7 +262,7 @@ class DynaQ_plus:
 
     def _select_action(self, state):
         random_actions = torch.randint(0, self.no_actions, (self.no_runs,), device=self.device)
-        greedy_actions = self.Q[self.runs, state].argmax(dim=-1)
+        greedy_actions = _argmax_with_random_tie_break(self.Q[self.runs, state])
         mask = torch.rand(self.no_runs, device=self.device) < self.epsilon
         return torch.where(mask, random_actions, greedy_actions)
 
@@ -339,7 +344,8 @@ class DynaQ_plus_action_bonus:
 
     def _select_action(self, state):
         random_actions = torch.randint(0, self.no_actions, (self.no_runs,), device=self.device)
-        greedy_actions = (self.Q[self.runs, state] + self.kappa *  self.tau[self.runs, state].sqrt()).argmax(dim=-1)
+        greedy_values = self.Q[self.runs, state] + self.kappa *  self.tau[self.runs, state].sqrt()
+        greedy_actions = _argmax_with_random_tie_break(greedy_values)
         mask = torch.rand(self.no_runs, device=self.device) < self.epsilon
         return torch.where(mask, random_actions, greedy_actions)
     def train(self, max_steps,planning_steps):
