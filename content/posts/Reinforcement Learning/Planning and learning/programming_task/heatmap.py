@@ -1,11 +1,9 @@
 import pickle
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 import torch
 import os
 
-os.chdir("content/posts/Reinforcement Learning/Planning and learning/programming_task/data")
 
 
 def plot_heatmaps_new(pickle_path):
@@ -159,14 +157,18 @@ def plot_heatmaps(pickle_path, kappa_values):
     return fig_left, fig_right, fig_cum
 
 if __name__ == "__main__":
+    os.chdir("content/posts/Reinforcement Learning/Planning and learning/programming_task/data")
+
 
 
     plt.style.use('dark_background')
     
     # filename = "kappa_planning_study_logspace_q+_vs_action_bonus"
     # kappa_values = torch.logspace(-20,-7,  1000)
-    # filename = "kappa_planning_study_logspace_planning_1_to_25_6000"
-    # kappa_values = torch.logspace(-4, 0, 1000)
+    filename = "kappa_planning_study_logspace_planning_1_to_25_6000.pickle"
+    kappa_values = torch.logspace(-4, 0, 1000)
+
+    plot_heatmaps(filename, kappa_values)
 
     # kappa_values = torch.logspace(-40, -20, 2000)
     # filename = "ultra_low_kappa"
@@ -177,6 +179,8 @@ if __name__ == "__main__":
 
 
     plot_heatmaps_new("arbitrary_tie_breaking.pickle")
+
+    plot_heatmaps_new("low_kappa_arbitrary_tie_breaking.pickle")
 
     # fig_left.savefig("dark_imgs/heatmap_ext_envA.svg", bbox_inches="tight", transparent=True)
     # if fig_right is not None:
