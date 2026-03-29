@@ -41,7 +41,7 @@ Four variants of DynaQ are put against each other in the [shortcut maze]({{< ref
        alt="Heat map of kappa against planning steps, across DynaQ variants.">
 
   <figcaption style="text-align:center;">
-    <strong>Figure 2:</strong> Heat map of kappa against planning steps, across DynaQ variants. </figcaption>
+    <strong>Figure 2:</strong> Heat map of kappa against planning steps, with ties broken arbitrarity, across DynaQ variants. </figcaption>
 </figure>
 The order of performance seems to be
 
@@ -73,7 +73,7 @@ But, there's also a difference in performance between DynaQ+ Action Bonus and Dy
        alt="Heat map of kappa against planning steps, across DynaQ variants.">
 
   <figcaption style="text-align:center;">
-    <strong>Figure 3:</strong> Heat map of kappa against planning steps, across DynaQ variants. </figcaption>
+    <strong>Figure 3:</strong> Heat map of kappa against planning steps, with ties broken arbitrarity, across DynaQ variants. </figcaption>
 </figure>
 The order of performance seems to be
 
