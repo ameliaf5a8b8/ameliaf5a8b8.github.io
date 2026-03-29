@@ -17,7 +17,7 @@ This is a long term WIP. Information may not be accurate.
 # State-space and Plan-space planning
 
 ## Plan-space planning
-	In plan-space planning, planning is a search through the space of plans.
+In plan-space planning, planning is a search through the space of plans.
 
 Examples of such methods include
 - policy gradient
@@ -102,7 +102,7 @@ The exploration bonus is applied to all unvisited transitions, inducing the agen
 **Exercise 8.3** Careful inspection of Figure 8.5 reveals that the difference between Dyna-Q+ and Dyna-Q narrowed slightly over the first part of the experiment. What is the reason for this?
 
 <span id="ex:8.4"></span>**Exercise 8.4 (programming)** The exploration bonus described above actually changes the estimated values of states and actions. Is this necessary? Suppose the bonus $\kappa \sqrt{\tau}$ was used not in updates, but solely in action selection. That is, suppose the action selected was always that for which $Q(S_t, a) + \kappa \sqrt{\tau(S_t, a)}$ was maximal. Carry out a gridworld experiment that tests and illustrates the strengths and weaknesses of this alternate approach.  
-[Comments](#ex-comment:8.4) on this exercise.
+[Analysis]({{< ref "/posts/Reinforcement Learning/Parameter study of DynaQ and variants/index.md" >}}) on this exercise.
 
 **Exercise 8.5** How might the tabular Dyna-Q algorithm shown [above](#pseudocode-for-dynaq) be modified to handle stochastic environments? How might this modification perform poorly on changing environments such as considered in this section? How could the algorithm be modified to handle stochastic environments **and** changing environments?
 
@@ -110,29 +110,5 @@ The exploration bonus is applied to all unvisited transitions, inducing the agen
 ## Comments on Exercises
 
 <span id="ex-comment:8.4"></span>[**Exercise 8.4 (programming)**](#ex:8.4) 
-In the implementations below, four variants of DynaQ are put against each other. The environments are changed at step 6000.
-- DynaQ
-- DynaQ+
-- DynaQ+ Selective, which only plans on visited states
-- DynaQ+ Action selection, which applies the exploration bonus when selecting an action.  
-
-
-
-
- <!-- <figure id="fig:planning_plot">
-  <div class="light figure-img">
-    {{< plotly src="/images/reinforcement-learning/planning-and-learning/light_imgs/planning_plot.html" height="500" >}}
-  </div>
-  <div class="dark figure-img">
-    {{< plotly src="/images/reinforcement-learning/planning-and-learning/dark_imgs/planning_plot.html" height="500" >}}
-  </div>
-  <figcaption style="text-align:center;">
-    <strong>Figure 1:</strong> Variants of DynaQ on the <a href="#fig:shortcut">shortcut</a> problem. All runs used an exploration constant of $\kappa = 0.001.$ 
-  </figcaption>
-</figure>   -->
-
-
-
-### Stationary case
 
 [^1]: a backup operation is just an RL update
