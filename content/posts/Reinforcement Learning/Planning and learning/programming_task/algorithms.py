@@ -3,7 +3,7 @@ from tqdm import tqdm
 
 
 def _argmax_with_random_tie_break(values):
-    noise = torch.rand_like(values) * * values.abs().max() * torch.finfo(values.dtype).eps
+    noise = torch.rand_like(values) * values.abs().max() * torch.finfo(values.dtype).eps
     return (values + noise).argmax(dim=-1)
 
 

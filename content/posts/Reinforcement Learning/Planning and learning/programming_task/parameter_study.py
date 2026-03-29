@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import torch
 from tqdm import tqdm
 import pickle
-
+from heatmap import plot_heatmaps_new
 from algorithms_param_study import (
     DynaQ,
     DynaQ_plus,
@@ -22,7 +22,8 @@ os.chdir("content/posts/Reinforcement Learning/Planning and learning/programming
 gridsize = (6, 9)
 no_states = gridsize[0] * gridsize[1]
 no_actions = 4
-no_runs = 1
+no_runs = 5
+dynaQ_no_runs = 50
 max_steps_envA = 3000
 max_steps_envB = 3000
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -31,10 +32,10 @@ BASE_SEED = 1234
 
 
 algorithms = {
-    "DynaQ": DynaQ,
     "DynaQ+ Selective": DynaQ_plus_selective_sample,
     "DynaQ+ Action Bonus": DynaQ_plus_action_bonus,
     "DynaQ+": DynaQ_plus,
+    "DynaQ": DynaQ,
 }
 
 def _set_seed(seed):
@@ -42,9 +43,59 @@ def _set_seed(seed):
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
+def _run_dynaQ(kappa_keys,planning_values,  max_steps_envA, max_steps_envB):
+    env = Gridworld(
+        device,
+        dynaQ_no_runs,
+        len(planning_values),
+        gridsize,
+        goal_state=(0, 8),
+    )
+    planning_tensor = torch.tensor(
+        planning_values, device=device, dtype=torch.long
+    )
+    agent = DynaQ(
+        device,
+        dynaQ_no_runs,
+        len(planning_values),
+        no_states,
+        no_actions,
+        env,
+        gamma=0.8,
+    )
 
 
-def run_algorithms_grid(algorithms,kappa_keys,kappa_values,planning_values,max_steps_envA=5000,max_steps_envB=5000,seed=None,):
+    set_wall_a(agent.env)
+    left = agent.train(max_steps_envA, planning_tensor).cpu()
+
+    if max_steps_envB:
+        set_wall_b(agent.env)
+        right = agent.train(max_steps_envB, planning_tensor).cpu()
+    else:
+        right = torch.zeros((len(planning_values), 1))
+
+    averaged_results = {
+        planning_steps: (
+            float(left[param_idx, -1].item()),
+            float(right[param_idx, -1].item()),
+        )
+        for param_idx, planning_steps in enumerate(planning_values)
+    }
+    return {
+        (kappa_key, planning_steps): averaged_results[planning_steps]
+        for kappa_key in kappa_keys
+        for planning_steps in planning_values
+    }
+        
+
+
+def run_algorithms_grid(algorithms,
+                        kappa_keys,
+                        kappa_values,
+                        planning_values,
+                        max_steps_envA=5000,
+                        max_steps_envB=5000,
+                        seed=None,):
     results = {}
     planning_values = list(planning_values)
     kappa_values = list(kappa_values)
@@ -73,13 +124,19 @@ def run_algorithms_grid(algorithms,kappa_keys,kappa_values,planning_values,max_s
     batched_kappa = torch.tensor(combo_kappas, device=device, dtype=torch.float32)
     batched_planning_steps = torch.tensor(combo_planning, device=device, dtype=torch.long)
 
-    for algorithm_idx, (name, algorithm) in enumerate(
-        tqdm(algorithms.items(), leave=False, desc="Running Algorithms")
-    ):
+    for algorithm_idx, (name, algorithm) in enumerate(tqdm(algorithms.items(), leave=False, desc="Running Algorithms")):
         if seed is not None:
             _set_seed(seed + algorithm_idx)
 
         env.reset()
+
+        if algorithm == DynaQ:
+            results[name] = _run_dynaQ(kappa_keys=kappa_keys, 
+                                       planning_values=planning_values,
+                                       max_steps_envA=max_steps_envA,
+                                       max_steps_envB=max_steps_envB)
+            continue
+
         agent = algorithm(
             device,
             no_runs,
@@ -90,10 +147,6 @@ def run_algorithms_grid(algorithms,kappa_keys,kappa_values,planning_values,max_s
             kappa=batched_kappa,
             gamma=0.8,
         )
-
-        if algorithm_idx == 0:
-            print(f"Q size: {agent.Q.element_size() * agent.Q.nelement() / 1e9:.2f} GB")
-            print(f"model size: {agent.model.element_size() * agent.model.nelement() / 1e9:.2f} GB")
 
         set_wall_a(agent.env)
         left = agent.train(max_steps_envA, batched_planning_steps).cpu()
@@ -197,7 +250,7 @@ def plot(results, filename=None, show=True):
 
 
 if __name__ == "__main__":
-    kappa_values = torch.logspace(-4, 0, 1000)
+    kappa_values = torch.logspace(-20, -7, 3500)
 
     data = run_kappa_planning_study(
         kappa_values=kappa_values,
@@ -205,7 +258,7 @@ if __name__ == "__main__":
         planning_stop=26,
         planning_step=1,
         max_steps_envA=6000 ,
-        max_steps_envB=0,
+        max_steps_envB=6000,
     )
 
     data = (data, kappa_values)
@@ -213,6 +266,12 @@ if __name__ == "__main__":
     pickled_data = pickle.dumps(data)
     size_mb = len(pickled_data) / (1024 * 1024)
     print(f"Size of data: {size_mb:.2f} MB")
+
+
+    filename = "low_kappa_arbitrary_tie_breaking.pickle"
     
-    with open("arbitrary_tie_breaking.pickle", "wb") as f:
+    with open(filename, "wb") as f:
         pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+
+    plot_heatmaps_new(filename)
+
