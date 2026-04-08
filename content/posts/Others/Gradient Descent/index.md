@@ -34,6 +34,7 @@ To understand why we subtract the gradient, consider a graph of the loss functio
     </figcaption>
     </figure>
 </div>
+
 ## Calculation of the gradient
 To calculate the gradient, we use the chain rule. This builds the fundamentals to multi-layer networks.
 $$
