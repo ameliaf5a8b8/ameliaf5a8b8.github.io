@@ -9,7 +9,7 @@ math: true
 summary:
 ---
 <div class='info-box' id="info-box">
-This post is based on <a href="https://www.statlearning.com/">Introduction to Statistical Learning</a>
+This post is based on <a target="_blank" href="https://www.statlearning.com/">Introduction to Statistical Learning</a>
 </div>
 
 # Introduction
@@ -35,7 +35,18 @@ In K-means, the within-cluster variation is defined as the *squared Euclidean di
 
 **Pseudocode for k-means.** It is guaranteed to converge to a local minima.
 
-![[Algorithm for k means.png]]
+<figure>
+
+  <img 
+  src="Algorithm for k means.png"
+  style="width:90%; display:block; margin:auto;">
+  <figcaption style="text-align:center;">
+
+  Algorithm for K-means clustering.
+
+  </figcaption>
+
+  </figure>
 If the dataset is small, we can repeat the algorithm, and find the cluster assignment with the lowest mean cluster variation.
 
 
