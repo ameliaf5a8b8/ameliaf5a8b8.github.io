@@ -9,6 +9,7 @@ categories:
   - Reinforcement Learning
   - Math
 math: true
+draft: false
 mathEngine: mathjax
 summary: A summary of Importance Sampling in the context of Reinforcement Learning
 ---
@@ -25,4 +26,4 @@ $$\begin{align*}
 &= \mathbb{E}_{q} \left[ \frac{p(x)}{q(x)} f(x) \right]
 \end{align*}
 $$
-
+ 

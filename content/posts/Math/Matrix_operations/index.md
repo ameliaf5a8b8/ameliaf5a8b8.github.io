@@ -10,6 +10,9 @@ math: true
 summary:
 draft: false
 ---
+# Matrix representation
+An $m \times n$ matrix can be viewed as a collection of row vectors, column vectors or matrices. Rules of linalg will still apply, given that the dimensions match.
+
 # Scalar Multiple
 The scalar multiple is a linear function.
 $$k(A+B) = kA + kB$$
