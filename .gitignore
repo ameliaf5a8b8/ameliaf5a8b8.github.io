@@ -18,5 +18,6 @@ Thumbs.db
 
 content/.obsidian/
 .obsidian/
+.obsidian.vimrc
 
 __pycache__/
