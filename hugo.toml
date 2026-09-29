@@ -12,7 +12,7 @@ preserveTaxonomyNames = true
 
 # This ensures URLs stay clean (lowercase) while the display name stays pretty
 # Example: /tags/linear-algebra/ vs "Linear Algebra"
-disablePathToLower = false 
+disablePathToLower = false
 # ------------------------------
 
 [pagination]
@@ -24,7 +24,7 @@ disablePathToLower = false
   ShowWordCount = true
   ShowLastMod = true
   ShowPostNavLinks = true
-  
+
 
   math = true
 
@@ -32,18 +32,22 @@ disablePathToLower = false
 
   [params.katex]
     enable = false
-  
- 
+
+
   mainSections = ["posts"]
 
 
-  # [[params.socialIcons]]
-  #   name = "github"
-  #   url = "https://github.com/yourusername"
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/amelia-vulpes-aa570643b/"
 
-  # [[params.socialIcons]]
-  #   name = "email"
-  #   url = "mailto:you@email.com"
+  [[params.socialIcons]]
+    name = "email"
+    url = "ameliavulpes@gmail.com"
+
+ [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/ameliaf5a8b8"
 
   [params.breadcrumbs]
     enabled = true
@@ -89,10 +93,10 @@ disablePathToLower = false
     [markup.goldmark.renderer]
       hardWraps = false
       unsafe = true
-    
+
     [markup.goldmark.extensions]
       enable = true
-    
+
       [markup.goldmark.extensions.passthrough]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]

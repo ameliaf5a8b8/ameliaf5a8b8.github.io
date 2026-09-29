@@ -1,6 +1,8 @@
 ---
 title: Personal notes
-description: 
+description:
 date: 2025-03-20
+draft: True
 ---
+
 My unvetted, potentially very wrong, notes.
