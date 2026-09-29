@@ -1,4 +1,4 @@
-baseURL = "https://ameliaf5a8b8.github.io"
+baseURL = "https://ameliavulpes.github.io"
 languageCode = "en-gb"
 title = "Amelia"
 theme = "PaperMod"
@@ -25,17 +25,10 @@ disablePathToLower = false
   ShowLastMod = true
   ShowPostNavLinks = true
 
-
   math = true
-
-  mathEngine = "katex" # or "mathjax"
-
-  [params.katex]
-    enable = false
-
+  mathEngine = "mathjax"
 
   mainSections = ["posts"]
-
 
   [[params.socialIcons]]
     name = "linkedin"
@@ -102,3 +95,4 @@ disablePathToLower = false
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['$$', '$$'],["\\[", "\\]"]]
           inline = [['$', '$'],["\\(", "\\)"]]
+
