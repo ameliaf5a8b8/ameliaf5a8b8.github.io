@@ -10,6 +10,7 @@ categories:
   - Math
 math: true
 mathEngine: mathjax
+draft: False
 summary: The Unbiased Step Size Trick used to eliminate initial biases
 ---
 In many cases, we initialise Q-values optimistically (e.g., setting all Q(s, a) to high values) to encourage exploration in greedy algorithms. However, with a constant step size $\alpha$, there is a bias toward the initial values, which may be detrimental in non-stationary tasks.  
