@@ -5,6 +5,7 @@ lastmod: 2026-03-09
 tags: ["epsilon-greedy", "explore-exploit trade-off", "k-armed Bandits", "Easy"]
 categories: ["Machine Learning", "Reinforcement Learning",Action-Value]
 math: true
+mathEngine: mathjax
 summary:
 ---
 # Introduction

@@ -140,7 +140,7 @@ q_{\pi}(s,a)
 # Summary
 - Most reinforcement learning tasks assume the markov property.
 - Returns are typically discounted to 
-	- Bound the return in continuing tasks
+	- Bound the return in continuing tasks[^1]
 	- Increase agent myopia 
 
 
@@ -172,3 +172,8 @@ which implies $\mathbf{I}- \gamma P^\pi$ is full rank and thus invertible.
 
 **Corollary.**$\;$If $q_\pi$ has a unique solution, then so does $v_\pi$.
 $$v_\pi(s) = \sum_a \pi(a \mid s)\,q_\pi(s,a)$$
+
+
+[^1]: Discounting is not necessary to obtain bounded returns in continuing tasks. Using the differential return formulation, the long-run return remains bounded without discounting.
+
+

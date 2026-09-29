@@ -8,6 +8,7 @@ categories:
   - Reinforcement Learning
   - Action-Value
 math: true
+mathEngine: mathjax
 summary:
 ---
 # Implementation

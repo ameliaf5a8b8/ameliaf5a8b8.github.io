@@ -10,6 +10,7 @@ categories:
   - Policy Gradient
   - Math
 math: true
+mathEngine: mathjax
 summary:
 ---
 
