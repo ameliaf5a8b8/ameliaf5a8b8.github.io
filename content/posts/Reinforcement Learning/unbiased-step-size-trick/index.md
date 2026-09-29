@@ -13,7 +13,7 @@ mathEngine: mathjax
 draft: False
 summary: The Unbiased Step Size Trick used to eliminate initial biases
 ---
-In many cases, we initialise Q-values optimistically (e.g., setting all Q(s, a) to high values) to encourage exploration in greedy algorithms. However, with a constant step size $\alpha$, there is a bias toward the initial values, which may be detrimental in non-stationary tasks.  
+<!--In many cases, we initialise Q-values optimistically (e.g., setting all Q(s, a) to high values) to encourage exploration in greedy algorithms. However, with a constant step size $\alpha$, there is a bias toward the initial values, which may be detrimental in non-stationary tasks.  
 
 Hence, we create two new variables $\beta, \bar{O}_{n}\in \mathbb R$, where $\beta$ is the final step size, and $\bar{O}_{n}$ is a helper variable. To start, we define our step size, $\alpha$:
 $$\alpha_n = \frac{\beta}{\bar{O}_n} \quad \forall n > 0 ,\bar{O}_0 =  0$$
@@ -38,11 +38,11 @@ $$\begin{align*}
 &= \beta + \beta(1-\beta) + (1-\beta)^2\bar{O}_{n-2} \\
 &= \beta\sum_{i=0}^{n-1}(1-\beta)^i + (1-\beta)^n\bar{O}_0 
 \end{align*}$$
-
+**Corollary:**
 $$
 \begin{align*}
 \lim_{ n \to \infty }
    \beta\sum_{i=0}^{\infty}(1-\beta)^i 
 &= \frac{\beta}{1-(1-\beta)} \\
 &= 1.
-\end{align*} $$
+\end{align*} $$-->
