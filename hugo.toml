@@ -40,7 +40,7 @@ disablePathToLower = false
 
  [[params.socialIcons]]
     name = "github"
-    url = "https://github.com/ameliaf5a8b8"
+    url = "https://github.com/ameliavulpes"
 
   [params.breadcrumbs]
     enabled = true
