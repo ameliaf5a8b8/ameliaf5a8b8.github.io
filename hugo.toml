@@ -62,7 +62,7 @@ disablePathToLower = false
 
   [[menu.main]]
     name = "About"
-    url = "/about/"
+    url = "/aboutme/"
     weight = 2
 
   # [[menu.main]]
