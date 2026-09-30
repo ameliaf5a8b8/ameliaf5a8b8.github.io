@@ -16,5 +16,5 @@ Right now, I'm reading Sutton & Barto's book on Reinforcement Learning, which me
 
 I'm also interested in Advertising,  Marketing, and reaching others for a network. Feel free to reach out to me on LinkedIn or by email to have a short fireside chat.
 
-Linked In: https://www.linkedin.com/in/amelia-vulpes-aa570643b/
+Linked In: https://www.linkedin.com/in/amelia-vulpes-aa570643b/  
 Email: ameliavulpes@gmail.com
